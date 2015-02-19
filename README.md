@@ -1,0 +1,2 @@
+# diplomat
+Interface to iRely
