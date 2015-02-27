@@ -1,2 +1,2 @@
 # diplomat
-Interface to iRely
+Interface to external integration points.
