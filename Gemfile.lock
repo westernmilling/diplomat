@@ -15,18 +15,9 @@ GIT
       sass (~> 3.4.1)
 
 GIT
-  remote: git://github.com/westernmilling/chancellor_models.git
-  revision: c18982f0af0fe5e9bd1d92db1759af6be2622f9e
-  branch: extract-from-chancellor
-  specs:
-    chancellor_models (0.0.1)
-      activerecord
-      mysql2
-      paranoia
-      uuid
-
-PATH
-  remote: ~/Ruby/promiscuous
+  remote: git://github.com/josephbridgwaterrowe/promiscuous.git
+  revision: bfa025f8ff4b3c60b959d48680b8b49faa271ef4
+  branch: tweaks
   specs:
     promiscuous (1.0.0.beta6)
       activemodel (>= 3)
@@ -39,6 +30,17 @@ PATH
       redis (~> 3.0)
       robust-redis-lock (~> 0.2.2)
       ruby-progressbar (~> 1.2.0)
+
+GIT
+  remote: git://github.com/westernmilling/chancellor_models.git
+  revision: c18982f0af0fe5e9bd1d92db1759af6be2622f9e
+  branch: extract-from-chancellor
+  specs:
+    chancellor_models (0.0.1)
+      activerecord
+      mysql2
+      paranoia
+      uuid
 
 GEM
   remote: https://rubygems.org/
