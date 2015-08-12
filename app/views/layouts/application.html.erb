@@ -1,14 +1,27 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Diplomat</title>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+<html lang="en">
+  <%= render partial: '/layouts/head' %>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to 'diplomat', root_url, :class => 'navbar-brand' %>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <%= menu %>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <%= flash_messages %>
+      <%= yield %>
+    </div>
+    <%= render partial: '/layouts/footer' %>
+  </body>
 </html>

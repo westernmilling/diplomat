@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%= render partial: '/layouts/head' %>
+  <body>
+    <div class="container">
+      <%= flash_messages %>
+      <%= yield %>
+    </div>
+    <%= render partial: '/layouts/footer' %>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+<div class="container text-center">
+  <h1>diplomat</h1>
+  <p>Integration hub.</p>
+  <%= link_to 'Learn More', about_path, :class => 'btn btn-default' %>
+  <% if user_signed_in? %> <%# && current_user.has_role?(:system_admin) %>
+  <%= link_to 'Invite User', new_user_invitation_path, :class => 'btn btn-default' %>
+  <% end %>
+</div>

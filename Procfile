@@ -1,1 +1,1 @@
-web: bundle exec puma -C ./config/puma.rb
+web: bundle exec unicorn_rails -c ./config/unicorn.rb -l 5020

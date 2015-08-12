@@ -1,0 +1,26 @@
+<%= render layout: '/heading',
+           locals: {
+             size: 'h2',
+             title: t('devise.invitations.new.header')
+           } do %>
+  <nav class="pull-right">
+  </nav>
+<% end %>
+<div>
+  <%= simple_form_for(@entry,
+                      as: :entry,
+                      html: { class: 'form-horizontal' },
+                      method: :post,
+                      url: invitation_path(:user),
+                      wrapper: :horizontal_form) do |form| %>
+    <%#= devise_error_messages! %>
+    <%= error_messages(@entry) %>
+
+    <%= form.input :name %>
+    <%= form.input :email %>
+    <div class="actions">
+      <%= form.submit t('devise.invitations.new.submit_button'),
+                      class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

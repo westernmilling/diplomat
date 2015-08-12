@@ -1,0 +1,31 @@
+<%= render :layout => '/heading',
+           :locals => { :size => 'h2', :title => 'Users' } do %>
+  <nav class="pull-right">
+  </nav>
+<% end %>
+<section>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Status</th>
+      <th>Last Signed In</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @users.each do |user| %>
+      <tr>
+          <td nowrap><%= link_to user.name, admin_user_path(user) %></td>
+          <td nowrap><%= user.email %></td>
+          <td nowrap><%= user.active_label %></td>
+          <td nowrap><%= user.last_sign_in_at %></td>
+      </tr>
+    <% end.empty? %>
+      <tr>
+        <td colspan="4">No users found</td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</section>

@@ -23,9 +23,11 @@ module Diplomat
     config.generators do |g|
       g.stylesheets false
       g.javascripts false
-      g.test_framework :rspec, :fixture => false
+      g.test_framework :rspec, fixture: false
       g.view_specs false
       g.helper_specs false
     end
+
+    config.secret_key_base = Figaro.env.SECRET_KEY_BASE
   end
 end

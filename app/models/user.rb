@@ -1,22 +1,11 @@
-# User
 class User < ActiveRecord::Base
-  rolify
-  # Include default devise modules. Others available are:
-  # :timeoutable and :omniauthable
-  devise :confirmable,
-         :database_authenticatable,
+  devise :database_authenticatable,
+         :invitable,
          :lockable,
-         # :registerable,
          :recoverable,
-         :rememberable, :trackable, :validatable
+         :rememberable,
+         :trackable
+  validates :email, :name, presence: true
 
-  validates :is_active, :presence => true
-
-  def active?
-    is_active == 1
-  end
-
-  def available_roles
-    Role::ROLE_NAMES - roles.map(&:name)
-  end
+  def after_password_reset; end
 end

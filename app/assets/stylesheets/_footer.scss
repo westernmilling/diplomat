@@ -1,0 +1,17 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  margin-bottom: 120px;
+}
+
+.footer {
+  background-color: $gray-lighter;
+  bottom: 0;
+  height: 120px;
+  padding-top: 20px;
+  position: absolute;
+  width: 100%;
+}
