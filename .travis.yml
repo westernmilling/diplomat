@@ -1,0 +1,16 @@
+language: ruby
+addons:
+  postgresql: '9.3'
+cache: bundler
+rvm:
+- 2.2.2
+script:
+# - npm install bower
+# - bower install --verbose
+- bundle exec rake db:schema:load
+- xvfb-run bundle exec rspec --color --format documentation
+before_script:
+- cp config/database.example.yml config/database.yml
+- psql -c 'create database diplomat_test;' -U postgres
+notifications:
+  slack: wm-it:QEPmqezBb68PGS6a8OWwImYi

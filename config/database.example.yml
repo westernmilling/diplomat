@@ -1,19 +1,19 @@
 default: &default
   adapter: postgresql
+  database: diplomat
+  username: postgres
   pool: 5
   timeout: 5000
 
 development:
   <<: *default
-  database: db/development.sqlite3
 
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: diplomat_test
 
 production:
   <<: *default
-  database: db/production.sqlite3
 
 irely_default: &default
   adapter: mysql

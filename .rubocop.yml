@@ -18,7 +18,6 @@ AllCops:
   Exclude:
   - "vendor/**/*"
   - "db/schema.rb"
-  - bin/*
   RunRailsCops: false
   DisplayCopNames: false
   StyleGuideCopsOnly: false
@@ -204,7 +203,7 @@ Style/HashSyntax:
     1, :b => 2 }.'
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#hash-literals
   Enabled: true
-  EnforcedStyle: hash_rockets
+  EnforcedStyle: ruby19
   SupportedStyles:
   - ruby19
   - hash_rockets
@@ -311,6 +310,8 @@ Style/PredicateName:
   - have_
   NamePrefixBlacklist:
   - is_
+  Exclude:
+  - spec/**/*
 Style/RaiseArgs:
   Description: Checks the arguments passed to raise/fail.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#exception-class-messages

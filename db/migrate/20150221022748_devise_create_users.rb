@@ -1,44 +1,56 @@
 class DeviseCreateUsers < ActiveRecord::Migration
-  # rubocop:disable Metrics/AbcSize
   def change
     create_table(:users) do |t|
-      t.string :email, :null => false, :default => ''
-      t.string :encrypted_password, :null => false, :default => ''
-
-      t.string :reset_password_token
-      t.datetime :reset_password_sent_at
-
+      t.string :name, null: false
+      t.string :email, null: false
+      t.integer :is_active, default: 1, null: false
+      t.string :encrypted_password
+      recoverable_colums t
+      sign_in_columns t
       t.datetime :remember_created_at
+      lockable_columns t
+      invitable_columns t
 
-      t.integer :sign_in_count, :default => 0, :null => false
-      t.datetime :current_sign_in_at
-      t.datetime :last_sign_in_at
-      t.inet :current_sign_in_ip
-      t.inet :last_sign_in_ip
+      t.timestamps null: false
 
-      t.string :confirmation_token
-      t.datetime :confirmed_at
-      t.datetime :confirmation_sent_at
-      t.string :unconfirmed_email # Only if using reconfirmable
-
-      # Only if lock strategy is :failed_attempts
-      t.integer :failed_attempts, :default => 0, :null => false
-      # Only if unlock strategy is :email or :both
-      t.string :unlock_token
-      t.datetime :locked_at
-
-      t.string :display_name, :null => false
-      t.string :first_name, :null => false
-      t.string :last_name, :null => false
-      t.string :is_active, :default => 1
-
-      t.timestamps
+      t.index :email, unique: true
+      t.index :reset_password_token, unique: true
+      invitable_indexes t
     end
-
-    add_index :users, :email, :unique => true
-    add_index :users, :reset_password_token, :unique => true
-    add_index :users, :confirmation_token, :unique => true
-    add_index :users, :unlock_token, :unique => true
   end
-  # rubocop:enable Metrics/AbcSize
+
+  def invitable_columns(table)
+    table.string :invitation_token
+    table.datetime :invitation_created_at
+    table.datetime :invitation_sent_at
+    table.datetime :invitation_accepted_at
+    table.integer :invitation_limit
+    table.references :invited_by, polymorphic: true
+    table.integer :invitations_count, default: 0
+  end
+
+  def invitable_indexes(table)
+    table.index :invitations_count
+    table.index :invitation_token, unique: true
+    table.index :invited_by_id
+  end
+
+  def sign_in_columns(table)
+    table.integer :sign_in_count, default: 0, null: false
+    table.datetime :current_sign_in_at
+    table.datetime :last_sign_in_at
+    table.string :current_sign_in_ip
+    table.string :last_sign_in_ip
+  end
+
+  def lockable_columns(table)
+    table.integer :failed_attempts, default: 0, null: false
+    table.string :unlock_token
+    table.datetime :locked_at
+  end
+
+  def recoverable_colums(table)
+    table.string :reset_password_token
+    table.datetime :reset_password_sent_at
+  end
 end

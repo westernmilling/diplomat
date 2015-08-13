@@ -1,0 +1,36 @@
+@import "footer";
+@import "typography";
+
+body > .container {
+  padding: 60px 15px 0;
+}
+
+body > div {
+  padding: 60px 15px 0;
+}
+
+td nav { text-align: right;}
+
+.alert .errors { margin-top: 10px; }
+
+// scss-lint:disable SelectorDepth
+.input-group .twitter-typeahead .form-control:not(:first-child):not(:last-child) {
+  border-radius: 4px 0 0 4px;
+}
+// scss-lint:enable SelectorDepth
+
+.modal { outline: 1px solid transparent; }
+
+.page-header {
+  nav {
+    margin-top: -36px;
+  }
+}
+
+// scss-lint:disable QualifyingElement, SelectorDepth
+.nav > li > a.user-dropdown {
+  padding: 12px 20px 8px;
+
+  img { margin-left: 10px; }
+}
+// scss-lint:enable QualifyingElement, SelectorDepth

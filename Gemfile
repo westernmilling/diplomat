@@ -1,33 +1,35 @@
 source 'https://rubygems.org'
-ruby '2.2.0'
 
-group :development, :test do
-  gem 'dotenv-rails',
-      :github => 'bkeepers/dotenv',
-      :require => 'dotenv/rails-now'
-end
-
-gem 'chancellor_models',
-    :github => 'westernmilling/chancellor_models',
-    :branch => 'extract-from-chancellor'
-gem 'coffee-rails', '~> 4.1.0'
-gem 'devise'
+gem 'airbrake'
+gem 'bootstrap-sass'
+gem 'bootswatch-rails'
+gem 'devise_invitable'
+gem 'draper'
+gem 'figaro'
+gem 'gravatar_image_tag'
+gem 'interactor-rails'
 gem 'jquery-rails'
-# gem 'mysql2'
 gem 'paranoia'
+gem 'parser', '2.2.0.3'
 gem 'pg'
-gem 'puma'
 gem 'pundit'
-gem 'rails', '4.2.0'
+gem 'rails'
 gem 'rolify'
 gem 'sass-rails', '~> 5.0'
+gem 'simple_form'
+gem 'skylight'
 gem 'squeel'
 gem 'uglifier', '>= 1.3.0'
+gem 'unicorn'
+gem 'virtus'
 
 group :development do
   gem 'byebug'
+  gem 'capistrano', '3.4.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
   gem 'rubocop'
-  gem 'scss-lint', :github => 'causes/scss-lint'
+  gem 'scss_lint', require: false
   gem 'web-console', '~> 2.0'
 end
 
@@ -35,5 +37,14 @@ group :development, :test do
 end
 
 group :test do
-  gem 'coveralls', :require => false
+  gem 'capybara-webkit'
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'rspec-rails'
+  gem 'rspec-its'
+  gem 'shoulda-matchers', require: false
+  gem 'shoulda-kept-respond-with-content-type',
+      github: 'tinfoil/shoulda-kept-respond-with-content-type'
 end

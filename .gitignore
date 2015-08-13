@@ -14,7 +14,11 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 
+config/application.yml
 config/database.yml
+config/deploy.rb
+config/deploy/production.rb
+config/deploy/staging.rb
 
 /.bundle
 /public/assets/*
@@ -23,5 +27,4 @@ config/database.yml
 .rvmrc
 
 /vendor/assets/bower_components
-*.bowerrc
-bower.json
+/node_modules

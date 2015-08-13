@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%= render partial: '/layouts/head' %>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <%= link_to 'diplomat', root_url, :class => 'navbar-brand' %>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <%= menu %>
+        </div>
+      </div>
+    </nav>
+    <div>
+      <%= flash_messages %>
+      <%= yield %>
+    </div>
+    <%= render partial: '/layouts/footer' %>
+  </body>
+</html>
