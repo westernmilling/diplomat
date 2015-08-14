@@ -1,0 +1,29 @@
+<%= render layout: '/heading',
+           locals:
+           {
+             size: 'h2',
+             title: t('organizations.index.title')
+           } do %>
+  <nav class="pull-right">
+  </nav>
+<% end %>
+<section>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% if organizations.each do |organization| %>
+      <tr>
+          <td nowrap><%= show_organization_link(organization) %></td>
+      </tr>
+    <% end.empty? %>
+      <tr>
+        <td colspan="1"><%= t('organizations.index.none') %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</section>

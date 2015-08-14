@@ -3,6 +3,12 @@ en:
     title: 'Admin'
   invite_user:
     title: 'Invite user'
+  organizations:
+    index:
+      none: 'There are no organizations'
+      title: 'Organizations'
+    show:
+      title: 'Organization'
   sign_in:
     title: 'Sign in'
   sign_out:

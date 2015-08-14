@@ -10,8 +10,11 @@ gem 'gravatar_image_tag'
 gem 'interactor-rails'
 gem 'jquery-rails'
 gem 'paranoia'
-gem 'parser', '2.2.0.3'
+gem 'parser', '2.3.0.pre.2'
 gem 'pg'
+gem 'promiscuous', github: 'josephbridgwaterrowe/promiscuous',
+                   branch: 'active_record_migrations'
+# gem 'promiscuous', path: '../promiscuous'
 gem 'pundit'
 gem 'rails'
 gem 'rolify'
@@ -21,6 +24,7 @@ gem 'skylight'
 gem 'squeel'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
+gem 'uuid'
 gem 'virtus'
 
 group :development do
@@ -28,7 +32,7 @@ group :development do
   gem 'capistrano', '3.4.0'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
-  gem 'rubocop'
+  gem 'rubocop', '0.33.0'
   gem 'scss_lint', require: false
   gem 'web-console', '~> 2.0'
 end
