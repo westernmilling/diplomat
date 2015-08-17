@@ -26,7 +26,7 @@ namespace :diplomat do
 end
 
 def irely_configuration_key
-  "irely_#{ Rails.env }".to_sym
+  "irely_#{Rails.env}".to_sym
 end
 
 # Hack to temporarily connect AR::Base to your engine.

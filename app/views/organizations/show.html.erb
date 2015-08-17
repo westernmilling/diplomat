@@ -1,0 +1,23 @@
+<%= render layout: '/heading',
+           locals:
+           {
+             size: 'h2',
+             title: t('organizations.show.title')
+           } do %>
+<nav class="pull-right">
+</nav>
+<% end %>
+<div class="form-horizontal">
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Name</label>
+    <p class="col-sm-6 form-control-static"><%= organization.name %></p>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-3 control-label">UUID</label>
+    <p class="col-sm-6 form-control-static"><%= organization.uuid %></p>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Sync Version</label>
+    <p class="col-sm-6 form-control-static"><%= organization._v %></p>
+  </div
+</div>
