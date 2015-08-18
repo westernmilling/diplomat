@@ -1,6 +1,7 @@
 <%= render :layout => '/heading',
-           :locals => { :size => 'h2', :title => 'Users' } do %>
+           :locals => { :size => 'h2', :title => t('users.index.title') } do %>
   <nav class="pull-right">
+    <%= link_to 'New', new_admin_user_path, class: 'btn btn-default' %>
   </nav>
 <% end %>
 <section>
@@ -14,7 +15,7 @@
     </tr>
     </thead>
     <tbody>
-    <% if @users.each do |user| %>
+    <% if users.each do |user| %>
       <tr>
           <td nowrap><%= link_to user.name, admin_user_path(user) %></td>
           <td nowrap><%= user.email %></td>

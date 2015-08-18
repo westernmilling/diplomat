@@ -1,10 +1,4 @@
-class AcceptInviteEntry
-  include Virtus.model
-
-  extend ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-
+class AcceptInviteEntry < FormEntry
   attribute :invitation_token, String
   attribute :name, String
   attribute :password, String

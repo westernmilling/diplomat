@@ -1,41 +1,13 @@
 module Users
   class InvitationsController < Devise::InvitationsController
-    before_action :build_invite_entry, only: [:create, :new]
     before_action :build_accept_entry, only: [:edit, :update]
     prepend_before_filter :resource_from_invitation_token,
                           only: [:destroy, :edit, :update]
-
-    # rubocop:disable Metrics/AbcSize
-    def create
-      self.resource = @entry
-
-      return render :new unless @entry.valid?
-
-      result = InviteUser.call(
-        @entry.to_h.merge(current_user: current_user))
-
-      self.resource = result.invited_user
-
-      if result.success?
-        if is_flashing_format? && result.invited_user.invitation_sent_at
-          set_flash_message(:notice, :send_instructions,
-                            email: result.invited_user.email)
-        end
-        respond_with resource, location: after_invite_path_for(current_inviter)
-      else
-        respond_with_navigational(resource) { render :new }
-      end
-    end
-    # rubocop:enable Metrics/AbcSize
 
     def edit
       resource.invitation_token = params[:invitation_token]
       @entry.name = resource.name
       @entry.invitation_token = resource.invitation_token
-    end
-
-    def new
-      self.resource = @entry
     end
 
     # rubocop:disable Metrics/AbcSize
@@ -73,10 +45,6 @@ module Users
       @entry = AcceptInviteEntry.new(accept_params)
     end
 
-    def build_invite_entry
-      @entry = InviteUserEntry.new(invite_params)
-    end
-
     def accept_params
       params
         .require(:entry)
@@ -86,11 +54,6 @@ module Users
 
     def find_resource_by_token
       resource_class.find_by_invitation_token(invitation_token, true)
-    end
-
-    def invite_params
-      params.require(:entry).permit(:email, :name)
-    rescue ActionController::ParameterMissing; {}
     end
 
     def invitation_token

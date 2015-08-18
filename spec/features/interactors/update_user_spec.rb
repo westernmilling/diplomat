@@ -1,14 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe InviteUser, type: :service do
+RSpec.describe UpdateUser, type: :service do
   describe '.call' do
+    let(:user) { create(:user) }
     let(:email) { Faker::Internet.email }
     let(:name) { "#{Faker::Name.first_name} #{Faker::Name.last_name}" }
     let(:context) do
-      InviteUser.call(
+      UpdateUser.call(
+        id: user.id,
         name: name,
         email: email,
-        # roles: ['authenticated', 'admin'],
+        # roles: roles,
         current_user: acting_user)
     end
     let!(:acting_user) { create(:user) }
@@ -20,7 +22,7 @@ RSpec.describe InviteUser, type: :service do
         its(:success?) { is_expected.to be true }
         its(:message) do
           is_expected
-            .to eq(I18n.t('users.create.success'))
+            .to eq(I18n.t('users.update.success'))
         end
 
         describe '#user' do
@@ -34,20 +36,6 @@ RSpec.describe InviteUser, type: :service do
           #   expect(subject.roles.map(&:name))
           #     .to include('authenticated', 'admin')
           # end
-          its(:invitation_created_at) { is_expected.to be_present }
-          its(:invitation_sent_at) { is_expected.to be_present }
-          its(:invitation_token) { is_expected.to be_present }
-          its(:invited_by_id) { is_expected.to eq(acting_user.id) }
-          its(:invited_by_type) { is_expected.to eq('User') }
-        end
-
-        describe 'membership message' do
-          it 'should send an email to the invited user' do
-            ActionMailer::Base.deliveries = []
-            expect do
-              subject
-            end.to change(ActionMailer::Base.deliveries, :size).by(1)
-          end
         end
       end
     end
@@ -60,7 +48,7 @@ RSpec.describe InviteUser, type: :service do
         its(:success?) { is_expected.to be false }
         its(:message) do
           is_expected
-            .to eq(I18n.t('users.create.invalid'))
+            .to eq(I18n.t('users.update.invalid'))
         end
 
         describe '#user' do
@@ -69,8 +57,6 @@ RSpec.describe InviteUser, type: :service do
           it { is_expected.to_not be_present }
         end
       end
-
-      it_behaves_like 'sending no email'
     end
   end
 end

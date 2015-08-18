@@ -4,14 +4,25 @@ class InviteUser
   before :check_invite_details
 
   def call
-    context.invited_user = User.invite!(invite_params, context.current_user)
-    context.message = I18n.t('user.invite.success')
+    User.transaction do
+      context.user = build_user
+      context.user.invite!(context.current_user)
+      context.user.save!
+    end
+    context.message = I18n.t('users.create.success')
+  end
+
+  def build_user
+    User.new(invite_params) do |user|
+      (context.roles || []).each { |role| user.grant role }
+    end
   end
 
   def invite_params
     {
       email: context.email,
-      name: context.name
+      name: context.name,
+      is_active: context.is_active || 1
     }
   end
 
@@ -22,6 +33,6 @@ class InviteUser
               context.name.present? && \
               context.email =~ /.+@.+\..+/i
 
-    context.fail!(message: I18n.t('user.invite.invalid'))
+    context.fail!(message: I18n.t('users.create.invalid'))
   end
 end

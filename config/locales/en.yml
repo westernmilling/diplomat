@@ -22,4 +22,13 @@ en:
       success: 'User was successfully updated.'
       failure: 'User was not updated.'
   users:
-    title: 'Users'
+    create:
+      success: 'The user was created successfully'
+      failure: "We're sorry but there were problems creating the new user"
+      invalid: "We're sorry but some of the details you provided were invalid"
+    index:
+      title: 'Users'
+    update:
+      success: 'The user was updated successfully'
+      failure: "We're sorry but there were problems updating new user"
+      invalid: "We're sorry but some of the details you provided were invalid"
