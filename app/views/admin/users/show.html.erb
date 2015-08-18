@@ -1,20 +1,20 @@
 <%= render :layout => '/heading',
-           :locals => { :size => 'h2', :title => @user.name } do %>
+           :locals => { :size => 'h2', :title => user.name } do %>
   <nav class="pull-right">
-    <%= link_to 'Edit', edit_admin_user_path(@user), :class => 'btn btn-link' %>
+    <%= link_to 'Edit', edit_admin_user_path(user), :class => 'btn btn-link' %>
   </nav>
 <% end %>
 <div class="form form-horizontal">
   <div class="form-group">
     <label class="col-sm-3 control-label">Name</label>
-    <p class="col-sm-6 form-control-static"><%= @user.name %></p>
+    <p class="col-sm-6 form-control-static"><%= user.name %></p>
   </div>
   <div class="form-group">
     <label class="col-sm-3 control-label">Email</label>
-    <p class="col-sm-6 form-control-static"><%= @user.email %></p>
+    <p class="col-sm-6 form-control-static"><%= user.email %></p>
   </div>
   <div class="form-group">
     <label class="col-sm-3 control-label">Active?</label>
-    <p class="col-sm-6 form-control-static"><%= @user.active_label %></p>
+    <p class="col-sm-6 form-control-static"><%= user.active_label %></p>
   </div>
 </div>

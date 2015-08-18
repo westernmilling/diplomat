@@ -22,7 +22,7 @@ module MenuHelper
 
   def admin_menu
     menu_dropdown(t('admin.title')) do
-      menu_item(t('users.title'), admin_users_path)
+      menu_item(t('users.index.title'), admin_users_path)
     end
   end
 

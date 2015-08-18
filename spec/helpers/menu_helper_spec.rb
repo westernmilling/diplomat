@@ -31,7 +31,7 @@ RSpec.describe MenuHelper, type: :helper do
       it do
         is_expected.to have_content I18n.t('admin.title')
       end
-      it { is_expected.to have_content I18n.t('users.title') }
+      it { is_expected.to have_content I18n.t('users.index.title') }
       it { is_expected.to have_content I18n.t('invite_user.title') }
       it { is_expected.to have_content I18n.t('sign_out.title') }
       it { is_expected.to have_content user.name }

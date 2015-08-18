@@ -32,18 +32,6 @@ RSpec.describe Users::InvitationsController, type: :controller do
     end
   end
 
-  describe 'GET new' do
-    before do
-      sign_in(build_stubbed(:user))
-
-      get :new
-    end
-
-    it_behaves_like 'a successful request'
-    it_behaves_like 'a new request'
-    it { expect(assigns(:entry)).to be_kind_of(InviteUserEntry) }
-  end
-
   describe 'PATCH update' do
     before do
       allow(AcceptUserInvite).to receive(:call).and_return(context)
@@ -96,39 +84,6 @@ RSpec.describe Users::InvitationsController, type: :controller do
           .to set_flash[:alert]
           .to(I18n.t('devise.invitations.invitation_token_invalid'))
       end
-    end
-  end
-
-  describe 'POST create' do
-    before do
-      sign_in(build_stubbed(:user))
-
-      post :create, entry: { email: email, name: name }
-    end
-
-    context 'when the details are valid' do
-      let(:email) { Faker::Internet.email }
-      let(:name) { Faker::Internet.name }
-
-      it_behaves_like 'a redirect'
-      it do
-        is_expected.to render_template('devise/mailer/invitation_instructions')
-      end
-      it do
-        is_expected
-          .to set_flash[:notice]
-          .to(I18n.t('devise.invitations.send_instructions', email: email))
-      end
-    end
-
-    context 'when the details are not valid' do
-      let(:email) {}
-      let(:name) {}
-
-      it_behaves_like 'a successful request'
-      it_behaves_like 'a new request'
-      it { expect(assigns(:entry)).to be_kind_of(InviteUserEntry) }
-      it { expect(assigns(:entry).errors).to_not be_empty }
     end
   end
 end

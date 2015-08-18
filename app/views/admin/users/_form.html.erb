@@ -1,7 +1,8 @@
 <%= error_messages model %>
 
-<%= form.input :name, :autofocus => true %>
+<%= form.input :email, autofocus: true %>
+<%= form.input :name %>
 <%= form.input :is_active,
-               :as => :boolean,
-               :boolean_style => :inline,
-               :wrapper => :horizontal_boolean %>
+               as: :boolean,
+               boolean_style: :inline,
+               wrapper: :horizontal_boolean %>
