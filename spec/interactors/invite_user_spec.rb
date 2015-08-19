@@ -8,7 +8,7 @@ RSpec.describe InviteUser, type: :service do
       InviteUser.call(
         name: name,
         email: email,
-        # roles: ['authenticated', 'admin'],
+        role_names: ['authenticated', 'admin'],
         current_user: acting_user)
     end
     let!(:acting_user) { create(:user) }
@@ -30,10 +30,10 @@ RSpec.describe InviteUser, type: :service do
           it { is_expected.to be_persisted }
           its(:email) { is_expected.to eq(email) }
           its(:name) { is_expected.to eq(name) }
-          # its(:roles) do
-          #   expect(subject.roles.map(&:name))
-          #     .to include('authenticated', 'admin')
-          # end
+          its(:roles) do
+            expect(subject.roles.map(&:name))
+              .to include('authenticated', 'admin')
+          end
           its(:invitation_created_at) { is_expected.to be_present }
           its(:invitation_sent_at) { is_expected.to be_present }
           its(:invitation_token) { is_expected.to be_present }

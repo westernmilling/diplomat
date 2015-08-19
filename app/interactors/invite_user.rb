@@ -12,21 +12,19 @@ class InviteUser
     context.message = I18n.t('users.create.success')
   end
 
+  protected
+
   def build_user
-    User.new(invite_params) do |user|
-      (context.roles || []).each { |role| user.grant role }
+    User.new(user_params) do |user|
+      (context.role_names || []).reject(&:blank?).each do |role|
+        user.grant role
+      end
     end
   end
 
-  def invite_params
-    {
-      email: context.email,
-      name: context.name,
-      is_active: context.is_active || 1
-    }
+  def user_params
+    { is_active: 1 }.merge(context.to_h.slice(:email, :name, :is_active))
   end
-
-  protected
 
   def check_invite_details
     return if context.email.present? && \

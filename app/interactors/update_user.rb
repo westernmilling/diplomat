@@ -4,23 +4,39 @@ class UpdateUser
   before :check_user_details
   before :find_user
 
+  delegate :user, to: :context
+
   def call
-    User.transaction do
-      context.user.update_attributes(user_params)
-      context.user.save!
+    user.with_lock do
+      update_user
+      grant_roles!
+      revoke_roles!
+      user.save!
     end
     context.message = I18n.t('users.update.success')
   end
 
-  def user_params
-    {
-      email: context.email,
-      name: context.name,
-      is_active: context.is_active || 1
-    }
+  protected
+
+  def grant_roles!
+    ((context.role_names || []) - user.roles.map(&:name)).each do |role|
+      user.grant role
+    end
   end
 
-  protected
+  def revoke_roles!
+    (user.roles.map(&:name) - (context.role_names || [])).each do |role|
+      user.revoke role
+    end
+  end
+
+  def update_user
+    user.update_attributes(user_params)
+  end
+
+  def user_params
+    { is_active: 1 }.merge(context.to_h.slice(:email, :name, :is_active))
+  end
 
   def check_user_details
     return if context.email.present? && \

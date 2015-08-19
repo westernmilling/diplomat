@@ -5,7 +5,17 @@ FactoryGirl.define do
     password { Faker::Internet.password }
 
     trait :authenticated do
-      # No authorization yet
+      after :build do |user, _evaluator|
+        user.add_role :authenticated
+      end
+    end
+
+    trait :admin do
+      authenticated
+
+      after :build do |user, _evaluator|
+        user.add_role :admin
+      end
     end
   end
 end

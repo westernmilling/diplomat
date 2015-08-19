@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable,
          :rememberable,
          :trackable
-  # rolify
+  rolify
   validates :email, :name, presence: true
   validates :email, uniqueness: true
 

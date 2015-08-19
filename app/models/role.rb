@@ -1,6 +1,6 @@
 # Role
 class Role < ActiveRecord::Base
-  ROLES = %w(
+  ROLE_NAMES = %w(
     admin
     authenticated
   )

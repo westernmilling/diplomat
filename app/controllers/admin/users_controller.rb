@@ -4,6 +4,8 @@ module Admin
   class UsersController < ApplicationController
     using Decoration
 
+    before_action -> { authorize :user }, except: [:show]
+    before_action -> { authorize user }, only: [:show]
     before_action :decorate_user, only: [:show]
 
     helper_method :entry, :user, :users
@@ -17,12 +19,6 @@ module Admin
                             -> { render :new })
     end
 
-    def edit; end
-
-    def index; end
-
-    def show; end
-
     def update
       render :edit and return unless entry.valid?
 
@@ -34,11 +30,13 @@ module Admin
     protected
 
     def build_user
-      User.new(user_params)
+      User.new(user_params.except(:role_names))
     end
 
     def entry
-      @entry ||= UserEntry.new(user.attributes).merge_hash(user_params)
+      @entry ||= UserEntry
+                 .new(user.attributes)
+                 .merge_hash(user_params)
     end
 
     def decorate_user
@@ -69,7 +67,7 @@ module Admin
     def user_params
       params
         .require(:entry)
-        .permit(:email, :name, :is_active, :roles)
+        .permit(:email, :name, :is_active, role_names: [])
     rescue ActionController::ParameterMissing; {}
     end
 

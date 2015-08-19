@@ -2,6 +2,10 @@
 
 <%= form.input :email, autofocus: true %>
 <%= form.input :name %>
+<%= form.input :role_names,
+    collection: Role::ROLE_NAMES,
+    label: 'Roles',
+    input_html: { multiple: true } %>
 <%= form.input :is_active,
                as: :boolean,
                boolean_style: :inline,

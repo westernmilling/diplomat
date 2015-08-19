@@ -37,3 +37,13 @@ end
 shared_context 'a show request' do
   it { is_expected.to render_template(:show) }
 end
+
+shared_context 'an unauthorized request' do |policy_class|
+  context 'when not authorized' do
+    let(:authorize?) { raise_pundit_error policy_class }
+
+    it { is_expected.to respond_with(302) }
+    it { is_expected.to redirect_to(root_path) }
+    it { is_expected.to set_flash[:alert] }
+  end
+end
