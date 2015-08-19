@@ -1,4 +1,5 @@
 en:
+  access_denied: "We're sorry, but you're not permitted to do that"
   admin:
     title: 'Admin'
   invite_user:

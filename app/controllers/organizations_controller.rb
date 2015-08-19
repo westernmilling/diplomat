@@ -1,10 +1,6 @@
 class OrganizationsController < ApplicationController
-  # before_action -> { authorize :organization }, except: [:show]
-  # before_action -> { authorize organization }, only: :show
-
-  def index; end
-
-  def show; end
+  before_action -> { authorize :organization }, except: [:show]
+  before_action -> { authorize organization }, only: :show
 
   def organization
     return @organization ||= Organization.new(organization_params) \

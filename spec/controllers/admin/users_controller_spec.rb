@@ -2,10 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Admin::UsersController, type: :controller do
   before do
-    sign_in(build_stubbed(:user))
-
+    allow(controller).to receive(:authorize) { authorize? }
+    allow(controller).to receive(:pundit_policy_authorized?) { authorize? }
     allow(User).to receive(:find) { user }
+
+    sign_in(user)
   end
+  let(:authorize?) { true }
   let(:user) { build_stubbed(:user) }
 
   describe 'GET edit' do
@@ -13,6 +16,7 @@ RSpec.describe Admin::UsersController, type: :controller do
 
     it_behaves_like 'a successful request'
     it_behaves_like 'an edit request'
+    it_behaves_like 'an unauthorized request', UserPolicy
   end
 
   describe 'GET index' do
@@ -24,6 +28,7 @@ RSpec.describe Admin::UsersController, type: :controller do
 
     it_behaves_like 'a successful request'
     it_behaves_like 'an index request'
+    it_behaves_like 'an unauthorized request', UserPolicy
   end
 
   describe 'GET show' do
@@ -31,11 +36,12 @@ RSpec.describe Admin::UsersController, type: :controller do
 
     it_behaves_like 'a successful request'
     it_behaves_like 'a show request'
+    it_behaves_like 'an unauthorized request', UserPolicy
   end
 
   describe 'PATCH update' do
     before do
-      allow(UpdateUser).to receive(:call).and_return(context)
+      allow(UpdateUser).to receive(:call) { context }
 
       patch :update,
             id: user.id,
@@ -44,10 +50,10 @@ RSpec.describe Admin::UsersController, type: :controller do
               is_active: [0, 1].sample
             }
     end
-    let(:context) do
-      double(:context, user: user, message: '', success?: success?)
-    end
+    let(:context) { double(user: user, message: '', success?: success?) }
     let(:success?) { fail 'success? not set' }
+
+    it_behaves_like 'an unauthorized request', UserPolicy
 
     context 'when the call is successful' do
       let(:success?) { true }
@@ -56,7 +62,6 @@ RSpec.describe Admin::UsersController, type: :controller do
       it { is_expected.to redirect_to(admin_user_path(user)) }
       it { is_expected.to set_flash[:notice] }
     end
-
     context 'when the call is not successful' do
       let(:success?) { false }
 
@@ -68,7 +73,7 @@ RSpec.describe Admin::UsersController, type: :controller do
 
   describe 'POST create' do
     before do
-      allow(InviteUser).to receive(:call).and_return(context)
+      allow(InviteUser).to receive(:call) { context }
 
       post :create,
            entry: {
@@ -77,10 +82,10 @@ RSpec.describe Admin::UsersController, type: :controller do
              is_active: [0, 1].sample
            }
     end
-    let(:context) do
-      double(:context, user: user, message: '', success?: success?)
-    end
+    let(:context) { double(user: user, message: '', success?: success?) }
     let(:success?) { fail 'success? not set' }
+
+    it_behaves_like 'an unauthorized request', UserPolicy
 
     context 'when the call is successful' do
       let(:success?) { true }
@@ -89,7 +94,6 @@ RSpec.describe Admin::UsersController, type: :controller do
       it { is_expected.to redirect_to(admin_user_path(user)) }
       it { is_expected.to set_flash[:notice] }
     end
-
     context 'when the call is not successful' do
       let(:success?) { false }
 

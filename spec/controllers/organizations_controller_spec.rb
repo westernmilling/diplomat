@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe OrganizationsController, type: :controller do
   before do
-    # allow(controller).to receive(:authorize) { authorize? }
-    # allow(controller).to receive(:pundit_policy_authorized?) { authorize? }
+    allow(controller).to receive(:authorize) { authorize? }
+    allow(controller).to receive(:pundit_policy_authorized?) { authorize? }
     allow(Organization).to receive(:find) { organization }
 
     sign_in(build_stubbed(:user))
@@ -24,13 +24,13 @@ RSpec.describe OrganizationsController, type: :controller do
     it { expect(controller.organizations.size).to eq organizations.size }
     it { expect(controller.organizations[0]).to be_kind_of Organization }
 
-    # context 'when not authorized' do
-    #   let(:authorize?) { raise_pundit_error OrganizationPolicy }
-    #
-    #   it { is_expected.to respond_with(302) }
-    #   it { is_expected.to redirect_to(root_path) }
-    #   it { is_expected.to set_flash[:alert] }
-    # end
+    context 'when not authorized' do
+      let(:authorize?) { raise_pundit_error OrganizationPolicy }
+
+      it { is_expected.to respond_with(302) }
+      it { is_expected.to redirect_to(root_path) }
+      it { is_expected.to set_flash[:alert] }
+    end
   end
 
   describe 'GET show' do
@@ -45,12 +45,12 @@ RSpec.describe OrganizationsController, type: :controller do
     it_behaves_like 'a show request'
     it { expect(controller.organization).to be_kind_of(Organization) }
 
-    # context 'when not authorized' do
-    #   let(:authorize?) { raise_pundit_error OrganizationPolicy }
-    #
-    #   it { is_expected.to respond_with(302) }
-    #   it { is_expected.to redirect_to(root_path) }
-    #   it { is_expected.to set_flash[:alert] }
-    # end
+    context 'when not authorized' do
+      let(:authorize?) { raise_pundit_error OrganizationPolicy }
+
+      it { is_expected.to respond_with(302) }
+      it { is_expected.to redirect_to(root_path) }
+      it { is_expected.to set_flash[:alert] }
+    end
   end
 end

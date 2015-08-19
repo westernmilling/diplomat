@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 feature 'User updates an existing user' do
-  background { sign_in_with(acting_user.email, acting_user.password) }
-  let(:acting_user) { create(:user) }
+  background { sign_in_with(current_user.email, current_user.password) }
+  let(:current_user) { create(:user, :admin) }
   let(:user) { create(:user) }
 
   context 'when details are valid' do
@@ -26,6 +26,16 @@ feature 'User updates an existing user' do
       click_button 'Save'
 
       expect(page).to have_content(/error/i)
+    end
+  end
+
+  context 'when the user is not authorized' do
+    let(:current_user) { create(:user) }
+
+    scenario "they see you're not permitted" do
+      visit edit_admin_user_path(user)
+
+      expect(page).to have_content(I18n.t('access_denied'))
     end
   end
 end

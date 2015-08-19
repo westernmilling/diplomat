@@ -7,16 +7,12 @@ class ApplicationPolicy
     @record = record
   end
 
-  def authenticated?
-    user && user.has_role?(:authenticated)
-  end
-
   def index?
     false
   end
 
   def show?
-    scope.where(id: record.id).exists?
+    authenticated? && scope.where(id: record.id).exists?
   end
 
   def create?
@@ -55,5 +51,19 @@ class ApplicationPolicy
     def resolve
       scope
     end
+  end
+
+  protected
+
+  def admin?
+    authenticated? && user.has_role?(:admin)
+  end
+
+  def authenticated?
+    user && user.has_role?(:authenticated)
+  end
+
+  def authenticated_with_roles?(*roles)
+    authenticated? && user.has_any_role?(*roles)
   end
 end
