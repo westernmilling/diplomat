@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814180502) do
+ActiveRecord::Schema.define(version: 20150820172323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,30 @@ ActiveRecord::Schema.define(version: 20150814180502) do
   create_table "_promiscuous", force: :cascade do |t|
     t.text     "batch"
     t.datetime "at"
+  end
+
+  create_table "entities", force: :cascade do |t|
+    t.string   "cached_long_name", limit: 1024,                     null: false
+    t.string   "comments"
+    t.string   "display_name",                                      null: false
+    t.string   "entity_type",      limit: 32,   default: "company", null: false
+    t.string   "federal_tax_id"
+    t.integer  "is_active",                     default: 1,         null: false
+    t.integer  "is_withholding"
+    t.string   "name",                                              null: false
+    t.integer  "parent_entity_id"
+    t.string   "reference",                                         null: false
+    t.string   "tax_number"
+    t.string   "tax_state"
+    t.string   "ten99_form"
+    t.integer  "ten99_print",                   default: 0,         null: false
+    t.string   "ten99_type"
+    t.datetime "ten99_signed_at"
+    t.string   "uuid",             limit: 32,                       null: false
+    t.integer  "_v",                            default: 1,         null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
   end
 
   create_table "organizations", force: :cascade do |t|
