@@ -135,6 +135,8 @@ GEM
       activemodel (>= 3.0)
       activesupport (>= 3.0)
       request_store (~> 1.0)
+    enumerize (1.0.0)
+      activesupport (>= 3.2)
     equalizer (0.0.11)
     erubis (2.7.0)
     execjs (2.6.0)
@@ -335,6 +337,7 @@ DEPENDENCIES
   database_cleaner
   devise_invitable
   draper
+  enumerize
   factory_girl_rails
   faker
   figaro
@@ -363,3 +366,6 @@ DEPENDENCIES
   uuid
   virtus
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.6
