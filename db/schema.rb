@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820172323) do
+ActiveRecord::Schema.define(version: 20150820234507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,24 @@ ActiveRecord::Schema.define(version: 20150820172323) do
   create_table "_promiscuous", force: :cascade do |t|
     t.text     "batch"
     t.datetime "at"
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.integer  "entity_id",                            null: false
+    t.string   "first_name",                           null: false
+    t.string   "last_name",                            null: false
+    t.string   "display_name",                         null: false
+    t.string   "title"
+    t.string   "email_address"
+    t.string   "fax_number"
+    t.string   "mobile_number"
+    t.string   "phone_number"
+    t.integer  "is_active",                default: 1, null: false
+    t.string   "uuid",          limit: 32,             null: false
+    t.integer  "_v",                       default: 1, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "entities", force: :cascade do |t|
