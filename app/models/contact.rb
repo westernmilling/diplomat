@@ -8,12 +8,11 @@ class Contact < ActiveRecord::Base
 
   validates \
     :entity,
-    :first_name,
-    :last_name,
+    :full_name,
     :uuid,
     presence: true
 
   def to_s
-    display_name
+    full_name
   end
 end
