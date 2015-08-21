@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820234507) do
+ActiveRecord::Schema.define(version: 20150821001005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,27 @@ ActiveRecord::Schema.define(version: 20150820234507) do
     t.datetime "deleted_at"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.integer  "entity_id",                                                           null: false
+    t.string   "cached_long_address",                                                 null: false
+    t.string   "location_name",                                                       null: false
+    t.string   "street_address",                                                      null: false
+    t.string   "city",                                                                null: false
+    t.string   "region",                                                              null: false
+    t.string   "region_code",                                                         null: false
+    t.string   "country",                                                             null: false
+    t.string   "phone_number",        limit: 32
+    t.string   "fax_number",          limit: 32
+    t.decimal  "latitude",                       precision: 10, scale: 8
+    t.decimal  "longitude",                      precision: 11, scale: 8
+    t.integer  "is_active",                                               default: 1, null: false
+    t.string   "uuid",                limit: 32,                                      null: false
+    t.integer  "_v",                                                      default: 1, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
   end
 
   create_table "organizations", force: :cascade do |t|

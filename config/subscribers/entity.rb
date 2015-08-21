@@ -2,6 +2,7 @@ Promiscuous.define do
   subscribe :entity do
     attributes :cached_long_name,
                :comments,
+               :contact_id,
                :deleted_at,
                :display_name,
                :entity_type,
