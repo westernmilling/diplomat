@@ -7,6 +7,9 @@ class Entity < ActiveRecord::Base
   acts_as_paranoid
 
   belongs_to :parent_entity, class_name: Entity
+  has_many :contacts
+  has_many :locations, inverse_of: :entity
+  has_one :contact
 
   enumerize :entity_type, in: [:company, :person], default: :company
   enumerize :ten99_form, in: [
@@ -20,7 +23,6 @@ class Entity < ActiveRecord::Base
 
   validates \
     :entity_type,
-    :is_active,
     :name,
     :cached_long_name,
     :reference,

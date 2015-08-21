@@ -1,5 +1,5 @@
 class CreateEntities < ActiveRecord::Migration
-  # rubocop:disable Metrix/AbcSize
+  # rubocop:disable Metrics/AbcSize
   def change
     create_table :entities do |t|
       t.string :cached_long_name, limit: 1024, null: false
@@ -25,5 +25,5 @@ class CreateEntities < ActiveRecord::Migration
       t.timestamps null: false
     end
   end
-  # rubocop:enable Metrix/AbcSize
+  # rubocop:enable Metrics/AbcSize
 end
