@@ -8,6 +8,7 @@ RSpec.describe Vendor, type: :model do
   it { is_expected.to belong_to(:entity) }
   it { is_expected.to validate_presence_of(:entity) }
   it { is_expected.to validate_presence_of(:uuid) }
+  it { is_expected.to validate_inclusion_of(:is_active).in_range(0..1) }
 
   describe '#active?' do
     let(:vendor) { build(:vendor, is_active: is_active) }
