@@ -10,6 +10,7 @@ class Vendor < ActiveRecord::Base
     :entity,
     :uuid,
     presence: true
+  validates :is_active, inclusion: 0..1
 
   def active?
     is_active == 1
