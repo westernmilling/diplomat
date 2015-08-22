@@ -8,7 +8,7 @@ Promiscuous.define do
                :deleted_at,
                :bill_to_location_id,
                :ship_to_location_id,
-               :is_tax_excempt,
+               :is_tax_exempt,
                :is_active,
                :uuid
   end
