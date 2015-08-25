@@ -6,6 +6,7 @@ gem 'bootswatch-rails'
 gem 'devise_invitable'
 gem 'draper'
 gem 'enumerize'
+gem 'faraday'
 gem 'figaro'
 gem 'gravatar_image_tag'
 gem 'interactor-rails'
@@ -54,4 +55,6 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'shoulda-kept-respond-with-content-type',
       github: 'tinfoil/shoulda-kept-respond-with-content-type'
+  gem 'vcr'
+  gem 'webmock'
 end
