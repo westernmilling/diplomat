@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get 'about', to: 'site/about#index'
 
   namespace :admin do
+    resources :organizations, only: [:edit, :index, :show, :update]
+    resources :integrations, except: [:destroy]
     resources :users
   end
-  resources :organizations, only: [:index, :show]
 end

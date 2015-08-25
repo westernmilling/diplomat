@@ -1,11 +1,12 @@
-# Represents an owned and managed tax id.
-class Organization < ActiveRecord::Base
-  acts_as_paranoid
+class Integration < ActiveRecord::Base
   after_initialize :ensure_uuid_present
 
-  belongs_to :integration
+  has_many :organizations
 
   validates \
+    :address,
+    :credentials,
+    :integration_type,
     :name,
     :uuid,
     presence: true

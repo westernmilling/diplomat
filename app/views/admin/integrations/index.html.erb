@@ -1,0 +1,36 @@
+<%= render layout: '/heading',
+           locals:
+           {
+             size: 'h2',
+             title: t('integrations.index.title')
+           } do %>
+  <nav class="pull-right">
+    <%= new_integration_link %>
+  </nav>
+<% end %>
+<section>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Address</th>
+        <th>Credentials</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% if integrations.each do |integration| %>
+      <tr>
+          <td nowrap><%= show_integration_link(integration) %></td>
+          <td><%= integration.integration_type %></td>
+          <td><%= integration.address %></td>
+          <td><%= integration.credentials %></td>
+      </tr>
+    <% end.empty? %>
+      <tr>
+        <td colspan="4"><%= t('integrations.index.none') %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</section>

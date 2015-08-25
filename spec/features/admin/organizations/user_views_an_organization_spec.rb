@@ -6,7 +6,7 @@ feature 'user views an organization' do
   given(:user) { create(:user, :admin) }
 
   scenario 'they see the organization' do
-    visit organization_path(organization)
+    visit admin_organization_path(organization)
 
     expect(page).to have_content(organization.name)
   end
@@ -15,7 +15,7 @@ feature 'user views an organization' do
     let(:user) { create(:user) }
 
     scenario "they see you're not permitted" do
-      visit admin_user_path(user)
+      visit admin_organization_path(organization)
 
       expect(page).to have_content(I18n.t('access_denied'))
     end

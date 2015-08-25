@@ -1,22 +1,22 @@
 <%= render layout: '/heading',
            locals: {
              size: 'h2',
-             title: 'Edit User'
+             title: t('organizations.edit.title')
            } do %>
   <nav class="pull-right">
-    <%= link_to 'Return to user',
-                admin_user_path(user),
+    <%= link_to 'Return to organization',
+                admin_organization_path(organization),
                 :class => 'btn btn-link' %>
   </nav>
 <% end %>
 <div>
-  <%= simple_form_for(entry,
-                      as: :entry,
+  <%= simple_form_for([:admin, organization],
                       html: { class: 'form-horizontal' },
                       method: :patch,
-                      url: admin_user_path(user),
+                      url: admin_organization_path(organization),
                       wrapper: :horizontal_form) do |form| %>
-    <%= render partial: 'form', locals: { form: form, model: entry } %>
+    <%= error_messages organization %>
+    <%= form.input :integration_id, collection: integrations %>
     <div class="actions">
       <%= form.submit 'Save', :class => 'btn btn-primary' %>
     </div>

@@ -2,10 +2,31 @@ en:
   access_denied: "We're sorry, but you're not permitted to do that"
   admin:
     title: 'Admin'
+  integrations:
+    create:
+      success: 'The integration was created successfully'
+    edit:
+      link_to: 'Edit Integration'
+      title: 'Edit Integration'
+    index:
+      link_to: 'Integrations'
+      none: 'No integrations found'
+      title: 'Integrations'
+    new:
+      link_to: 'New Integration'
+      title: 'New Integration'
+    show:
+      title: 'Integration'
+    update:
+      success: 'The integration was updated successfully'
   invite_user:
     title: 'Invite user'
   organizations:
+    edit:
+      link_to: 'Edit Organization'
+      title: 'Edit Organization'
     index:
+      link_to: 'Organizations'
       none: 'There are no organizations'
       title: 'Organizations'
     show:

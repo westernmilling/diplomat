@@ -1,0 +1,34 @@
+<%= render layout: '/heading',
+           locals: {
+             size: 'h2',
+             title: t('integrations.show.title')
+           } do %>
+  <nav class="pull-right">
+    <%= edit_integration_link(integration) %>
+    <%= link_to t('integrations.index.link_to'),
+                admin_integrations_path,
+                :class => 'btn btn-link' %>
+  </nav>
+<% end %>
+<div class="form-horizontal">
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Name</label>
+    <p class="col-sm-6 form-control-static"><%= integration.name %></p>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Integration Type</label>
+    <p class="col-sm-6 form-control-static"><%= integration.integration_type %></p>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Address</label>
+    <p class="col-sm-6 form-control-static"><%= integration.address %></p>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Credentials</label>
+    <p class="col-sm-6 form-control-static"><%= integration.credentials %></p>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-3 control-label">UUID</label>
+    <p class="col-sm-6 form-control-static"><%= integration.uuid %></p>
+  </div>
+</div>

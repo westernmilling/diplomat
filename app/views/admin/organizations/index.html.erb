@@ -12,12 +12,14 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th>Integration</th>
       </tr>
     </thead>
     <tbody>
     <% if organizations.each do |organization| %>
       <tr>
           <td nowrap><%= show_organization_link(organization) %></td>
+          <td><%= organization.integration %></td>
       </tr>
     <% end.empty? %>
       <tr>
