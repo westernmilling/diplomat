@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824170659) do
+ActiveRecord::Schema.define(version: 20150824210817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,16 @@ ActiveRecord::Schema.define(version: 20150824170659) do
     t.integer  "contact_id"
   end
 
+  create_table "integrations", force: :cascade do |t|
+    t.string   "name",                        null: false
+    t.string   "integration_type",            null: false
+    t.string   "address",                     null: false
+    t.string   "credentials",                 null: false
+    t.string   "uuid",             limit: 32, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
   create_table "locations", force: :cascade do |t|
     t.integer  "entity_id",                                                           null: false
     t.string   "cached_long_address",                                                 null: false
@@ -112,13 +122,14 @@ ActiveRecord::Schema.define(version: 20150824170659) do
   end
 
   create_table "organizations", force: :cascade do |t|
-    t.integer  "is_active",             default: 1, null: false
-    t.string   "name",                              null: false
-    t.string   "uuid",       limit: 32,             null: false
+    t.integer  "is_active",                 default: 1, null: false
+    t.string   "name",                                  null: false
+    t.string   "uuid",           limit: 32,             null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.integer  "_v",                    default: 1
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "_v",                        default: 1
+    t.integer  "integration_id"
   end
 
   create_table "roles", force: :cascade do |t|

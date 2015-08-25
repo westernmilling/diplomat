@@ -15,14 +15,14 @@ module MenuHelper
 
   def root_menu
     [
-      menu_item(t('organizations.index.title'),
-                organizations_path)
     ].join.html_safe
   end
 
   def admin_menu
     menu_dropdown(t('admin.title')) do
-      menu_item(t('users.index.title'), admin_users_path)
+      concat menu_item(t('organizations.index.title'), admin_organizations_path)
+      concat menu_item(t('integrations.index.title'), admin_integrations_path)
+      concat menu_item(t('users.index.title'), admin_users_path)
     end
   end
 

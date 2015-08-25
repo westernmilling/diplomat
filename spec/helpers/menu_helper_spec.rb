@@ -25,13 +25,14 @@ RSpec.describe MenuHelper, type: :helper do
       let(:user) { build_stubbed(:user) }
 
       it { is_expected.to have_selector 'ul' }
-      it { is_expected.to have_selector 'ul li', count: 7 }
-      it { is_expected.to have_selector 'ul li a', count: 6 }
+      it { is_expected.to have_selector 'ul li', count: 8 }
+      it { is_expected.to have_selector 'ul li a', count: 7 }
       it { is_expected.to have_content I18n.t('organizations.index.title') }
       it do
         is_expected.to have_content I18n.t('admin.title')
       end
       it { is_expected.to have_content I18n.t('users.index.title') }
+      it { is_expected.to have_content I18n.t('integrations.index.title') }
       it { is_expected.to have_content I18n.t('invite_user.title') }
       it { is_expected.to have_content I18n.t('sign_out.title') }
       it { is_expected.to have_content user.name }
