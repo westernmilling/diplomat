@@ -9,7 +9,8 @@ class Entity < ActiveRecord::Base
   belongs_to :parent_entity, class_name: Entity
   has_many :contacts
   has_many :locations, inverse_of: :entity
-  has_one :contact
+  has_one :contact, autosave: false
+  has_one :customer, autosave: false
 
   enumerize :entity_type, in: [:company, :person], default: :company
   enumerize :ten99_form, in: [
@@ -32,6 +33,14 @@ class Entity < ActiveRecord::Base
 
   def active?
     is_active == 1
+  end
+
+  def organizations(trait)
+    # TODO: Test this! (Integration)
+    OrganizationEntity
+      .select { organization }
+      .where { entity_id == my { id } }
+      .where { trait == my { trait } }
   end
 
   def to_s

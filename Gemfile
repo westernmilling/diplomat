@@ -20,6 +20,7 @@ gem 'pundit'
 gem 'rails'
 gem 'rolify'
 gem 'sass-rails', '~> 5.0'
+gem 'sidekiq'
 gem 'simple_form'
 gem 'skylight'
 gem 'squeel'
@@ -49,6 +50,7 @@ group :test do
   gem 'faker'
   gem 'rspec-rails'
   gem 'rspec-its'
+  gem 'rspec-sidekiq'
   gem 'shoulda-matchers', require: false
   gem 'shoulda-kept-respond-with-content-type',
       github: 'tinfoil/shoulda-kept-respond-with-content-type'

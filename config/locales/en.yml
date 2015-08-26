@@ -54,3 +54,30 @@ en:
       success: 'The user was updated successfully'
       failure: "We're sorry but there were problems updating new user"
       invalid: "We're sorry but some of the details you provided were invalid"
+  customer_insert:
+    success: 'The customer insert was successful'
+  customer_update:
+    success: 'The customer update was successful'
+  customer_upsert:
+    log:
+      message:
+        old_version: 'The customer version was older than previously processed'
+    success: 'Finished processing the customer'
+    failure:
+      stale_customer: 'The customer has been updated since this active was scheduled'
+  entity_insert:
+    success: 'The Entity was inserted'
+  entity_update:
+    success: 'The Entity was updated'
+  process_customer_organizations_upsert:
+    log:
+      message:
+        no_organization: 'The Customer trait is not mapped to an Organization'
+    failure:
+      no_organization: 'The Customer trait is not mapped to an Organization'
+    success: 'Finished processing the customer for all related organizations'
+  test_interfaces:
+    entity_insert:
+      success: 'The dummy entity insert was successful'
+    entity_update:
+      success: 'The dummy entity update was successful'
