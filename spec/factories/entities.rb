@@ -16,15 +16,22 @@ FactoryGirl.define do
     ten99_type { Entity.ten99_type.values.sample }
     uuid { UUID.generate(:compact) }
 
-    trait :with_location do
-      after :build do |entity, _evaluator|
-        entity.locations << build(:location, entity: entity)
-      end
+    after :build do |entity, _evaluator|
+      entity.contacts << build(:contact, entity: entity) \
+        if entity.contacts.empty?
+      entity.locations << build(:location, entity: entity) \
+        if entity.locations.empty?
     end
-    trait :with_contact do
-      after :build do |entity, _evaluator|
-        entity.contacts << build(:contact, entity: entity)
-      end
-    end
+
+    # trait :with_location do
+    #   after :build do |entity, _evaluator|
+    #     entity.locations << build(:location, entity: entity)
+    #   end
+    # end
+    # trait :with_contact do
+    #   after :build do |entity, _evaluator|
+    #     entity.contacts << build(:contact, entity: entity)
+    #   end
+    # end
   end
 end
