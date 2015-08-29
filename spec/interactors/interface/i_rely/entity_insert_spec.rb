@@ -23,5 +23,8 @@ RSpec.describe Interface::IRely::EntityInsert, type: :interactor, vcr: true do
     # TODO: Use contexts for customer, vendor, combined updates
 
     it { is_expected.to be_success }
+    its(:status) {}
+    its(:payload) {}
+    its(:identifier) {}
   end
 end

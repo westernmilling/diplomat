@@ -50,6 +50,11 @@ module Interface
           req.headers[CaseSensitiveString.new('ICompany')] = Figaro.env.IRELY_COMPANY
           req.body = [hash].to_json
         end
+        # What is the reponse? (payload)
+
+        context[:status] = nil
+        # identifier
+        # payload
       end
 
       protected
