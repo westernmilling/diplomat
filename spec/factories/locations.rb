@@ -10,6 +10,7 @@ FactoryGirl.define do
     latitude { Faker::Address.latitude }
     longitude { Faker::Address.longitude }
     uuid { UUID.generate(:compact) }
+    cached_long_address { long_address }
 
     after :build do |location, _evaluator|
       location.location_name = location.entity.name

@@ -1,6 +1,7 @@
 # Represents the +Customer+ trait details for an +Entity+
 class Customer < ActiveRecord::Base
   acts_as_paranoid
+  after_commit :queue_upsert
 
   belongs_to :bill_to_location, class_name: Location
   belongs_to :contact
@@ -9,6 +10,7 @@ class Customer < ActiveRecord::Base
   belongs_to :parent_customer, class_name: Customer
   belongs_to :salesperson
   belongs_to :ship_to_location, class_name: Location
+  has_many :interface_states, class_name: Interface::State, as: :interfaceable
 
   validates \
     :entity,
@@ -23,5 +25,11 @@ class Customer < ActiveRecord::Base
 
   def to_s
     entity.display_name
+  end
+
+  protected
+
+  def queue_upsert
+    CustomerUpsertWorker.perform_async(entity_id, _v)
   end
 end

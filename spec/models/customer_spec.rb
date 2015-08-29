@@ -33,4 +33,17 @@ RSpec.describe Customer, type: :model do
       it { is_expected.to eq(true) }
     end
   end
+
+  describe 'after_commit' do
+    before do
+      subject.run_callbacks(:commit)
+    end
+    subject { customer }
+    let(:customer) { create(:customer) }
+
+    it do
+      expect(CustomerUpsertWorker)
+        .to have_enqueued_job(customer.id, customer._v)
+    end
+  end
 end
