@@ -11,7 +11,7 @@ RSpec.describe Interface::CustomerUpdate, type: :interactor do
   end
   let(:customer) { build_stubbed(:customer, entity: entity) }
   let(:entity) { build_stubbed(:entity) }
-  let(:integration) { build_stubbed(:integration, integration_type: 'Test') }
+  let(:integration) { build_stubbed(:integration, integration_type: 'test') }
   let(:log) { Interface::Log.new }
   let(:result) do
     Interface::CustomerUpdate.call(entity: entity,
@@ -27,9 +27,9 @@ RSpec.describe Interface::CustomerUpdate, type: :interactor do
     end
     let(:interface_result) do
       Interactor::Context.new(
-        interface_identifier: 1,
-        interface_result: 'success',
-        interface_payload: { result: 'success', id: 1 },
+        identifier: 1,
+        result: 'success',
+        payload: { result: 'success', id: 1 },
         message: I18n.t('test_interfaces.entity_update.success'))
     end
 
@@ -37,14 +37,14 @@ RSpec.describe Interface::CustomerUpdate, type: :interactor do
       subject { result }
 
       it { is_expected.to be_success }
-      its(:interface_identifier) do
-        is_expected.to eq interface_result.interface_identifier
+      its(:identifier) do
+        is_expected.to eq interface_result.identifier
       end
-      its(:interface_result) do
-        is_expected.to eq interface_result.interface_result
+      its(:result) do
+        is_expected.to eq interface_result.result
       end
-      its(:interface_payload) do
-        is_expected.to eq interface_result.interface_payload
+      its(:payload) do
+        is_expected.to eq interface_result.payload
       end
       its(:message) do
         is_expected.to eq(I18n.t('customer_update.success'))
@@ -55,6 +55,8 @@ RSpec.describe Interface::CustomerUpdate, type: :interactor do
       subject { result.interface_log }
 
       it { is_expected.to be_present }
+      # its(:organization) { is_expected.to eq entity.organization }
+      its(:integration) { is_expected.to eq integration }
       its(:interfaceable) { is_expected.to eq entity.customer }
       its(:action) { is_expected.to eq :update }
       its(:status) { is_expected.to eq :success }

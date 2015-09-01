@@ -165,6 +165,7 @@ RSpec.describe Interface::CustomerUpsert, type: :interactor do
       subject { result.interface_log }
 
       it { is_expected.to be_present }
+      its(:organization) { is_expected.to eq organization }
     end
 
     describe Interface::CustomerUpdate do
@@ -227,6 +228,7 @@ RSpec.describe Interface::CustomerUpsert, type: :interactor do
       subject { result.interface_log }
 
       it { is_expected.to be_present }
+      its(:organization) { is_expected.to eq organization }
     end
 
     describe Interface::CustomerInsert do

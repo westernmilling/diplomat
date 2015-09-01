@@ -49,6 +49,27 @@ RSpec.describe Entity, type: :model do
     end
   end
 
+  # NB: This test and underlying code should probably live somewhere else
+  #     Maybe in a query object?
+  describe '#organizations' do
+    let(:entity) { create(:entity) }
+    let(:organization) { create(:organization) }
+    subject { entity.organizations('customer') }
+    context 'when there are organizations mapped to the entity trait' do
+      before do
+        OrganizationEntity.create!(entity: entity,
+                                   organization: organization,
+                                   trait: 'customer')
+      end
+
+      it { is_expected.to eq [organization] }
+    end
+
+    context 'when there are no organizations mapped to the entity trait' do
+      it { is_expected.to eq [] }
+    end
+  end
+
   describe '#to_s' do
     let(:entity) { build(:entity) }
     subject { entity.to_s }

@@ -1,5 +1,3 @@
-require_relative 'concerns/logging'
-
 module Interface
   # Upsert the +Customer+ details for all related +Organization+s.
   class ProcessCustomerOrganizationsUpsert
@@ -42,6 +40,8 @@ module Interface
       return unless organizations.empty?
 
       context.interface_logs << create_log!(
+        nil,
+        nil,
         :skipped,
         :failure,
         customer,

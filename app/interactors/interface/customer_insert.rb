@@ -9,9 +9,7 @@ module Interface
 
       context.interface_log = log!(:insert, customer, result)
       context.merge!(
-        result.to_h.slice(:interface_identifier,
-                          :interface_payload,
-                          :interface_result)
+        result.to_h.slice(:identifier, :payload, :result)
       )
       context.message = I18n.t('customer_insert.success')
     end
@@ -24,7 +22,7 @@ module Interface
 
     def interface_class(integration)
       parts = [
-        'Interface', integration.integration_type, 'EntityInsert'
+        integration.interface_namespace, 'EntityInsert'
       ]
       Object.const_get(parts.join('::'))
     end

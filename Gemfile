@@ -23,6 +23,7 @@ gem 'rolify'
 gem 'sass-rails', '~> 5.0'
 gem 'sidekiq'
 gem 'simple_form'
+gem 'sinatra', require: nil
 gem 'skylight'
 gem 'squeel'
 gem 'uglifier', '>= 1.3.0'

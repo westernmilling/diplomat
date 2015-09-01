@@ -1,8 +1,9 @@
 class CaseSensitiveString < String
   def downcase
-      self
+    self
   end
+
   def capitalize
-      self
+    self
   end
 end

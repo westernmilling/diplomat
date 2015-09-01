@@ -9,7 +9,7 @@ module Interface
 
       context.interface_log = log!(:update, customer, result)
       context.merge!(
-        result.to_h.slice(:interface_payload, :interface_result)
+        result.to_h.slice(:identifier, :payload, :result)
       )
       context.message = I18n.t('customer_update.success')
     end
@@ -19,12 +19,12 @@ module Interface
     def invoke_external_interface!
       interface_class(integration)
         .call(entity: entity,
-              interface_identifier: context.interface_identifier)
+              identifier: context.identifier)
     end
 
     def interface_class(integration)
       parts = [
-        'Interface', integration.integration_type, 'EntityUpdate'
+        integration.interface_namespace, 'EntityUpdate'
       ]
       Object.const_get(parts.join('::'))
     end

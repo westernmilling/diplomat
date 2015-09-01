@@ -17,7 +17,7 @@
     <%= render partial: 'form',
                locals: {
                  form: form,
-                 integration_types: %w{irely},
+                 integration_types: Integration.integration_type.values,
                  model: integration } %>
     <div class="actions">
       <%= form.submit 'Save', :class => 'btn btn-primary' %>

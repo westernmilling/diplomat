@@ -1,5 +1,3 @@
-require_relative 'concerns/logging'
-
 module Interface
   class CustomerUpsert
     include Interactor
@@ -9,16 +7,18 @@ module Interface
 
     delegate :entity, to: :context
     delegate :customer, to: :entity
+    delegate :integration, to: :organization
     delegate :interface_state, to: :context
     delegate :interface_log, to: :context
     delegate :organization, to: :context
 
     def call
       if interface_state.version < customer._v
-        upsert_customer!
+        upsert_customer
       else
-        log_skip!
+        log_skip
       end
+      persist!
 
       context.message = t('success')
     end
@@ -50,15 +50,25 @@ module Interface
       I18n.t(key, scope: 'customer_upsert')
     end
 
-    def upsert_customer!
+    def upsert_customer
       result = invoke_interface!
 
       context.interface_log = result.interface_log
 
-      interface_state.interface_identifier ||= result.interface_identifier
+      interface_state.interface_identifier ||= result.identifier
 
-      update_interface_state!
+      update_interface_state
     end
+
+    # def upsert_customer!
+    #   result = invoke_interface!
+    #
+    #   context.interface_log = result.interface_log
+    #
+    #   interface_state.interface_identifier ||= result.identifier
+    #
+    #   update_interface_state!
+    # end
 
     def invoke_interface!
       klass = interface_class(context.action)
@@ -66,6 +76,11 @@ module Interface
         entity: entity,
         interface_identifier: interface_state.interface_identifier,
         integration: organization.integration)
+    end
+
+    def update_interface_state
+      interface_state.merge_log(interface_log)
+      interface_state.count += 1
     end
 
     def update_interface_state!
@@ -81,9 +96,30 @@ module Interface
       Object.const_get(parts.join('::'))
     end
 
+    def log_skip
+      context.interface_log = create_log(
+        organization,
+        integration,
+        :skipped,
+        :success,
+        customer,
+        t('log.message.old_version'))
+    end
+
     def log_skip!
       context.interface_log = create_log!(
-        :skipped, :success, customer, t('log.message.old_version'))
+        organization,
+        integration,
+        :skipped,
+        :success,
+        customer,
+        t('log.message.old_version'))
+    end
+
+    def persist!
+      context.interface_log.organization = organization
+      context.interface_log.save!
+      context.interface_state.save!
     end
   end
 end

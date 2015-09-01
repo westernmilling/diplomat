@@ -145,11 +145,11 @@ ActiveRecord::Schema.define(version: 20150826201759) do
     t.integer  "entity_id",                              null: false
     t.integer  "organization_id",                        null: false
     t.string   "trait",                                  null: false
-    t.string   "uuid",            limit: 32,             null: false
     t.integer  "_v",                         default: 1, null: false
     t.datetime "deleted_at"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.string   "uuid",            limit: 32,             null: false
   end
 
   create_table "organizations", force: :cascade do |t|

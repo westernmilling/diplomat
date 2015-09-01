@@ -1,5 +1,3 @@
-require_relative 'concerns/logging'
-
 module Interface
   class CustomerBase
     include Interactor
@@ -7,16 +5,19 @@ module Interface
 
     delegate :customer, to: :entity
     delegate :entity, to: :context
+    delegate :integration, to: :context
 
     def log!(action, customer, result)
       create_log!(
+        nil,
+        integration,
         action,
         result.success? ? :success : :failure,
         customer,
         result.message,
         customer._v,
-        result.interface_payload.to_json,
-        result.interface_payload[:result]
+        result.payload.to_json,
+        result.payload[:result]
       )
     end
   end

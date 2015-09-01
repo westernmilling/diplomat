@@ -1,6 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Interface::IRely::EntityInsert, type: :interactor, vcr: true do
+RSpec.describe Interface::IRely::Obfuscated::EntityInsert,
+               type: :interactor,
+               vcr: true do
   describe '.call' do
     let(:entity) do
       create(:entity)
@@ -13,14 +15,14 @@ RSpec.describe Interface::IRely::EntityInsert, type: :interactor, vcr: true do
     end
     let(:call) do
       result = nil
-      VCR.use_cassette('entity_customer') do
-        result = Interface::IRely::EntityInsert.call(entity: entity)
+      VCR.use_cassette('obfuscated_entity_customer') do
+        result = Interface::IRely::Obfuscated::EntityInsert.call(entity: entity)
       end
       result
     end
     subject { call }
 
-    # TODO: Use contexts for customer, vendor, combined updates
+    # TODO: Use contexts for customer, vendor, combined inserts
 
     it { is_expected.to be_success }
     its(:status) { is_expected.to eq :success }

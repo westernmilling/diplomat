@@ -11,7 +11,9 @@ class Interface::Log < ActiveRecord::Base
   enumerize :status, in: [:failure, :success]
 
   class << self
-    def build_new(action,
+    def build_new(organization,
+                  integration,
+                  action,
                   status,
                   interfaceable,
                   message,
@@ -19,6 +21,8 @@ class Interface::Log < ActiveRecord::Base
                   interface_payload = nil,
                   interface_status = nil)
       log = Interface::Log.new
+      log.organization = organization
+      log.integration = integration
       log.action = action
       log.status = status
       log.interfaceable = interfaceable
