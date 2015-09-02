@@ -69,6 +69,13 @@ en:
     success: 'The Entity was inserted'
   entity_update:
     success: 'The Entity was updated'
+  entity_upsert:
+    log:
+      message:
+        old_version: 'The entity version was older than previously processed'
+    success: 'Finished processing the entity'
+    failure:
+      stale_customer: 'The entity has been updated since this active was scheduled'
   process_customer_organizations_upsert:
     log:
       message:
@@ -76,6 +83,13 @@ en:
     failure:
       no_organization: 'The Customer trait is not mapped to an Organization'
     success: 'Finished processing the customer for all related organizations'
+  process_entity_organizations_upsert:
+    log:
+      message:
+        no_organization: 'The entity is not mapped to an Organization'
+    failure:
+      no_organization: 'The entity is not mapped to an Organization'
+    success: 'Finished processing the entity for all related organizations'
   test_interfaces:
     entity_insert:
       success: 'The dummy entity insert was successful'

@@ -20,4 +20,23 @@ RSpec.describe OrganizationEntity, type: :model do
     end
     it { is_expected.to validate_uniqueness_of(:uuid) }
   end
+
+  describe 'after_commit' do
+    before do
+      subject.run_callbacks(:commit)
+    end
+    subject { organization_entity }
+    let(:organization_entity) do
+      create(:organization_entity,
+             entity: create(:customer).entity,
+             trait: 'customer')
+    end
+
+    it do
+      expect(EntityUpsertWorker)
+        .to have_enqueued_job(organization_entity.entity.id,
+                              organization_entity.entity._v)
+    end
+  end
+
 end

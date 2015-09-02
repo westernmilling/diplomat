@@ -42,8 +42,8 @@ RSpec.describe Customer, type: :model do
     let(:customer) { create(:customer) }
 
     it do
-      expect(CustomerUpsertWorker)
-        .to have_enqueued_job(customer.id, customer._v)
+      expect(EntityUpsertWorker)
+        .to have_enqueued_job(customer.entity.id, customer.entity._v)
     end
   end
 end

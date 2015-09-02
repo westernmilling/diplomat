@@ -30,6 +30,6 @@ class Customer < ActiveRecord::Base
   protected
 
   def queue_upsert
-    CustomerUpsertWorker.perform_async(entity_id, _v)
+    EntityUpsertWorker.perform_async(entity_id, _v)
   end
 end

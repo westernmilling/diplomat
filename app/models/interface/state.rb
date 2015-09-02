@@ -10,22 +10,19 @@ class Interface::State < ActiveRecord::Base
   enumerize :action, in: [:insert, :skipped, :update]
   enumerize :status, in: [:failure, :success]
 
-  class << self
-    def build_new(interfaceable, organization)
-      state = Interface::State.new
-      state.organization = organization
-      state.integration = organization.integration
-      state.interfaceable = interfaceable
-      state.count = 0
-      state.version = 0
-      state
-    end
-  end
+  # class << self
+  #   def build_new(interfaceable, organization)
+  #     state = Interface::State.new
+  #     state.organization = organization
+  #     state.integration = organization.integration
+  #     state.interfaceable = interfaceable
+  #     state.count = 0
+  #     state.version = 0
+  #     state
+  #   end
+  # end
 
-  def merge_log(log)
-    self.action = log.action
-    self.message = log.message
-    self.status = log.status
-    self.version = log.version
-  end
+  # def find_by_interfaceable(interfaceable)
+  #   where { interfaceable == my { interfaceable } }
+  # end
 end

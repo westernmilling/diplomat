@@ -35,12 +35,12 @@ class Entity < ActiveRecord::Base
     is_active == 1
   end
 
-  def organizations(related_trait)
-    # TODO: Test this! (Integration)
-    OrganizationEntity
+  def organizations(related_trait = nil)
+    query = OrganizationEntity
       .where { entity_id == my { id } }
-      .where { trait == my { related_trait } }
-      .map(&:organization)
+
+    query = query.where { trait == my { related_trait } } if related_trait
+    query.map(&:organization)
   end
 
   def to_s
