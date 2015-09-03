@@ -8,7 +8,7 @@ module Interface
 
       context.log = log!(:update, entity, result)
       context.merge!(
-        result.to_h.slice(:identifier, :payload, :result)
+        result.to_h.slice(:payload, :response, :result)
       )
       context.message = I18n.t('entity_update.success')
     end

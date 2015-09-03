@@ -6,9 +6,10 @@ module Interface
     def call
       result = invoke_external_interface!
 
-      context.interface_log = log!(:insert, entity, result)
+      context.log = log!(:insert, entity, result)
+      # context.log_vessel.add log(:insert, entity, result)
       context.merge!(
-        result.to_h.slice(:identifier, :payload, :result)
+        result.to_h.slice(:payload, :response, :result)
       )
       context.message = I18n.t('entity_insert.success')
     end

@@ -4,12 +4,12 @@ class CreateInterfaceStates < ActiveRecord::Migration
       t.references :organization, null: false
       t.references :integration, null: false
       t.references :interfaceable, null: false, polymorphic: true
-      t.string :message
-      t.string :status, null: false
-      t.string :action, null: false
-      t.string :interface_identifier
+      # t.string :message
+      # t.string :status, null: false
+      # t.string :action, null: false
+      t.string :interface_id, null: false
       t.integer :version
-      t.integer :count, default: 1, null: false
+      # t.integer :count, default: 1, null: false
 
       t.timestamps null: false
     end

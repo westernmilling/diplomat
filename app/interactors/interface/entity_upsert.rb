@@ -44,73 +44,92 @@ module Interface
     end
 
     def upsert_entity
+      prepare_request
+
       result = invoke_interface!
 
       context.log = result.log
+      # Backfill the organization since the Insert/Update have no knowledge
+      # of an Organization.
       context.log.organization = organization
       context.payload = result.payload
       context.status = result.result
     end
 
+    def prepare_request
+      # This should be easy enough to mock out of we can DI if we need
+      result = EntityRequestGenerator.call(entity: entity,
+                                           state_manager: state_manager)
+      context.request = result.request
+    end
+
+    # def process_response_2
+    #   # On failure we may want to mark all states as failed?
+    #   return if context.payload[:result] == :failure
+    #
+    #   response = context.payload[:data][0]
+    #
+    #   process_entity_response response
+    #   process_contact_response response[:contacts]
+    #   process_location_response response[:locations]
+    # end
+
     def process_response
-      # On failure we may want to mark all states as failed?
-      return if context.payload[:result] == :failure
-
-      response = context.payload[:data][0]
-
-      process_entity_response response
-      process_contact_response response[:contacts]
-      process_location_response response[:locations]
+      # EntityResponseExtractStateInformation
+      # How do we mock/DI this behavior?
+      EntityResponseHandler
+        .new(entity, state_manager)
+        .call(context.payload[:data][0])
     end
 
-    def process_entity_response(entity_response)
-      state = find_state(entity)
+    # def process_entity_response(entity_response)
+    #   state = find_state(entity)
+    #
+    #   update_state(entity,
+    #                state.count + 1,
+    #                entity_response[:interface_id],
+    #                :success,
+    #                entity._v)
+    # end
+    #
+    # def process_contact_response(contacts_response)
+    #   contacts_response.each do |response|
+    #     contact = entity.contacts.detect { |x| x.id == response[:id] }
+    #
+    #     state = find_state(contact)
+    #
+    #     update_state(contact,
+    #                  state.count + 1,
+    #                  response[:interface_id],
+    #                  :success,
+    #                  contact._v)
+    #   end
+    # end
+    #
+    # def process_location_response(locations_response)
+    #   locations_response.each do |response|
+    #     location = entity.locations.detect { |x| x.id == response[:id] }
+    #     state = find_state(location)
+    #     update_state(location,
+    #                  state.count + 1,
+    #                  response[:interface_id],
+    #                  :success,
+    #                  location._v)
+    #   end
+    # end
 
-      update_state(entity,
-                   state.count + 1,
-                   entity_response[:interface_id],
-                   :success,
-                   entity._v)
-    end
+    # def find_state(interfaceable)
+    #   state_manager.find_or_add_state(interfaceable)
+    # end
 
-    def process_contact_response(contacts_response)
-      contacts_response.each do |response|
-        contact = entity.contacts.detect { |x| x.id == response[:id] }
-
-        state = find_state(contact)
-
-        update_state(contact,
-                     state.count + 1,
-                     response[:interface_id],
-                     :success,
-                     contact._v)
-      end
-    end
-
-    def process_location_response(locations_response)
-      locations_response.each do |response|
-        location = entity.locations.detect { |x| x.id == response[:id] }
-        state = find_state(location)
-        update_state(location,
-                     state.count + 1,
-                     response[:interface_id],
-                     :success,
-                     location._v)
-      end
-    end
-
-    def find_state(interfaceable)
-      state_manager.find_or_add_state(interfaceable)
-    end
-
-    def update_state(interfaceable, count, interface_id, status, version)
-      state_manager.update(interfaceable,
-                           'action',
-                           count,
-                           interface_id,
-                           status,
-                           version)
-    end
+    # def update_state(interfaceable, count, interface_id, status, version)
+    #   state_manager.update(interfaceable,
+    #                        'action',
+    #                        count,
+    #                        interface_id,
+    #                        status,
+    #                        version)
+    # end
 
     def invoke_interface!
       # We want to build the details of the insert/update
@@ -119,7 +138,8 @@ module Interface
       # we'll need to pass the StateManager through to them.
       klass = interface_class(context.action)
       klass.call(
-        entity: entity,
+        request: context.request,
+        # entity: entity,
         integration: integration)
     end
 

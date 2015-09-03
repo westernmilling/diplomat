@@ -7,8 +7,8 @@ class Interface::State < ActiveRecord::Base
   belongs_to :organization
   belongs_to :interfaceable, polymorphic: true
 
-  enumerize :action, in: [:insert, :skipped, :update]
-  enumerize :status, in: [:failure, :success]
+  # enumerize :action, in: [:insert, :skipped, :update]
+  # enumerize :status, in: [:failure, :success]
 
   # class << self
   #   def build_new(interfaceable, organization)

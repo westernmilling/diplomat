@@ -24,6 +24,7 @@ RSpec.describe Interface::IRely::EntityInsert, type: :interactor, vcr: true do
 
     it { is_expected.to be_success }
     its(:status) { is_expected.to eq :success }
+    its(:response) { is_expected.to be_present }
     its(:payload) { is_expected.to be_present }
     describe 'payload' do
       subject { call.payload }
@@ -31,10 +32,12 @@ RSpec.describe Interface::IRely::EntityInsert, type: :interactor, vcr: true do
       its([:data]) { is_expected.to be_present }
     end
     describe 'payload[data][0]' do
-      subject { call.payload[:data][0] }
+      subject { puts call.payload[:data]; call.payload[:data][0] }
 
       its([:name]) { is_expected.to be_present }
+      its([:interface_id]) { is_expected.to be_present }
+      its([:i21_id]) { is_expected.to_not be_present }
     end
-    its(:identifier) { is_expected.to be_present }
+    # its(:identifier) { is_expected.to be_present }
   end
 end

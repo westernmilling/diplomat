@@ -106,18 +106,14 @@ ActiveRecord::Schema.define(version: 20150826201759) do
   end
 
   create_table "interface_states", force: :cascade do |t|
-    t.integer  "organization_id",                  null: false
-    t.integer  "integration_id",                   null: false
-    t.integer  "interfaceable_id",                 null: false
-    t.string   "interfaceable_type",               null: false
-    t.string   "message"
-    t.string   "status",                           null: false
-    t.string   "action",                           null: false
-    t.string   "interface_identifier"
+    t.integer  "organization_id",    null: false
+    t.integer  "integration_id",     null: false
+    t.integer  "interfaceable_id",   null: false
+    t.string   "interfaceable_type", null: false
+    t.string   "interface_id",       null: false
     t.integer  "version"
-    t.integer  "count",                default: 1, null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "locations", force: :cascade do |t|
@@ -145,11 +141,11 @@ ActiveRecord::Schema.define(version: 20150826201759) do
     t.integer  "entity_id",                              null: false
     t.integer  "organization_id",                        null: false
     t.string   "trait",                                  null: false
+    t.string   "uuid",            limit: 32,             null: false
     t.integer  "_v",                         default: 1, null: false
     t.datetime "deleted_at"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.string   "uuid",            limit: 32,             null: false
   end
 
   create_table "organizations", force: :cascade do |t|

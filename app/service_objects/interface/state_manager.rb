@@ -9,20 +9,27 @@ module Interface
       @all_states = states
     end
 
-    def add_state(interfaceable)
+    def add_state(interfaceable, interface_id)
       state = Interface::State.new
-      state.count = 0
+      state.interface_id = interface_id
       state.interfaceable = interfaceable
       state.integration = @organization.integration
       state.organization = @organization
+      state.version = interfaceable._v
       @all_states << state
 
       state
+    end
+    alias :add :add_state
+
+    def exist?(interfaceable)
+      find_state(interfaceable).present?
     end
 
     def find_state(interfaceable)
       find_states(interfaceable).first
     end
+    alias :find :find_state
 
     def find_states(interfaceable)
       @all_states.select do |x|
@@ -30,14 +37,6 @@ module Interface
         x.integration == @organization.integration && \
         x.organization == @organization
       end
-    end
-
-    def find_or_add_state(interfaceable)
-      state = find_state(interfaceable)
-
-      return state if state.present?
-
-      add_state(interfaceable)
     end
 
     def persist!
@@ -48,14 +47,9 @@ module Interface
       find_states(interfaceable)
     end
 
-    def update(interfaceable, action, count, interface_id, status, version)
+    def update_version(interfaceable)
       state = find_state(interfaceable)
-      # state.action = action.downcase.to_sym
-      state.count = count
-      state.interface_identifier = interface_id
-      state.status = status
-      state.version = version
-
+      state.version = interfaceable._v
       self
     end
   end

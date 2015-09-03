@@ -9,12 +9,12 @@ module Interface
         hash = translate_entity
 
         response = connection.post do |request|
-          prepare_headers request
+          add_headers request
 
           request.body = [hash].to_json
         end
 
-        extract_response(response.body)
+        convert_response(response.body)
       end
 
       protected
@@ -68,7 +68,7 @@ module Interface
         Faraday.new(url: url)
       end
 
-      def prepare_headers(request)
+      def add_headers(request)
         request.headers['Content-Type'] = 'application/json'
         request.headers['Authorization'] =
           "Bearer #{Figaro.env.IRELY_API_KEY}.#{Figaro.env.IRELY_API_SECRET}"
@@ -76,25 +76,28 @@ module Interface
       end
 
       def url
-        # TODO: Store base URL in env and remove from Integration
+        # Accept URL in context, pass in from Organization Integration
+        # In production we'll use the integration details, in test we can
+        # pull this information from anywhere (Figaro.env).
         "#{Figaro.env.IRELY_BASE_URL}entitymanagement/api/entity/import"
       end
 
       def irely_company
-        # TODO: Move Company into Integration model
+        # Accept Company in context, pass in from Organization Integration
+        # In production we'll use the integration details, in test we can
+        # pull this information from anywhere (Figaro.env).
         Figaro.env.IRELY_COMPANY
       end
 
-      def extract_response(body)
-        body = JSON.parse(body, symbolize_names: true)
+      def convert_response(body)
+        parsed_response = JSON.parse(body.gsub('i21_id', 'interface_id'),
+                                     symbolize_names: true)
 
         context.merge!(
-          payload: body,
-          status: body[:success] == true ? :success : :failure
+          payload: parsed_response,
+          response: body,
+          status: parsed_response[:success] == true ? :success : :failure
         )
-        if body[:success] && body[:data].any?
-          context[:identifier] = body[:data][0][:i21_id]
-        end
       end
     end
   end

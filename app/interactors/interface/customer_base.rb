@@ -16,7 +16,21 @@ module Interface
         customer,
         result.message,
         customer._v,
-        result.payload.to_json,
+        result.response,
+        result.payload[:result]
+      )
+    end
+
+    def log(action, interfaceable, result)
+      create_log(
+        nil,
+        integration,
+        action,
+        result.success? ? :success : :failure,
+        interfaceable,
+        result.message,
+        interfaceable._v,
+        result.response,
         result.payload[:result]
       )
     end

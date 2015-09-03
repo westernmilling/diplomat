@@ -29,7 +29,8 @@ RSpec.describe Interface::EntityUpdate, type: :interactor do
       Interactor::Context.new(
         identifier: 1,
         result: 'success',
-        payload: { result: 'success', id: 1 },
+        # response: { result: 'success', data: [{ id: 1, x_id: 1 }] }.to_json,
+        payload: { result: 'success', data: [{ id: 1, vendor_id: 1 }] },
         message: I18n.t('test_interfaces.entity_update.success'))
     end
 
@@ -60,7 +61,7 @@ RSpec.describe Interface::EntityUpdate, type: :interactor do
       its(:action) { is_expected.to eq :update }
       its(:status) { is_expected.to eq :success }
       its(:interface_payload) do
-        is_expected.to eq({ result: 'success', id: 1 }.to_json)
+        is_expected.to eq interface_result.response
       end
       its(:interface_status) { is_expected.to eq 'success' }
       its(:message) do
