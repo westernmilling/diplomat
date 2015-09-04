@@ -7,22 +7,10 @@ class Interface::State < ActiveRecord::Base
   belongs_to :organization
   belongs_to :interfaceable, polymorphic: true
 
-  # enumerize :action, in: [:insert, :skipped, :update]
-  # enumerize :status, in: [:failure, :success]
-
-  # class << self
-  #   def build_new(interfaceable, organization)
-  #     state = Interface::State.new
-  #     state.organization = organization
-  #     state.integration = organization.integration
-  #     state.interfaceable = interfaceable
-  #     state.count = 0
-  #     state.version = 0
-  #     state
-  #   end
-  # end
-
-  # def find_by_interfaceable(interfaceable)
-  #   where { interfaceable == my { interfaceable } }
-  # end
+  validates \
+    :interfaceable,
+    :integration,
+    :organization,
+    :version,
+    presence: true
 end

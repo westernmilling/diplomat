@@ -1,7 +1,7 @@
 require 'rails_helper'
 require_relative 'test_interfaces'
 
-RSpec.describe Interface::CustomerUpsert, type: :interactor do
+RSpec.describe Interface::CustomerUpsert, type: :interactor, ignore: true do
   before do
     allow(log).to receive(:save!)
     allow(state).to receive(:save!)

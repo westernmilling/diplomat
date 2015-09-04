@@ -25,7 +25,6 @@ RSpec.describe Interface::EntityInsert, type: :interactor do
     end
     let(:interface_result) do
       Interactor::Context.new(
-        identifier: 1,
         result: 'success',
         response: { result: 'success', data: [{ id: 1, x_id: 1 }] }.to_json,
         payload: { result: 'success', data: [{ id: 1, vendor_id: 1 }] },
@@ -36,9 +35,6 @@ RSpec.describe Interface::EntityInsert, type: :interactor do
       subject { result }
 
       it { is_expected.to be_success }
-      its(:identifier) do
-        is_expected.to eq interface_result.identifier
-      end
       its(:result) do
         is_expected.to eq interface_result.result
       end

@@ -5,11 +5,10 @@ http_interactions:
     uri: "<IRELY_BASE_URL>entitymanagement/api/entity/import"
     body:
       encoding: UTF-8
-      string: '[{"id":65811763,"name":"Swaniawski LLC","contacts":[{"name":"Chester
-        Hermann","phone":"1-843-584-9417","fax":"423.383.7715 x083","mobile":"(810)
-        662-7695","email":"violet@millschristiansen.org","id":1}],"locations":[{"name":"Swaniawski
-        LLC","address":"83716 Rodrick Ramp","city":"Robelland","state":"New York","zipcode":"30519","country":"United
-        States","termsId":"Due on Receipt","id":1}],"customer":{"type":"Company","creditlimit":0}}]'
+      string: '[{"id":100001,"name":"Moore-Schroeder","contacts":[{"name":"Durward
+        Collins","phone":"1-335-260-7441","fax":"1-913-516-2604 x652","mobile":null,"email":"wilburn.ruel@gibsonwunsch.org","id":100001,"i21_id":null}],"locations":[{"name":"Moore-Schroeder","address":"597
+        Lempi Extensions","city":"South Lylatown","state":"California","zipcode":"78276-7810","country":"United
+        States","termsId":"Due on Receipt","id":100001,"i21_id":null}],"customer":{"type":"Company","creditlimit":0},"i21_id":null}]'
     headers:
       User-Agent:
       - Faraday v0.9.1
@@ -49,16 +48,15 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET, POST, PUT, DELETE, OPTIONS
       Date:
-      - Wed, 26 Aug 2015 18:09:59 GMT
+      - Thu, 03 Sep 2015 19:18:06 GMT
       Content-Length:
-      - '745'
+      - '776'
     body:
       encoding: UTF-8
-      string: '{"data":[{"name":"Swaniawski LLC","website":null,"email":null,"locations":[{"name":"Swaniawski
-        LLC","termsId":"Due on Receipt","address":"83716 Rodrick Ramp","city":"Robelland","state":"New
-        York","zipcode":"30519","country":"United States","pricelevel":null,"id":"1","i21_id":"1833","rowState":null}],"contacts":[{"name":"Chester
-        Hermann","phone":"1-843-584-9417","fax":"423.383.7715 x083","mobile":"(810)
-        662-7695","email":"violet@millschristiansen.org","id":"1","i21_id":"3716","rowState":null}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"65811763","i21_id":"3715"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+      string: '{"data":[{"name":"Moore-Schroeder","website":null,"email":null,"entityNo":null,"locations":[{"name":"Moore-Schroeder","termsId":"Due
+        on Receipt","address":"597 Lempi Extensions","city":"South Lylatown","state":"California","zipcode":"78276-7810","country":"United
+        States","pricelevel":null,"id":"100001","i21_id":"1844","rowState":null}],"contacts":[{"name":"Durward
+        Collins","phone":"1-335-260-7441","fax":"1-913-516-2604 x652","mobile":null,"email":"wilburn.ruel@gibsonwunsch.org","id":"100001","i21_id":"3742","rowState":null}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"100001","i21_id":"3741"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
     http_version: 
-  recorded_at: Wed, 26 Aug 2015 18:09:59 GMT
+  recorded_at: Thu, 03 Sep 2015 19:18:07 GMT
 recorded_with: VCR 2.9.3

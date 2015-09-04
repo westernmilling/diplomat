@@ -5,11 +5,11 @@ http_interactions:
     uri: "<IRELY_BASE_URL>entitymanagement/api/entity/import"
     body:
       encoding: UTF-8
-      string: '[{"id":32348067,"name":"Medhurst Group","contacts":[{"name":"Lorna
-        Conn III","phone":"367-119-3012","fax":"1-253-663-2381","mobile":"(751) 272-7236
-        x447","email":"caandra.upton@schowalter.org","id":1}],"locations":[{"name":"Medhurst
-        Group 1","address":"337 Kevin Cape","city":"Demarcoside","state":"Nebraska","zipcode":"24517","country":"Djibouti","termsId":"Due
-        on Receipt","id":1}],"customer":{"type":"Company","creditlimit":0}}]'
+      string: '[{"id":100001,"name":"Konopelski, Koepp and Schoen","contacts":[{"name":"Waino
+        Hand","phone":"1-305-038-1886","fax":"1-855-102-3336","mobile":"454.600.7552
+        x2819","email":"caie@terryokuneva.com","id":100001}],"locations":[{"name":"Konopelski,
+        Koepp and Schoen 1","address":"296 Stephon Plains","city":"New Elta","state":"New
+        Jersey","zipcode":"10917-0956","country":"Namibia","termsId":"Due on Receipt","id":100001}],"customer":{"type":"Person","creditlimit":0}}]'
     headers:
       User-Agent:
       - Faraday v0.9.1
@@ -49,15 +49,16 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET, POST, PUT, DELETE, OPTIONS
       Date:
-      - Mon, 31 Aug 2015 23:49:09 GMT
+      - Fri, 04 Sep 2015 00:51:41 GMT
       Content-Length:
-      - '755'
+      - '787'
     body:
       encoding: UTF-8
-      string: '{"data":[{"name":"Medhurst Group","website":null,"email":null,"entityNo":null,"locations":[{"name":"Medhurst
-        Group 1","termsId":"Due on Receipt","address":"337 Kevin Cape","city":"Demarcoside","state":"Nebraska","zipcode":"24517","country":"Djibouti","pricelevel":null,"id":"1","i21_id":"1839","rowState":null}],"contacts":[{"name":"Lorna
-        Conn III","phone":"367-119-3012","fax":"1-253-663-2381","mobile":"(751) 272-7236
-        x447","email":"caandra.upton@schowalter.org","id":"1","i21_id":"3731","rowState":null}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"32348067","i21_id":"3730"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+      string: '{"data":[{"name":"Konopelski, Koepp and Schoen","website":null,"email":null,"entityNo":null,"locations":[{"name":"Konopelski,
+        Koepp and Schoen 1","termsId":"Due on Receipt","address":"296 Stephon Plains","city":"New
+        Elta","state":"New Jersey","zipcode":"10917-0956","country":"Namibia","pricelevel":null,"id":"100001","i21_id":"1852","rowState":null}],"contacts":[{"name":"Waino
+        Hand","phone":"1-305-038-1886","fax":"1-855-102-3336","mobile":"454.600.7552
+        x2819","email":"caie@terryokuneva.com","id":"100001","i21_id":"3758","rowState":null}],"customer":{"number":null,"type":"Person","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"100001","i21_id":"3757"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
     http_version: 
-  recorded_at: Mon, 31 Aug 2015 23:49:12 GMT
+  recorded_at: Fri, 04 Sep 2015 00:51:42 GMT
 recorded_with: VCR 2.9.3

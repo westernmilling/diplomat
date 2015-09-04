@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<IRELY_BASE_URL>entitymanagement/api/entity/import"
+    body:
+      encoding: UTF-8
+      string: '[{"id":100001,"name":"Parker, Keeling and Huels","contacts":[{"name":"Sandra
+        Bode II","phone":"(595) 434-9967","fax":"409-737-9459 x37544","mobile":null,"email":"minerva@lakin.info","id":100001}],"locations":[{"name":"Parker,
+        Keeling and Huels","address":"4779 Richmond Vista","city":"North Nehabury","state":"Florida","zipcode":"62058-0108","country":"United
+        States","termsId":"Due on Receipt","id":100001}],"customer":{"type":"Person","creditlimit":0}}]'
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Fri, 04 Sep 2015 00:16:50 GMT
+      Content-Length:
+      - '779'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":"Parker, Keeling and Huels","website":null,"email":null,"entityNo":null,"locations":[{"name":"Parker,
+        Keeling and Huels","termsId":"Due on Receipt","address":"4779 Richmond Vista","city":"North
+        Nehabury","state":"Florida","zipcode":"62058-0108","country":"United States","pricelevel":null,"id":"100001","i21_id":"1851","rowState":null}],"contacts":[{"name":"Sandra
+        Bode II","phone":"(595) 434-9967","fax":"409-737-9459 x37544","mobile":null,"email":"minerva@lakin.info","id":"100001","i21_id":"3756","rowState":null}],"customer":{"number":null,"type":"Person","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"100001","i21_id":"3755"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+    http_version: 
+  recorded_at: Fri, 04 Sep 2015 00:16:52 GMT
+recorded_with: VCR 2.9.3

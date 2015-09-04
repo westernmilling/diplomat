@@ -10,6 +10,10 @@ class Interface::Log < ActiveRecord::Base
   enumerize :action, in: [:insert, :skipped, :update]
   enumerize :status, in: [:failure, :success]
 
+  validates \
+    :interfaceable,
+    presence: true
+
   class << self
     def build_new(organization,
                   integration,

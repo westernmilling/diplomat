@@ -1,6 +1,6 @@
 module Interface
   module IRely
-    class EntityInsert
+    class EntityUpdate
       include Interactor
 
       before :extract_credentials
@@ -11,8 +11,8 @@ module Interface
 
       def call
         hash = translate_request
-
-        response = connection.post do |request|
+# puts "update hash: #{hash.to_yaml}"
+        response = connection.put do |request|
           add_headers request
 
           request.body = [hash].to_json
@@ -30,19 +30,18 @@ module Interface
         context.api_key = credentials[0, first_delim]
         context.api_secret = credentials[first_delim + 1..last_delim - 1]
         context.company_id = credentials[last_delim + 1..credentials.length]
-        # puts "#{context.api_key},#{context.api_secret},#{context.company_id}"
       end
 
       # TODO: Consider building translation classes
       def translate_request
         {
-          id: request[:id],
+          i21_id: request[:interface_id],
           # entity_number: request[:reference].to_i,
           name: request[:name],
           contacts: translate_contacts(request[:contacts]),
-          locations: translate_locations(request[:locations]),
-          customer: translate_customer(request)#,
-          # i21_id: request[:interface_id]
+          # locations: translate_locations(request[:locations]),
+          locations: [],
+          customer: translate_customer(request)
         }
       end
 
@@ -54,8 +53,7 @@ module Interface
             fax: contact_request[:fax_number],
             mobile: contact_request[:mobile_number],
             email: contact_request[:email_address],
-            id: contact_request[:id],
-            # i21_id: contact_request[:interface_id]
+            i21_id: contact_request[:interface_id]
           }
         end
       end
@@ -70,8 +68,7 @@ module Interface
             zipcode: location_request[:region_code],
             country: location_request[:country],
             termsId: 'Due on Receipt',
-            id: location_request[:id],
-            # i21_id: location_request[:interface_id]
+            i21_id: location_request[:interface_id]
           }
         end
       end
@@ -81,8 +78,8 @@ module Interface
 
         {
           type: request[:entity_type].capitalize,
-          creditlimit: request[:customer][:credit_limit]
-          # i21_id: request[:interface_id]
+          creditlimit: request[:customer][:credit_limit],
+          i21_id: request[:interface_id]
         }
       end
 
@@ -98,10 +95,7 @@ module Interface
       end
 
       def url
-        # Accept URL in context, pass in from Organization Integration
-        # In production we'll use the integration details, in test we can
-        # pull this information from anywhere (Figaro.env).
-        "#{context.base_url}entitymanagement/api/entity/import"
+        "#{context.base_url}entitymanagement/api/entity/sync"
       end
 
       def irely_company

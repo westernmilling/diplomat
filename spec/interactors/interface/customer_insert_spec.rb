@@ -1,7 +1,7 @@
 require 'rails_helper'
 require_relative 'test_interfaces'
 
-RSpec.describe Interface::CustomerInsert, type: :interactor do
+RSpec.describe Interface::CustomerInsert, type: :interactor, ignore: true do
   before do
     allow(log).to receive(:save!)
     allow(entity)
