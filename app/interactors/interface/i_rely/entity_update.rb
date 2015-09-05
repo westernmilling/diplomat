@@ -11,10 +11,11 @@ module Interface
 
       def call
         hash = translate_request
-# puts "update hash: #{hash.to_yaml}"
+
         response = connection.put do |request|
           add_headers request
 
+          Rails.logger.debug "API PUT: #{[hash].to_json}"
           request.body = [hash].to_json
         end
 
@@ -24,7 +25,7 @@ module Interface
       protected
 
       def extract_credentials
-        first_delim = credentials.index('/')
+        first_delim = credentials.index(':')
         last_delim = credentials.rindex('@')
 
         context.api_key = credentials[0, first_delim]
@@ -35,14 +36,17 @@ module Interface
       # TODO: Consider building translation classes
       def translate_request
         {
-          i21_id: request[:interface_id],
+          # NB: No entity number since no provision in the API yet
           # entity_number: request[:reference].to_i,
           name: request[:name],
           contacts: translate_contacts(request[:contacts]),
+          # NB: No locations in update due to issues with iRely API
           # locations: translate_locations(request[:locations]),
+          # customer: translate_customer(request)
           locations: [],
           customer: translate_customer(request)
-        }
+          # customer: {}
+        }.merge(id(request))
       end
 
       def translate_contacts(request)
@@ -52,9 +56,8 @@ module Interface
             phone: contact_request[:phone_number],
             fax: contact_request[:fax_number],
             mobile: contact_request[:mobile_number],
-            email: contact_request[:email_address],
-            i21_id: contact_request[:interface_id]
-          }
+            email: contact_request[:email_address]
+          }.merge(id(contact_request))
         end
       end
 
@@ -67,9 +70,8 @@ module Interface
             state: location_request[:region],
             zipcode: location_request[:region_code],
             country: location_request[:country],
-            termsId: 'Due on Receipt',
-            i21_id: location_request[:interface_id]
-          }
+            termsId: 'Due on Receipt'
+          }.merge(id(location_request))
         end
       end
 
@@ -78,9 +80,16 @@ module Interface
 
         {
           type: request[:entity_type].capitalize,
-          creditlimit: request[:customer][:credit_limit],
-          i21_id: request[:interface_id]
-        }
+          creditlimit: request[:customer][:credit_limit]
+        }.merge(id(request[:customer]))
+      end
+
+      def id(element)
+        if element[:interface_id].present?
+          { i21_id: element[:interface_id] }
+        else
+          { id: element[:id] }
+        end
       end
 
       def connection
@@ -103,6 +112,7 @@ module Interface
       end
 
       def convert_response(body)
+        Rails.logger.debug "API response: #{body}"
         # TODO: We should probably convert this into a less iRely bound format
         parsed_response = JSON.parse(body.gsub('i21_id', 'interface_id'),
                                      symbolize_names: true)
@@ -110,7 +120,7 @@ module Interface
         context.merge!(
           payload: parsed_response,
           response: body,
-          status: parsed_response[:success] == true ? :success : :failure
+          status: parsed_response[:success] ? :success : :failure
         )
       end
     end

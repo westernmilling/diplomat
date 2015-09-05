@@ -7,7 +7,6 @@ module Interface
 
     delegate :entity, to: :context
     delegate :integration, to: :organization
-    delegate :log, to: :context
     delegate :organization, to: :context
     delegate :state_manager, to: :context
 
@@ -17,18 +16,19 @@ module Interface
 
         process_response
       else
-        log_skip
+        # log_skip
+        log(:skipped, :success, t('log.message.old_version'))
       end
       persist!
 
-      context.states = state_manager.all_states
+      context.states = state_manager.all_states # NB: Do we need to set this?
       context.message = t('success')
     end
 
     protected
 
     def populate_action
-      context.action = state_manager.states(entity).empty? ? 'Insert' : 'Update'
+      context.action = state_manager.states(entity).empty? ? :insert : :update
     end
 
     def new_version?
@@ -44,29 +44,25 @@ module Interface
     end
 
     def upsert_entity
-      request = prepare_request
+      request = build_request
 
       result = invoke_interface! request
 
-      context.log = result.log
-      # Backfill the organization since the Insert/Update have no knowledge
-      # of an Organization.
-      context.log.organization = organization
-      context.payload = result.payload
-      context.status = result.result
+      process_result result
     end
 
-    def prepare_request
-      EntityRequestGenerator
+    # Builds a new Entity request to insert or update Entity details.
+    def build_request
+      EntityRequestFactory
         .new(entity, state_manager)
-        .call
-      # This should be easy enough to mock out of we can DI if we need
-      # result = EntityRequestGenerator.call(entity: entity,
-      #                                      state_manager: state_manager)
-      # context.request = result.request
+        .build
     end
 
+    # Process an Entity response, extracting state information from the response
+    # into a StateManager.
     def process_response
+      return if context.payload.nil?
+
       # EntityResponseExtractStateInformation
       # How do we mock/DI this behavior?
       EntityResponseHandler
@@ -74,11 +70,17 @@ module Interface
         .call(context.payload[:data][0])
     end
 
+    def process_result(result)
+      log(context.action,
+          result.status,
+          result.message,
+          result.response)
+
+      context.payload = result.payload if result.status == :success
+      context.status = result.status
+    end
+
     def invoke_interface!(request)
-      # We want to build the details of the insert/update
-      # request (built from objects and state).
-      # If we do this in the EntityInsert and EntityUpdate classes then
-      # we'll need to pass the StateManager through to them.
       klass = interface_class(context.action)
       klass.call(
         request: request,
@@ -86,23 +88,28 @@ module Interface
     end
 
     def interface_class(action)
-      parts = ['Interface', "Entity#{action}"]
+      parts = ['Interface', "Entity#{action.to_s.capitalize}"]
       Object.const_get(parts.join('::'))
     end
 
-    def log_skip
-      context.log = create_log(
-        organization,
-        integration,
-        :skipped,
-        :success,
-        entity,
-        t('log.message.old_version'))
+    # Records a single log in the local context.
+    def log(action, status, message, response = nil)
+      context.log = build_log(organization,
+                              integration,
+                              action,
+                              status,
+                              entity,
+                              message,
+                              response)
     end
+
+    # def log_skip
+    #   log(:skipped, :success, t('log.message.old_version'))
+    # end
 
     def persist!
       context.log.save!
-      state_manager.persist!
+      state_manager.persist! if context.status == :success
     end
   end
 end

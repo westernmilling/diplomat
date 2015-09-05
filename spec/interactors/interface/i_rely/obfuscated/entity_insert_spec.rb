@@ -4,8 +4,8 @@ RSpec.describe Interface::IRely::Obfuscated::EntityInsert,
                type: :interactor, vcr: true do
   describe '.call' do
     let(:credentials) do
-      "#{Figaro.env.IRELY_API_KEY}/#{Figaro.env.IRELY_API_SECRET}" + \
-      "@#{Figaro.env.IRELY_COMPANY}"
+      "#{Figaro.env.IRELY_API_KEY}:#{Figaro.env.IRELY_API_SECRET}" + \
+        "@#{Figaro.env.IRELY_COMPANY}"
     end
     let(:call) do
       result = nil

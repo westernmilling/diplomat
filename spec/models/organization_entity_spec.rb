@@ -38,5 +38,4 @@ RSpec.describe OrganizationEntity, type: :model do
                               organization_entity.entity._v)
     end
   end
-
 end

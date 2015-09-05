@@ -3,24 +3,23 @@ module Interface
     extend ActiveSupport::Concern
 
     included do
-      def create_log(organization,
-                      integration,
-                      action,
-                      status,
-                      interfaceable,
-                      message,
-                      version = interfaceable._v,
-                      interface_payload = nil,
-                      interface_status = nil)
-        log = Interface::Log.build_new(organization,
-                                       integration,
-                                       action,
-                                       status,
-                                       interfaceable,
-                                       message,
-                                       version,
-                                       interface_payload,
-                                       interface_status)
+      def build_log(organization,
+                    integration,
+                    action,
+                    status,
+                    interfaceable,
+                    message,
+                    response = nil,
+                    version = nil)
+        log = Interface::Log.new
+        log.organization = organization
+        log.integration = integration
+        log.action = action.to_sym
+        log.status = status
+        log.interfaceable = interfaceable
+        log.message = message
+        log.version = version || interfaceable._v
+        log.interface_response = response
         log
       end
 
@@ -31,17 +30,15 @@ module Interface
                       interfaceable,
                       message,
                       version = interfaceable._v,
-                      interface_payload = nil,
-                      interface_status = nil)
-        log = create_log(organization,
-                         integration,
-                         action,
-                         status,
-                         interfaceable,
-                         message,
-                         version,
-                         interface_payload,
-                         interface_status)
+                      response = nil)
+        log = build_log(organization,
+                        integration,
+                        action,
+                        status,
+                        interfaceable,
+                        message,
+                        version,
+                        response)
         log.save!
         log
       end

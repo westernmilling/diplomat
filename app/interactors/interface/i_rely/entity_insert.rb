@@ -15,6 +15,7 @@ module Interface
         response = connection.post do |request|
           add_headers request
 
+          Rails.logger.debug "API POST: #{[hash].to_json}"
           request.body = [hash].to_json
         end
 
@@ -23,8 +24,12 @@ module Interface
 
       protected
 
+      # TODO: Most of the code below this point is shared between the Insert
+      #       and the Update actions (refactor/DRY).
+      #       Bear in mind the update data has the i21_id, can insert have nils?
       def extract_credentials
-        first_delim = credentials.index('/')
+        # TODO: Implement and use the Interface::IRely::CredentialParser here
+        first_delim = credentials.index(':')
         last_delim = credentials.rindex('@')
 
         context.api_key = credentials[0, first_delim]
@@ -41,8 +46,7 @@ module Interface
           name: request[:name],
           contacts: translate_contacts(request[:contacts]),
           locations: translate_locations(request[:locations]),
-          customer: translate_customer(request)#,
-          # i21_id: request[:interface_id]
+          customer: translate_customer(request)
         }
       end
 
@@ -55,7 +59,6 @@ module Interface
             mobile: contact_request[:mobile_number],
             email: contact_request[:email_address],
             id: contact_request[:id],
-            # i21_id: contact_request[:interface_id]
           }
         end
       end
@@ -71,7 +74,6 @@ module Interface
             country: location_request[:country],
             termsId: 'Due on Receipt',
             id: location_request[:id],
-            # i21_id: location_request[:interface_id]
           }
         end
       end
@@ -81,12 +83,13 @@ module Interface
 
         {
           type: request[:entity_type].capitalize,
-          creditlimit: request[:customer][:credit_limit]
-          # i21_id: request[:interface_id]
+          creditlimit: request[:customer][:credit_limit],
+          i21_id: request[:interface_id]
         }
       end
 
       def connection
+        Rails.logger.debug "Creating new Faraday connection with url: #{url}"
         Faraday.new(url: url)
       end
 
@@ -98,9 +101,6 @@ module Interface
       end
 
       def url
-        # Accept URL in context, pass in from Organization Integration
-        # In production we'll use the integration details, in test we can
-        # pull this information from anywhere (Figaro.env).
         "#{context.base_url}entitymanagement/api/entity/import"
       end
 
@@ -109,15 +109,26 @@ module Interface
       end
 
       def convert_response(body)
+        Rails.logger.debug "API response: #{body}"
         # TODO: We should probably convert this into a less iRely bound format
         parsed_response = JSON.parse(body.gsub('i21_id', 'interface_id'),
                                      symbolize_names: true)
 
+        # iRely API response issue hacks here
+        hack parsed_response
+
         context.merge!(
           payload: parsed_response,
           response: body,
-          status: parsed_response[:success] == true ? :success : :failure
+          status: parsed_response[:success] ? :success : :failure
         )
+      end
+
+      def hack(response)
+        if response[:success]
+          response[:data][0][:customer][:interface_id] =
+            response[:data][0][:interface_id]
+        end
       end
     end
   end

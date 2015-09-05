@@ -5,6 +5,7 @@ class Entity < ActiveRecord::Base
   extend Enumerize
 
   acts_as_paranoid
+  after_commit :queue_upsert
 
   belongs_to :parent_entity, class_name: Entity
   has_many :contacts
@@ -37,7 +38,7 @@ class Entity < ActiveRecord::Base
 
   def organizations(related_trait = nil)
     query = OrganizationEntity
-      .where { entity_id == my { id } }
+            .where { entity_id == my { id } }
 
     query = query.where { trait == my { related_trait } } if related_trait
     query.map(&:organization)
@@ -45,5 +46,11 @@ class Entity < ActiveRecord::Base
 
   def to_s
     name
+  end
+
+  protected
+
+  def queue_upsert
+    EntityUpsertWorker.perform_async(id, _v)
   end
 end

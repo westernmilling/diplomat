@@ -4,9 +4,8 @@ class CreateInterfaceLogs < ActiveRecord::Migration
       t.references :organization
       t.references :integration
       t.references :interfaceable, null: false, polymorphic: true
-      t.string :interface_payload
+      t.string :interface_response
       t.string :interface_status
-      t.string :interface_identifier
       t.string :message
       t.string :status, null: false
       t.string :action, null: false

@@ -1,5 +1,4 @@
 require 'rails_helper'
-require_relative 'test_interfaces'
 
 RSpec.describe Interface::EntityUpsert, type: :interactor do
   before do
@@ -35,10 +34,10 @@ RSpec.describe Interface::EntityUpsert, type: :interactor do
     let(:states) do
       [
         Interface::State.new(
-            interfaceable: entity,
-            organization: organization,
-            integration: integration,
-            version: 3)
+          interfaceable: entity,
+          organization: organization,
+          integration: integration,
+          version: 3)
       ]
     end
     let(:version) { 2 }
@@ -67,8 +66,7 @@ RSpec.describe Interface::EntityUpsert, type: :interactor do
       its(:interfaceable) { is_expected.to eq entity }
       its(:action) { is_expected.to eq :skipped }
       its(:status) { is_expected.to eq :success }
-      its(:interface_payload) { is_expected.to be_nil }
-      its(:interface_status) { is_expected.to be_nil }
+      its(:interface_response) { is_expected.to be_nil }
       its(:message) do
         is_expected.to eq I18n.t('entity_upsert.log.message.old_version')
       end
@@ -100,23 +98,23 @@ RSpec.describe Interface::EntityUpsert, type: :interactor do
     let(:states) do
       [
         Interface::State.new(
-            interfaceable: entity,
-            interface_id: 10000 + entity.id,
-            organization: organization,
-            integration: integration,
-            version: 1),
+          interfaceable: entity,
+          interface_id: 10000 + entity.id,
+          organization: organization,
+          integration: integration,
+          version: 1),
         Interface::State.new(
-            interfaceable: contacts[0],
-            interface_id: 10000 + contacts[0].id,
-            organization: organization,
-            integration: integration,
-            version: 1),
+          interfaceable: contacts[0],
+          interface_id: 10000 + contacts[0].id,
+          organization: organization,
+          integration: integration,
+          version: 1),
         Interface::State.new(
-            interfaceable: locations[0],
-            interface_id: 10000 + locations[0].id,
-            organization: organization,
-            integration: integration,
-            version: 1)
+          interfaceable: locations[0],
+          interface_id: 10000 + locations[0].id,
+          organization: organization,
+          integration: integration,
+          version: 1)
       ]
     end
     let(:log) do
@@ -130,8 +128,7 @@ RSpec.describe Interface::EntityUpsert, type: :interactor do
     let(:version) { 2 }
     let(:context) do
       Interactor::Context.new(
-        log: log,
-        result: 'success',
+        status: :success,
         payload: {
           data: [
             {
@@ -146,8 +143,8 @@ RSpec.describe Interface::EntityUpsert, type: :interactor do
             }
           ]
         },
-        response: 'this is unimportant as its for debug',
-        message: I18n.t('entity_updat.success'))
+        response: nil,
+        message: I18n.t('entity_update.success'))
     end
 
     describe Interactor::Context do
@@ -196,7 +193,15 @@ RSpec.describe Interface::EntityUpsert, type: :interactor do
       subject { result.log }
 
       it { is_expected.to be_present }
-      its(:organization) { is_expected.to eq organization }
+      its(:integration) { is_expected.to eq integration }
+      its(:interfaceable) { is_expected.to eq entity }
+      its(:action) { is_expected.to eq :update }
+      its(:status) { is_expected.to eq :success }
+      its(:interface_response) { is_expected.to eq(result.response) }
+      its(:message) do
+        is_expected.to eq I18n.t('entity_update.success')
+      end
+      its(:version) { is_expected.to eq entity._v }
     end
 
     describe Interface::EntityUpdate do
@@ -222,8 +227,7 @@ RSpec.describe Interface::EntityUpsert, type: :interactor do
     end
     let(:context) do
       Interactor::Context.new(
-        log: log,
-        result: 'success',
+        status: :success,
         payload: {
           data: [
             {
@@ -238,7 +242,7 @@ RSpec.describe Interface::EntityUpsert, type: :interactor do
             }
           ]
         },
-        vendor_response: 'this is unimportant as its for debug',
+        response: 'this is unimportant as its for debug',
         message: I18n.t('entity_insert.success'))
     end
 
@@ -246,13 +250,15 @@ RSpec.describe Interface::EntityUpsert, type: :interactor do
       subject { result }
 
       it { is_expected.to be_success }
-      its(:message) { is_expected.to eq(I18n.t('entity_upsert.success')) }
-      its(:status) { is_expected.to eq 'success' }
+      its(:message) { is_expected.to eq I18n.t('entity_upsert.success') }
+      its(:status) { is_expected.to eq :success }
     end
 
     describe '#states' do
       describe 'entity state' do
-        subject { result.states.detect { |x| x.interfaceable_type == 'Entity' } }
+        subject do
+          result.states.detect { |x| x.interfaceable_type == 'Entity' }
+        end
 
         it { is_expected.to be_present }
         its(:interfaceable) { is_expected.to eq entity }
@@ -260,19 +266,27 @@ RSpec.describe Interface::EntityUpsert, type: :interactor do
         its(:version) { is_expected.to eq 1 }
       end
       describe 'contact state' do
-        subject { result.states.detect { |x| x.interfaceable_type == 'Contact' } }
+        subject do
+          result.states.detect { |x| x.interfaceable_type == 'Contact' }
+        end
 
         it { is_expected.to be_present }
         its(:interfaceable) { is_expected.to eq entity.contacts[0] }
-        its(:interface_id) { is_expected.to eq (entity.contacts[0].id + 10000).to_s }
+        its(:interface_id) do
+          is_expected.to eq (entity.contacts[0].id + 10000).to_s
+        end
         its(:version) { is_expected.to eq 1 }
       end
       describe 'location state' do
-        subject { result.states.detect { |x| x.interfaceable_type == 'Location' } }
+        subject do
+          result.states.detect { |x| x.interfaceable_type == 'Location' }
+        end
 
         it { is_expected.to be_present }
         its(:interfaceable) { is_expected.to eq entity.locations[0] }
-        its(:interface_id) { is_expected.to eq (entity.locations[0].id + 10000).to_s }
+        its(:interface_id) do
+          is_expected.to eq (entity.locations[0].id + 10000).to_s
+        end
         its(:version) { is_expected.to eq 1 }
       end
     end
@@ -289,8 +303,22 @@ RSpec.describe Interface::EntityUpsert, type: :interactor do
       subject { result.log }
 
       it { is_expected.to be_present }
-      its(:organization) { is_expected.to eq organization }
+      its(:integration) { is_expected.to eq integration }
+      its(:interfaceable) { is_expected.to eq entity }
+      its(:action) { is_expected.to eq :insert }
+      its(:status) { is_expected.to eq :success }
+      its(:interface_response) { is_expected.to eq(context.response) }
+      its(:message) do
+        is_expected.to eq I18n.t('entity_insert.success')
+      end
+      its(:version) { is_expected.to eq entity._v }
     end
+    # describe Interface::Log do
+    #   subject { result.log }
+    #
+    #   it { is_expected.to be_present }
+    #   its(:organization) { is_expected.to eq organization }
+    # end
 
     describe Interface::EntityInsert do
       before { result }

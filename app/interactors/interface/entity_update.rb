@@ -1,24 +1,25 @@
 module Interface
-  class EntityUpdate < CustomerBase
-    delegate :entity, to: :context
+  class EntityUpdate
+    include Interactor
+
+    delegate :request, to: :context
     delegate :integration, to: :context
 
     def call
       result = invoke_external_interface!
 
-      context.log = log!(:update, entity, result)
-      context.merge!(
-        result.to_h.slice(:payload, :response, :result)
-      )
-      context.message = I18n.t('entity_update.success')
+      context.merge!(result.to_h.slice(:payload, :response, :status))
+
+      context.message = I18n.t("entity_update.#{result.status}")
     end
 
     protected
 
     def invoke_external_interface!
       interface_class(integration)
-        .call(entity: entity,
-              identifier: context.identifier)
+        .call(base_url: integration.address,
+              credentials: integration.credentials,
+              request: request)
     end
 
     def interface_class(integration)

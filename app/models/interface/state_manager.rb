@@ -31,16 +31,24 @@ module Interface
     end
     alias :find :find_state
 
+    def find_by_interface_id(type, interface_id)
+      @all_states.detect do |x|
+        x.interfaceable_type == type.to_s && \
+          x.interface_id == interface_id.to_s && \
+          x.integration == @organization.integration
+      end
+    end
+
     def find_states(interfaceable)
       @all_states.select do |x|
         x.interfaceable == interfaceable && \
-        x.integration == @organization.integration && \
-        x.organization == @organization
+          x.integration == @organization.integration && \
+          x.organization == @organization
       end
     end
 
     def persist!
-      @all_states.each { |x| x.save! }
+      @all_states.each &:save!
     end
 
     def states(interfaceable)

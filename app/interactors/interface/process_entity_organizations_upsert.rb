@@ -4,10 +4,10 @@ module Interface
     include Interactor
     include Interface::Logging
 
+    before :init
     before :find_entity
     before :find_organizations
     before :find_states
-    before :init_logs_and_states
     before :check_entity
 
     delegate :entity, to: :context
@@ -33,19 +33,22 @@ module Interface
 
     # NB: Not tested! Refactory into a QueryObject
     def find_states
-      context.all_states = []
-      context.all_states << State.find_by(interfaceable: entity)
-      entity.contacts.each do |contact|
-        context.all_states << State.find_by(interfaceable: contact)
-      end
-      entity.locations.each do |location|
-        context.all_states << State.find_by(interfaceable: location)
-      end
+      add_state(entity)
+      add_state(entity.customer)
+      entity.contacts.each { |contact| add_state(contact) }
+      entity.locations.each { |location| add_state(location) }
     end
 
-    def init_logs_and_states
+    def add_state(interfaceable)
+      state = State.find_by(interfaceable: interfaceable)
+
+      context.all_states << state if state.present?
+    end
+
+    def init
       context.logs = []
       context.states = []
+      context.all_states = []
     end
 
     def check_entity
@@ -67,13 +70,10 @@ module Interface
     end
 
     def upsert_entity(organization)
-      # entity_states = entity_states(organization)
-      result = EntityUpsert.call(
+      EntityUpsert.call(
         entity: entity,
         organization: organization,
         state_manager: StateManager.new(organization, context.all_states))
-      # context.logs << result.log
-      # context.states.concat(result.states)
     end
 
     # NB: Not tested!

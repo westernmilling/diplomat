@@ -1,5 +1,4 @@
 require 'rails_helper'
-require_relative 'test_interfaces'
 
 RSpec.describe Interface::ProcessEntityOrganizationsUpsert,
                type: :interactor do

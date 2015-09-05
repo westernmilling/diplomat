@@ -67,8 +67,10 @@ en:
       stale_customer: 'The customer has been updated since this active was scheduled'
   entity_insert:
     success: 'The Entity was inserted'
+    failure: 'The Entity was not inserted'
   entity_update:
     success: 'The Entity was updated'
+    failure: 'The Entity was not updated'
   entity_upsert:
     log:
       message:
