@@ -18,75 +18,75 @@ ActiveRecord::Schema.define(version: 20150826201759) do
 
   create_table "_promiscuous", force: :cascade do |t|
     t.text     "batch"
-    t.datetime "at"
+    t.datetime "at",    precision: 6
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.integer  "entity_id",                            null: false
-    t.string   "full_name",                            null: false
+    t.integer  "entity_id",                                          null: false
+    t.string   "full_name",                                          null: false
     t.string   "title"
     t.string   "email_address"
     t.string   "fax_number"
     t.string   "mobile_number"
     t.string   "phone_number"
-    t.integer  "is_active",                default: 1, null: false
-    t.string   "uuid",          limit: 32,             null: false
-    t.integer  "_v",                       default: 1, null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.integer  "is_active",                              default: 1, null: false
+    t.string   "uuid",          limit: 32,                           null: false
+    t.integer  "_v",                                     default: 1, null: false
+    t.datetime "deleted_at",               precision: 6
+    t.datetime "created_at",               precision: 6,             null: false
+    t.datetime "updated_at",               precision: 6,             null: false
   end
 
   create_table "customers", force: :cascade do |t|
     t.integer  "contact_id"
     t.integer  "location_id"
-    t.integer  "entity_id",                                  null: false
+    t.integer  "entity_id",                                                null: false
     t.integer  "parent_customer_id"
-    t.integer  "bill_to_location_id",                        null: false
-    t.integer  "ship_to_location_id",                        null: false
+    t.integer  "bill_to_location_id",                                      null: false
+    t.integer  "ship_to_location_id",                                      null: false
     t.integer  "salesperson_id"
-    t.integer  "is_active",                      default: 1, null: false
-    t.integer  "is_tax_exempt",                  default: 0, null: false
-    t.string   "uuid",                limit: 32,             null: false
-    t.integer  "_v",                             default: 1, null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.integer  "is_active",                                    default: 1, null: false
+    t.integer  "is_tax_exempt",                                default: 0, null: false
+    t.string   "uuid",                limit: 32,                           null: false
+    t.integer  "_v",                                           default: 1, null: false
+    t.datetime "deleted_at",                     precision: 6
+    t.datetime "created_at",                     precision: 6,             null: false
+    t.datetime "updated_at",                     precision: 6,             null: false
   end
 
   create_table "entities", force: :cascade do |t|
-    t.string   "cached_long_name", limit: 1024,                     null: false
+    t.string   "cached_long_name", limit: 1024,                                   null: false
     t.string   "comments"
-    t.string   "display_name",                                      null: false
-    t.string   "entity_type",      limit: 32,   default: "company", null: false
+    t.string   "display_name",                                                    null: false
+    t.string   "entity_type",      limit: 32,                 default: "company", null: false
     t.string   "federal_tax_id"
-    t.integer  "is_active",                     default: 1,         null: false
+    t.integer  "is_active",                                   default: 1,         null: false
     t.integer  "is_withholding"
-    t.string   "name",                                              null: false
+    t.string   "name",                                                            null: false
     t.integer  "parent_entity_id"
-    t.string   "reference",                                         null: false
+    t.string   "reference",                                                       null: false
     t.string   "tax_number"
     t.string   "tax_state"
     t.string   "ten99_form"
-    t.integer  "ten99_print",                   default: 0,         null: false
+    t.integer  "ten99_print",                                 default: 0,         null: false
     t.string   "ten99_type"
-    t.datetime "ten99_signed_at"
-    t.string   "uuid",             limit: 32,                       null: false
-    t.integer  "_v",                            default: 1,         null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.datetime "ten99_signed_at",               precision: 6
+    t.string   "uuid",             limit: 32,                                     null: false
+    t.integer  "_v",                                          default: 1,         null: false
+    t.datetime "deleted_at",                    precision: 6
+    t.datetime "created_at",                    precision: 6,                     null: false
+    t.datetime "updated_at",                    precision: 6,                     null: false
     t.integer  "contact_id"
   end
 
   create_table "integrations", force: :cascade do |t|
-    t.string   "name",                        null: false
-    t.string   "integration_type",            null: false
-    t.string   "address",                     null: false
-    t.string   "credentials",                 null: false
-    t.string   "uuid",             limit: 32, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "name",                                      null: false
+    t.string   "integration_type",                          null: false
+    t.string   "address",                                   null: false
+    t.string   "credentials",                               null: false
+    t.string   "uuid",             limit: 32,               null: false
+    t.datetime "created_at",                  precision: 6, null: false
+    t.datetime "updated_at",                  precision: 6, null: false
   end
 
   create_table "interface_logs", force: :cascade do |t|
@@ -131,30 +131,30 @@ ActiveRecord::Schema.define(version: 20150826201759) do
     t.integer  "is_active",                                               default: 1, null: false
     t.string   "uuid",                limit: 32,                                      null: false
     t.integer  "_v",                                                      default: 1, null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at",                                                          null: false
-    t.datetime "updated_at",                                                          null: false
+    t.datetime "deleted_at",                     precision: 6
+    t.datetime "created_at",                     precision: 6,                        null: false
+    t.datetime "updated_at",                     precision: 6,                        null: false
   end
 
   create_table "organization_entities", force: :cascade do |t|
-    t.integer  "entity_id",                              null: false
-    t.integer  "organization_id",                        null: false
-    t.string   "trait",                                  null: false
-    t.string   "uuid",            limit: 32,             null: false
-    t.integer  "_v",                         default: 1, null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.integer  "entity_id",                                            null: false
+    t.integer  "organization_id",                                      null: false
+    t.string   "trait",                                                null: false
+    t.string   "uuid",            limit: 32,                           null: false
+    t.integer  "_v",                                       default: 1, null: false
+    t.datetime "deleted_at",                 precision: 6
+    t.datetime "created_at",                 precision: 6,             null: false
+    t.datetime "updated_at",                 precision: 6,             null: false
   end
 
   create_table "organizations", force: :cascade do |t|
-    t.integer  "is_active",                 default: 1, null: false
-    t.string   "name",                                  null: false
-    t.string   "uuid",           limit: 32,             null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.integer  "_v",                        default: 1
+    t.integer  "is_active",                               default: 1, null: false
+    t.string   "name",                                                null: false
+    t.string   "uuid",           limit: 32,                           null: false
+    t.datetime "deleted_at",                precision: 6
+    t.datetime "created_at",                precision: 6,             null: false
+    t.datetime "updated_at",                precision: 6,             null: false
+    t.integer  "_v",                                      default: 1
     t.integer  "integration_id"
   end
 
@@ -162,50 +162,50 @@ ActiveRecord::Schema.define(version: 20150826201759) do
     t.string   "name"
     t.integer  "resource_id"
     t.string   "resource_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    precision: 6
+    t.datetime "updated_at",    precision: 6
   end
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "salespeople", force: :cascade do |t|
-    t.integer  "entity_id",                         null: false
+    t.integer  "entity_id",                                       null: false
     t.string   "gender",     limit: 7
-    t.integer  "is_active",             default: 1, null: false
-    t.string   "uuid",       limit: 32,             null: false
-    t.integer  "_v",                    default: 1, null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.integer  "is_active",                           default: 1, null: false
+    t.string   "uuid",       limit: 32,                           null: false
+    t.integer  "_v",                                  default: 1, null: false
+    t.datetime "deleted_at",            precision: 6
+    t.datetime "created_at",            precision: 6,             null: false
+    t.datetime "updated_at",            precision: 6,             null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                               null: false
-    t.string   "email",                              null: false
-    t.integer  "is_active",              default: 1, null: false
+    t.string   "name",                                             null: false
+    t.string   "email",                                            null: false
+    t.integer  "is_active",                            default: 1, null: false
     t.string   "encrypted_password"
     t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.integer  "sign_in_count",          default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "reset_password_sent_at", precision: 6
+    t.integer  "sign_in_count",                        default: 0, null: false
+    t.datetime "current_sign_in_at",     precision: 6
+    t.datetime "last_sign_in_at",        precision: 6
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "remember_created_at"
-    t.integer  "failed_attempts",        default: 0, null: false
+    t.datetime "remember_created_at",    precision: 6
+    t.integer  "failed_attempts",                      default: 0, null: false
     t.string   "unlock_token"
-    t.datetime "locked_at"
+    t.datetime "locked_at",              precision: 6
     t.string   "invitation_token"
-    t.datetime "invitation_created_at"
-    t.datetime "invitation_sent_at"
-    t.datetime "invitation_accepted_at"
+    t.datetime "invitation_created_at",  precision: 6
+    t.datetime "invitation_sent_at",     precision: 6
+    t.datetime "invitation_accepted_at", precision: 6
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
-    t.integer  "invitations_count",      default: 0
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.integer  "invitations_count",                    default: 0
+    t.datetime "created_at",             precision: 6,             null: false
+    t.datetime "updated_at",             precision: 6,             null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -224,13 +224,13 @@ ActiveRecord::Schema.define(version: 20150826201759) do
   create_table "vendors", force: :cascade do |t|
     t.integer  "contact_id"
     t.integer  "location_id"
-    t.integer  "entity_id",                          null: false
-    t.integer  "is_active",              default: 1, null: false
-    t.string   "uuid",        limit: 32,             null: false
-    t.integer  "_v",                     default: 1, null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.integer  "entity_id",                                        null: false
+    t.integer  "is_active",                            default: 1, null: false
+    t.string   "uuid",        limit: 32,                           null: false
+    t.integer  "_v",                                   default: 1, null: false
+    t.datetime "deleted_at",             precision: 6
+    t.datetime "created_at",             precision: 6,             null: false
+    t.datetime "updated_at",             precision: 6,             null: false
   end
 
 end

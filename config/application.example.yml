@@ -14,3 +14,6 @@ IRELY_BASE_URL: ''
 IRELY_API_KEY: ''
 IRELY_API_SECRET: ''
 IRELY_COMPANY: ''
+
+SIDEKIQ_REDIS_URL: 'redis://localhost:6379/'
+PROMISCUOUS_REDIS_URL: 'redis://localhost:6379/'
