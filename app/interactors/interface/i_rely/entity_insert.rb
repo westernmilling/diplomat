@@ -83,8 +83,7 @@ module Interface
 
         {
           type: request[:entity_type].capitalize,
-          creditlimit: request[:customer][:credit_limit],
-          i21_id: request[:interface_id]
+          creditlimit: request[:customer][:credit_limit]
         }
       end
 
