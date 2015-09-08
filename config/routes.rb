@@ -19,4 +19,5 @@ Rails.application.routes.draw do
     resources :integrations, except: [:destroy]
     resources :users
   end
+  resources :entities, only: [:index, :show]
 end

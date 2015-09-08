@@ -2,6 +2,15 @@ en:
   access_denied: "We're sorry, but you're not permitted to do that"
   admin:
     title: 'Admin'
+  objects:
+    title: 'Objects'
+  entities:
+    index:
+      link_to: 'Entities'
+      none: 'No entities found'
+      title: 'Entities'
+    show:
+      title: 'Entity'
   integrations:
     create:
       success: 'The integration was created successfully'

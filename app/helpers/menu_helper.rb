@@ -4,6 +4,7 @@ module MenuHelper
       if user_signed_in?
         [
           root_menu,
+          objects_menu,
           admin_menu,
           user_menu
         ].join.html_safe
@@ -13,9 +14,16 @@ module MenuHelper
     end
   end
 
+  # NB: Question? Do we move all of the drop down menus into the root_menu?
   def root_menu
     [
     ].join.html_safe
+  end
+
+  def objects_menu
+    menu_dropdown(t('objects.title')) do
+      concat menu_item(t('entities.index.title'), entities_path)
+    end
   end
 
   def admin_menu

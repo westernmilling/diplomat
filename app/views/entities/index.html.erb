@@ -1,0 +1,45 @@
+<%= render layout: '/heading',
+           locals:
+           {
+             size: 'h2',
+             title: t('entities.index.title')
+           } do %>
+  <nav class="pull-right">
+  </nav>
+<% end %>
+<% if 0 == 1 %>
+<%= search_form_for search,
+                    class: 'search-bar form',
+                    role: 'search' do |search| %>
+  <div class="input-group">
+    <%= search.text_field :cached_long_name_cont,
+                          as: :search,
+                          class: 'form-control',
+                          placeholder: 'Search entities' %>
+    <span class="input-group-btn">
+      <button class="btn btn-primary glyphicon glyphicon-search" type="submit">
+      </button>
+    </span>
+  </div>
+<% end %>
+<% end %>
+<section>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% if entities.each do |entity| %>
+      <tr>
+          <td nowrap><%= show_entity_link(entity) %></td>
+      </tr>
+    <% end.empty? %>
+      <tr>
+        <td colspan="4"><%= t('entities.index.none') %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</section>

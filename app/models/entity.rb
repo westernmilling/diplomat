@@ -10,6 +10,14 @@ class Entity < ActiveRecord::Base
   belongs_to :parent_entity, class_name: Entity
   has_many :contacts
   has_many :locations, inverse_of: :entity
+  has_many :interface_states,
+           class_name: Interface::State,
+           foreign_key: :interfaceable_id,
+           foreign_type: Entity
+  has_many :interface_logs,
+           class_name: Interface::Log,
+           foreign_key: :interfaceable_id,
+           foreign_type: Entity
   has_one :contact, autosave: false
   has_one :customer, autosave: false
 

@@ -5,7 +5,10 @@ RSpec.describe Entity, type: :model do
 
   it { is_expected.to belong_to(:parent_entity) }
   it { is_expected.to have_many(:contacts) }
+  it { is_expected.to have_many(:interface_logs) }
   it { is_expected.to have_many(:locations) }
+  # TODO: Add class name and polymorphic assertions to this
+  it { is_expected.to have_many(:interface_states) }
   it { is_expected.to have_one(:contact) }
   it { is_expected.to validate_presence_of(:entity_type) }
   it { is_expected.to validate_presence_of(:cached_long_name) }

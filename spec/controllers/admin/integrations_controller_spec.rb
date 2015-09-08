@@ -19,6 +19,10 @@ RSpec.describe Admin::IntegrationsController, type: :controller do
     it_behaves_like 'an unauthorized request', IntegrationPolicy
   end
 
+  describe 'GET index' do
+    pending 'standard index test'
+  end
+
   describe 'GET new' do
     before { get :new }
 

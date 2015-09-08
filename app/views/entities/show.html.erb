@@ -1,0 +1,93 @@
+<%= render layout: '/heading',
+           locals: {
+             size: 'h2',
+             title: t('entities.show.title')
+           } do %>
+  <nav class="pull-right">
+  </nav>
+<% end %>
+<div class="form-horizontal">
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Name</label>
+    <p class="col-sm-6 form-control-static"><%= entity.name %></p>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Reference</label>
+    <p class="col-sm-6 form-control-static"><%= entity.reference %></p>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Version</label>
+    <p class="col-sm-6 form-control-static"><%= entity._v %></p>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-3 control-label">UUID</label>
+    <p class="col-sm-6 form-control-static"><%= entity.uuid %></p>
+  </div>
+    <pre class="alert alert-info">
+    What about children of the Entity and their states?
+    Do we drill into this information?</pre>
+  <!-- Show the states, by Organization -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Organization</th>
+        <th>Integration</th>
+        <th>Interface Id</th>
+        <th>Version</th>
+        <th>Last Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if entity.interface_states.each do |state| %>
+      <tr>
+        <td><%= state.organization %></td>
+        <td><%= state.integration %></td>
+        <td><%= state.interface_id %></td>
+        <td><%= state.version %></td>
+        <td><%= state.updated_at %></td>
+      </tr>
+      <% end.empty? %>
+      <tr>
+        <td colspan="">No states found (I18n this)</td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <!-- Show the logs, by Organization -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Organization</th>
+        <th>Integration</th>
+        <th>Action</th>
+        <th>Status</th>
+        <th>Message</th>
+        <th>Response</th>
+        <th>Version</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if entity.interface_logs.each do |log| %>
+      <!-- This is a temp hack, roll into a helper and partial combo -->
+      <tr class="<%= log.status == :success ? 'success' : 'danger' %>">
+        <td nowrap><%= log.organization %></td>
+        <td nowrap><%= log.integration %></td>
+        <td nowrap><%= log.action %></td>
+        <td nowrap><%= log.status %></td>
+        <td nowrap><%= log.message %></td>
+        <td>
+          <%= (log.interface_response || '').truncate(20) %>
+        </td>
+        <td nowrap><%= log.version %></td>
+        <td nowrap><%= log.created_at %></td>
+      </tr>
+      <% end.empty? %>
+      <tr>
+        <td colspan="">No logs found (I18n this)</td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
