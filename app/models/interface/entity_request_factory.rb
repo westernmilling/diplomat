@@ -1,9 +1,9 @@
 module Interface
-  class EntityRequest < OpenStruct
-  end
-
-  class ContactRequest < OpenStruct
-  end
+  # class EntityRequest < OpenStruct
+  # end
+  #
+  # class ContactRequest < OpenStruct
+  # end
 
   class EntityRequestFactory
     def initialize(entity, state_manager)
