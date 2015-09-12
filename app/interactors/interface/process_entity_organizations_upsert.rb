@@ -76,6 +76,15 @@ module Interface
         state_manager: StateManager.new(organization, context.all_states))
     end
 
+    def upsert_entity2(organization)
+      # TODO: Clean up the method of passing in the interface states
+      # Pass in a new Interface::Logger new'd with organization + integration
+      UpsertEntity
+        .new(entity,
+             organization,
+             OrganizationStateCollection.new(organization, context.all_states))
+    end
+
     # NB: Not tested!
     # def entity_states(organization)
     #   context.all_states.select do |state|

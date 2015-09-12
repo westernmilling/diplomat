@@ -5,6 +5,10 @@ class Contact < ActiveRecord::Base
   acts_as_paranoid
 
   belongs_to :entity
+  has_many :interface_states,
+           class_name: Interface::State,
+           foreign_key: :interfaceable_id,
+           foreign_type: Contact
 
   validates \
     :entity,

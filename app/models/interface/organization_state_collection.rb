@@ -1,5 +1,6 @@
 module Interface
-  class OrganizationStateCollection # consider inherting from an Array or Enumerable?
+  # consider inherting from an Array or Enumerable?
+  class OrganizationStateCollection
     # TODO: Evaluate why we need access to the states here?
     attr_reader :states
 
@@ -30,13 +31,13 @@ module Interface
       find_many(interfaceable).first
     end
 
-    def find_by_interface_id(type, interface_id)
-      @states.detect do |x|
-        x.interfaceable_type == type.to_s && \
-          x.interface_id == interface_id.to_s && \
-          x.integration == @organization.integration
-      end
-    end
+    # def find_by_interface_id(type, interface_id)
+    #   @states.detect do |x|
+    #     x.interfaceable_type == type.to_s && \
+    #       x.interface_id == interface_id.to_s && \
+    #       x.integration == @organization.integration
+    #   end
+    # end
 
     def find_many(interfaceable)
       @states.select do |x|
@@ -47,7 +48,7 @@ module Interface
     end
 
     def persist!
-      @all_states.each &:save!
+      @states.each &:save!
     end
 
     def update_version(interfaceable)

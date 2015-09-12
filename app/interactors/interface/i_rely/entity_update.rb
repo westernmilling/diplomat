@@ -9,6 +9,11 @@ module Interface
       delegate :credentials, to: :context
       delegate :request, to: :context
 
+      #
+      # We'll take the EntityPayload and convert it to the required format
+      # for the iRely API.
+      #
+
       def call
         hash = translate_request
 
@@ -40,13 +45,11 @@ module Interface
           # entity_number: request[:reference].to_i,
           name: request[:name],
           contacts: translate_contacts(request[:contacts]),
-          # NB: No locations in update due to issues with iRely API
-          # locations: translate_locations(request[:locations]),
-          # customer: translate_customer(request)
-          locations: [],
+          locations: translate_locations(request[:locations]),
           customer: translate_customer(request)
-          # customer: {}
-        }.merge(id(request))
+        }
+        .merge(row_state(request))
+        .merge(id(request))
       end
 
       def translate_contacts(request)
@@ -57,7 +60,9 @@ module Interface
             fax: contact_request[:fax_number],
             mobile: contact_request[:mobile_number],
             email: contact_request[:email_address]
-          }.merge(id(contact_request))
+          }
+          .merge(row_state(request))
+          .merge(id(contact_request))
         end
       end
 
@@ -71,7 +76,9 @@ module Interface
             zipcode: location_request[:region_code],
             country: location_request[:country],
             termsId: 'Due on Receipt'
-          }.merge(id(location_request))
+          }
+          .merge(row_state(request))
+          .merge(id(location_request))
         end
       end
 
@@ -81,7 +88,12 @@ module Interface
         {
           type: request[:entity_type].capitalize,
           creditlimit: request[:customer][:credit_limit]
-        }.merge(id(request[:customer]))
+        }
+        .merge(id(request[:customer]))
+      end
+
+      def row_state(request)
+        { rowState: request[:interface_id].present? ? 'Updated' : 'Added' }
       end
 
       def id(element)
