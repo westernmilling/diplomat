@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150826201759) do
+ActiveRecord::Schema.define(version: 20150915131152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,17 @@ ActiveRecord::Schema.define(version: 20150826201759) do
     t.string   "uuid",             limit: 32, null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+  end
+
+  create_table "interface_adhesives", force: :cascade do |t|
+    t.integer  "organization_id",      null: false
+    t.integer  "integration_id",       null: false
+    t.integer  "interfaceable_id",     null: false
+    t.string   "interfaceable_type",   null: false
+    t.string   "interface_identifier"
+    t.integer  "version"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "interface_logs", force: :cascade do |t|
