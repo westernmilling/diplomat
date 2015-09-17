@@ -5,6 +5,10 @@ class Contact < ActiveRecord::Base
   acts_as_paranoid
 
   belongs_to :entity
+  has_many :interface_adhesives,
+           class_name: Interface::Adhesive,
+           foreign_key: :interfaceable_id,
+           foreign_type: Contact
 
   validates \
     :entity,

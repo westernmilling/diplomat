@@ -1,19 +1,3 @@
-# module Interface
-#   module Entity
-#     class Upsert
-#       def initialize(entity, organization)
-#         @context = Interface::ObjectContext.new(entity, organization)
-#         # @coherance = Interface::Coherance(entity, organization)
-#       end
-#
-#       def call
-#         Interface::InterfaceFactory.build(@context).call
-#
-#         # TODO: Do we persist the entity and children here?
-#       end
-#     end
-#   end
-# end
 module Interface
   module Entity
     class Upsert
@@ -26,7 +10,7 @@ module Interface
       def call
         @request.call
 
-        # persist!
+        persist!
       end
 
       protected
@@ -35,13 +19,9 @@ module Interface
         EntityRequest.new(context)
       end
 
-      # def request
-      #   EntityRequest.new(context)
-      # end
-
-      # def persist!
-      #   @context.entity.save!
-      # end
+      def persist!
+        @context.object.save!
+      end
     end
   end
 end

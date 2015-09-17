@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Interface::Entity::Upsert, type: :model do
   describe '#call' do
     let(:request) { spy }
-    let(:entity) { double(:entity) }
+    let(:entity) { double(:entity, save!: true) }
     let(:organization) { double(:organization) }
     let(:model) do
       Interface::Entity::Upsert.new(entity, organization, request)
@@ -16,8 +16,14 @@ RSpec.describe Interface::Entity::Upsert, type: :model do
 
         expect(request).to have_received(:call)
       end
+    end
 
-      pending 'test that the entity is persisted'
+    describe 'entity' do
+      it do
+        subject
+
+        expect(entity).to have_received(:save!)
+      end
     end
   end
 end

@@ -1,16 +1,21 @@
 module Interface
   module Entity
     class Request
-      def initialize(context)
+      def initialize(context, interface = nil)
         @context = context
+        # Should we be building the interface here or in the Upsert
+        # where we need to decide which action we should take?
+        @interface = interface || build_interface
       end
 
       def call
-        interface.call(payload)
+        @interface.call(payload)
       end
 
-      def interface
-        Interface::IntegrationFactory.build(@context).call
+      protected
+
+      def build_interface
+        Interface::InterfaceFactory.build(@context)
       end
 
       def payload
@@ -18,7 +23,7 @@ module Interface
       end
 
       def build_payload
-        nil
+        Payloads::EntityPayload.build_one(@context)
       end
     end
   end

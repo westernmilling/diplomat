@@ -4,7 +4,7 @@ class CreateInterfaceAdhesives < ActiveRecord::Migration
       t.references :organization, null: false
       t.references :integration, null: false
       t.references :interfaceable, null: false, polymorphic: true
-      t.string :interface_identifier
+      t.string :interface_id, null: false
       t.integer :version
 
       t.timestamps null: false

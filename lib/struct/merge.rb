@@ -9,11 +9,10 @@ class Struct
     raise TypeError, "can't modify frozen #{self.class}", caller(1) \
       if self.frozen?
 
-    # Do we actually want to each over the attributes?
-    other.each do |k, v|
-      # Only set if the member exists
-      self.send("#{k}=", v)
-    end
+    other.each { |k, v| send("#{k}=", v) if self.respond_to? "#{k}=" }
+    # other.each do |k, v|
+    #   self.send("#{k}=", v) if self.respond_to? "#{k}="
+    # end
     self
   end
 end

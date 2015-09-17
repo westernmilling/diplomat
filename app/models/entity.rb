@@ -9,6 +9,10 @@ class Entity < ActiveRecord::Base
   belongs_to :parent_entity, class_name: Entity
   has_many :contacts
   has_many :locations, inverse_of: :entity
+  has_many :interface_adhesives,
+           class_name: Interface::Adhesive,
+           foreign_key: :interfaceable_id,
+           foreign_type: Entity
   has_one :contact, autosave: false
   has_one :customer, autosave: false
 

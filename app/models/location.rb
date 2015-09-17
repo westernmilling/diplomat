@@ -5,6 +5,10 @@ class Location < ActiveRecord::Base
   acts_as_paranoid
 
   belongs_to :entity, inverse_of: :locations
+  has_many :interface_adhesives,
+           class_name: Interface::Adhesive,
+           foreign_key: :interfaceable_id,
+           foreign_type: Location
 
   validates \
     :cached_long_address,

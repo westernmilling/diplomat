@@ -7,7 +7,7 @@ class Interface::Adhesive < ActiveRecord::Base
 
   validates \
     :integration,
-    :interface_identifier,
+    :interface_id,
     :interfaceable,
     :organization,
     :version,

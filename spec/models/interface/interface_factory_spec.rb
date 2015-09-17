@@ -1,36 +1,34 @@
 require 'rails_helper'
+require_relative 'test_object'
 
 RSpec.describe Interface::InterfaceFactory, type: :model do
   describe '.build' do
-    before do
-      allow(Interface::Adhesive)
-        .to receive(:find_by)
-        .with(interfaceable: entity, organization: organization)
-        .and_return(adhesive)
+    let(:context) do
+      double(adhesive: adhesive, object: object, organization: organization)
     end
-    let(:context) { double(object: entity, organization: organization) }
-    let(:organization) { double() }
+    let(:organization) { double(integration: integration) }
+    let(:integration) { double(interface_namespace: Interface::Test) }
     subject { Interface::InterfaceFactory.build(context) }
 
     context 'when the entity is an old version' do
-      let(:adhesive) { double(:adhesive, version: entity._v + 1) }
-      let(:entity) { double(_v: 1) }
+      let(:adhesive) { double(:adhesive, version: object._v + 1) }
+      let(:object) { TestObject.new(_v: 1) }
 
       it { is_expected.to be_kind_of Interface::IgnoreOldVersion }
     end
 
     context 'when the entity is new' do
       let(:adhesive) { nil }
-      let(:entity) { build_stubbed(:entity, _v: 1) }
+      let(:object) { TestObject.new(_v: 1) }
 
-      it { is_expected.to be_kind_of Interface::Entity::Insert }
+      it { is_expected.to be_kind_of Interface::Test::TestObject::Insert }
     end
 
-    context 'when the entity is a newer version' do
+    context 'when the entity is existing' do
       let(:adhesive) { double(:adhesive, version: 1) }
-      let(:entity) { build_stubbed(:entity, _v: adhesive.version + 1) }
+      let(:object) { TestObject.new(_v: adhesive.version + 1) }
 
-      it { is_expected.to be_kind_of Interface::Entity::Update }
+      it { is_expected.to be_kind_of Interface::Test::TestObject::Update }
     end
   end
 end

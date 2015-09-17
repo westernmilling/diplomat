@@ -10,7 +10,11 @@ class Customer < ActiveRecord::Base
   belongs_to :parent_customer, class_name: Customer
   belongs_to :salesperson
   belongs_to :ship_to_location, class_name: Location
-  has_many :interface_states, class_name: Interface::State, as: :interfaceable
+  # has_many :interface_states, class_name: Interface::State, as: :interfaceable
+  has_many :interface_adhesives,
+           class_name: Interface::Adhesive,
+           foreign_key: :interfaceable_id,
+           foreign_type: Location
 
   validates \
     :entity,

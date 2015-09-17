@@ -2,7 +2,7 @@ module Interface
   class InterfaceFactory
     class << self
       def build(context)
-        new(context).factory
+        new(context).build
       end
     end
 
@@ -10,37 +10,30 @@ module Interface
       @context = context
     end
 
-    def factory
-      return IgnoreOldVersion.new(@context) if old_version?
+    def build
+      return IgnoreOldVersion.new(@context) if old?
 
       interface_class.new(@context)
     end
 
-    protected
-
-    def action
-      new? ? :Insert : :Update
-    end
-
-    def adhesive
-      @adhesive ||= Adhesive.find_by(interfaceable: @context.object,
-                                     organization: @context.organization)
+    def old?
+      !new? && @context.adhesive.version > @context.object._v
     end
 
     def interface_class
       [
-        'Interface',
+        @context.organization.integration.interface_namespace,
         @context.object.class.name,
         action.to_s
       ].join('::').constantize
     end
 
-    def new?
-      adhesive.nil?
+    def action
+      new? ? :Insert : :Update
     end
 
-    def old_version?
-      adhesive && adhesive.version > @context.object._v
+    def new?
+      @context.adhesive.nil?
     end
   end
 end

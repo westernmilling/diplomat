@@ -26,7 +26,7 @@ module Interface
     protected
 
     def find_entity
-      context.entity = Entity.find(context.entity_id)
+      context.entity = ::Entity.find(context.entity_id)
     end
 
     def find_organizations

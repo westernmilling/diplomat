@@ -90,14 +90,14 @@ ActiveRecord::Schema.define(version: 20150915131152) do
   end
 
   create_table "interface_adhesives", force: :cascade do |t|
-    t.integer  "organization_id",      null: false
-    t.integer  "integration_id",       null: false
-    t.integer  "interfaceable_id",     null: false
-    t.string   "interfaceable_type",   null: false
-    t.string   "interface_identifier"
+    t.integer  "organization_id",    null: false
+    t.integer  "integration_id",     null: false
+    t.integer  "interfaceable_id",   null: false
+    t.string   "interfaceable_type", null: false
+    t.string   "interface_id",       null: false
     t.integer  "version"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "interface_logs", force: :cascade do |t|
