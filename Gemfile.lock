@@ -157,6 +157,9 @@ GEM
       activesupport (>= 4.1.0)
     gravatar_image_tag (1.2.0)
     hitimes (1.2.2)
+    httparty (0.13.5)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     ice_nine (0.11.1)
     interactor (3.1.0)
@@ -179,6 +182,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.8.0)
     multi_json (1.8.4)
+    multi_xml (0.5.5)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
@@ -327,6 +331,7 @@ GEM
       raindrops (~> 0.7)
     uuid (2.3.8)
       macaddr (~> 1.0)
+    vcr (2.9.3)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -363,6 +368,7 @@ DEPENDENCIES
   faker
   figaro
   gravatar_image_tag
+  httparty
   interactor-rails
   jquery-rails
   paranoia
@@ -387,6 +393,7 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   uuid
+  vcr
   virtus
   web-console (~> 2.0)
 

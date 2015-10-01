@@ -9,7 +9,7 @@ RSpec.describe Interface::Entity::Request, type: :model do
     let(:model) { Interface::Entity::Request.new(context, interface) }
     subject { model.call }
 
-    it do
+    it 'should call the interface' do
       subject
 
       expect(interface).to have_received(:call)

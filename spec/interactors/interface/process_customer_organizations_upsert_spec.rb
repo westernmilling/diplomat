@@ -1,8 +1,7 @@
 require 'rails_helper'
-require_relative 'test_interfaces'
 
 RSpec.describe Interface::ProcessCustomerOrganizationsUpsert,
-               type: :interactor do
+               type: :interactor, ignore: true do
   before do
     allow(entity)
       .to receive(:organizations)

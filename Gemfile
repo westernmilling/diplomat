@@ -8,6 +8,7 @@ gem 'draper'
 gem 'enumerize'
 gem 'figaro'
 gem 'gravatar_image_tag'
+gem 'httparty'
 gem 'interactor-rails'
 gem 'jquery-rails'
 gem 'paranoia'
@@ -54,4 +55,5 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'shoulda-kept-respond-with-content-type',
       github: 'tinfoil/shoulda-kept-respond-with-content-type'
+  gem 'vcr'
 end
