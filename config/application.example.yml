@@ -1,5 +1,5 @@
 DOMAIN: 'diplomat.dev'
-MAIL_SENDER: 'no-reply@diplomat.dev'
+MAILER_SENDER: 'no-reply@diplomat.dev'
 SECRET_KEY_BASE: ''
 SKYLIGHT_AUTHENTICATION: ''
 SMTP_SERVER: ''
@@ -9,3 +9,8 @@ SMTP_PASSWORD: ''
 
 MQ_URL: 'amqp://guest:guest@localhost:5672'
 MQ_MGMT_URL: 'http://guest:guest@localhost:15672'
+
+IRELY_BASE_URL: ''
+IRELY_API_KEY: ''
+IRELY_API_SECRET: ''
+IRELY_COMPANY: ''

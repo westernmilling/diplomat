@@ -1,15 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Interface::IRely::Entity::Insert, type: :model, vcr: true do
-# RSpec.describe Interface::IRely::Entity::Insert, type: :model, vcr: false do
   describe '.call' do
     let(:credentials) do
-      return Interface::IRely::Credentials
-             .new(Figaro.env.IRELY_API_KEY,
-                  Figaro.env.IRELY_API_SECRET,
-                  Figaro.env.IRELY_COMPANY)
-      # "#{Figaro.env.IRELY_API_KEY}:#{Figaro.env.IRELY_API_SECRET}" + \
-      #   "@#{Figaro.env.IRELY_COMPANY}"
+      Interface::IRely::Credentials
+        .new(Figaro.env.IRELY_API_KEY,
+             Figaro.env.IRELY_API_SECRET,
+             Figaro.env.IRELY_COMPANY)
     end
     let(:api) do
       Interface::IRely::Entity::Insert.new(
@@ -22,18 +19,11 @@ RSpec.describe Interface::IRely::Entity::Insert, type: :model, vcr: true do
       nil
     end
     let(:result) do
-      # return api.call
+      return api.call
       # result = nil
-      # r = nil
-      # # VCR.use_cassette(cassette) do
-      #   # result = api.call
-        r = api.call
-        puts r
-      #   # return r
-      #   # return api.call
-      # # end
-      # # result
-      r
+      # r = api.call
+      # puts r
+      # r
     end
     # subject { call }
 
@@ -61,11 +51,6 @@ RSpec.describe Interface::IRely::Entity::Insert, type: :model, vcr: true do
 
     context 'when inserting a valid entity' do
       let(:data) do
-        # entity_payload = build(:entity_payload, id: Time.now.utc.to_i)
-        # entity_payload.contacts << build(:contact_payload, id: Time.now.utc.to_i)
-        # entity_payload.customer << build(:customer_payload, id: Time.now.utc.to_i)
-        # entity_payload.locations << build(:location_payload, id: Time.now.utc.to_i)
-        # entity_payload
         build(:entity_payload, id: Time.now.utc.to_i) do |payload|
           payload.contacts << build(:contact_payload, id: Time.now.utc.to_i)
           payload.customer = build(:customer_payload,
@@ -73,7 +58,7 @@ RSpec.describe Interface::IRely::Entity::Insert, type: :model, vcr: true do
                                    customer_type: payload.entity_type)
           payload.locations << build(:location_payload,
                                      id: Time.now.utc.to_i,
-                                     location_name: nil)
+                                     location_name: payload.name)
         end
       end
 
@@ -84,9 +69,6 @@ RSpec.describe Interface::IRely::Entity::Insert, type: :model, vcr: true do
 
     context 'when inserting an invalid entity' do
       let(:data) do
-        contact_payload = nil
-        customer_payload = nil
-        location_payload = nil
         entity_payload = build(:entity_payload, id: Time.now.utc.to_i)
       end
 

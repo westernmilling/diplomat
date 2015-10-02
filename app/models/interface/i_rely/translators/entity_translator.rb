@@ -1,7 +1,7 @@
 module Interface
   module IRely
     module Translators
-      class ContactTranslator < Translator
+      class EntityTranslator < Translator
         def self.translate(payload)
           if payload.is_a?(Array)
             payload.map { |x| translate_one(x) }
@@ -12,14 +12,12 @@ module Interface
 
         def self.translate_one(payload)
           {
-            name: payload.full_name,
-            phone: payload.phone_number,
-            fax: payload.fax_number,
-            mobile: payload.mobile_number,
-            email: payload.email_address,
+            name: payload.name,
+            contacts: ContactTranslator.translate(payload.contacts),
+            locations: LocationTranslator.translate(payload.locations),
+            customer: CustomerTranslator.translate(payload.customer)
           }
             .merge(id(payload))
-            # .merge(row_state(payload))
         end
       end
     end

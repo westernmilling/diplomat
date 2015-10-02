@@ -28,15 +28,8 @@ module Interface
 
         def body
           return [{}] if @data.nil?
-          # TODO: Replace with EntityTranslator which will include the
-          #       contact, customer, and location translation
-          [{
-            id: @data.id,
-            name: @data.name,
-            contacts: Interface::IRely::Translators::ContactTranslator.translate(@data.contacts),
-            locations: Interface::IRely::Translators::LocationTranslator.translate(@data.locations),
-            customer: Interface::IRely::Translators::CustomerTranslator.translate(@data.customer)
-          }]
+
+          Interface::IRely::Translators::EntityTranslator.translate([@data])
         end
 
         def headers

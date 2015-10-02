@@ -14,7 +14,7 @@ module Interface
           def translate_one(payload)
             translate_payload(payload)
               .merge(id(payload))
-              .merge(row_state(payload))
+              # .merge(row_state(payload))
           end
 
           def translate_payload(payload)

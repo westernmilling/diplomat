@@ -3,20 +3,18 @@ module Interface
     module Translators
       class CustomerTranslator < Translator
         def self.translate(payload)
-          if payload.is_a?(Array)
-            payload.map { |x| translate_one(x) }
-          else
-            [translate_one(payload)]
-          end
+          fail 'Single customer payload expected' if payload.is_a?(Array)
+
+          translate_one(payload)
         end
 
         def self.translate_one(payload)
           {
-            type: payload.customer_type,
+            type: payload.customer_type.humanize,
             creditLimit: payload.credit_limit,
           }
-            .merge(id(payload))
-            .merge(row_state(payload))
+            # .merge(id(payload))
+            # .merge(row_state(payload))
         end
       end
     end

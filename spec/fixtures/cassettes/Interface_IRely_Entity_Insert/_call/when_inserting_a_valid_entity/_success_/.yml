@@ -5,10 +5,11 @@ http_interactions:
     uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
     body:
       encoding: UTF-8
-      string: '[{"id":1443743074,"name":"Brakus Inc","contacts":[{"phone":"1-153-582-0015
-        x90256","fax":"958.140.3866 x505","mobile":"1-287-221-8123","email":"helen.bins@considine.name","id":1443743074,"rowState":"Added"}],"locations":[{"name":"","address":"8799
-        Maynard Meadows","city":"Rodriguezchester","state":"New Jersey","zipcode":"31646-8382","country":"United
-        States","termsId":"Due on Receipt","id":90003}],"customer":{"type":"Company","creditlimit":"0"}}]'
+      string: '[{"name":"Reilly, Goldner and Crooks","contacts":[{"name":"Mrs. Houston
+        Labadie","phone":"1-730-702-4279 x078","fax":"407-745-5135 x394","mobile":"(267)
+        050-8569","email":"katrine@schmeler.name","id":1443812339}],"locations":[{"name":"Reilly,
+        Goldner and Crooks","address":"491 Eichmann Cliff","city":"Lake Torreyview","state":"Ohio","zipcode":"38781","country":"United
+        States","termsId":"Due on Receipt","id":1443812339}],"customer":{"type":"Person","creditLimit":0},"id":1443812339}]'
     headers:
       Content-Type:
       - application/json
@@ -42,16 +43,16 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET, POST, PUT, DELETE, OPTIONS
       Date:
-      - Thu, 01 Oct 2015 23:44:26 GMT
+      - Fri, 02 Oct 2015 18:58:54 GMT
       Content-Length:
-      - '838'
+      - '809'
     body:
       encoding: UTF-8
-      string: '{"data":[{"name":"Brakus Inc","website":null,"email":null,"entityNo":null,"locations":[{"name":"","termsId":"Due
-        on Receipt","address":"8799 Maynard Meadows","city":"Rodriguezchester","state":"New
-        Jersey","zipcode":"31646-8382","country":"United States","pricelevel":null,"id":"90003","i21_id":null,"rowState":null}],"contacts":[{"name":null,"phone":"1-153-582-0015
-        x90256","fax":"958.140.3866 x505","mobile":"1-287-221-8123","email":"helen.bins@considine.name","id":"1443743074","i21_id":"1443743074","rowState":"Added"}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1443743074","i21_id":"1443743074"}],"success":false,"message":{"statusText":[{"id":"1443743074","locations":[{"name":"Should
-        not be empty"}]}],"status":0,"button":""}}'
+      string: '{"data":[{"name":"Reilly, Goldner and Crooks","website":null,"email":null,"entityNo":null,"locations":[{"name":"Reilly,
+        Goldner and Crooks","termsId":"Due on Receipt","address":"491 Eichmann Cliff","city":"Lake
+        Torreyview","state":"Ohio","zipcode":"38781","country":"United States","pricelevel":null,"id":"1443812339","i21_id":"1896","rowState":null}],"contacts":[{"name":"Mrs.
+        Houston Labadie","phone":"1-730-702-4279 x078","fax":"407-745-5135 x394","mobile":"(267)
+        050-8569","email":"katrine@schmeler.name","id":"1443812339","i21_id":"3855","rowState":null}],"customer":{"number":null,"type":"Person","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1443812339","i21_id":"3854"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
     http_version: 
-  recorded_at: Thu, 01 Oct 2015 23:44:34 GMT
+  recorded_at: Fri, 02 Oct 2015 18:59:04 GMT
 recorded_with: VCR 2.9.3
