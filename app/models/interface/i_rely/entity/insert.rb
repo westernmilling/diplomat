@@ -1,5 +1,7 @@
 module Interface
   module IRely
+    # TODO: Build a base API class which includes HTTParty, common initialize
+    #       and some common methods, credentials, headers, parse_response
     module Entity
       class Insert
         include HTTParty
@@ -11,7 +13,13 @@ module Interface
         end
 
         def call
-          self.class.post("#{@base_url}")#, body: body, headers: headers)
+          Rails.logger.debug "Posting to iRely endpoint at #{url}"
+          puts body
+          response = self
+                     .class
+                     .post("#{url}", body: body.to_json, headers: headers)
+          Rails.logger.debug "Response from iRely endpoint was #{response}"
+          parse_response response
         end
 
         def credentials
@@ -19,16 +27,33 @@ module Interface
         end
 
         def body
-          {}
+          return [{}] if @data.nil?
+          # TODO: Replace with EntityTranslator which will include the
+          #       contact, customer, and location translation
+          [{
+            id: @data.id,
+            name: @data.name,
+            contacts: Interface::IRely::Translators::ContactTranslator.translate(@data.contacts),
+            locations: Interface::IRely::Translators::LocationTranslator.translate(@data.locations),
+            customer: Interface::IRely::Translators::CustomerTranslator.translate(@data.customer)
+          }]
         end
 
         def headers
           {
-            'Content-Type': 'application/json',
-            'Authorization':
+            'Content-Type' => 'application/json',
+            'Authorization' =>
               "Bearer #{credentials.api_key}.#{credentials.api_secret}",
-            CaseSensitiveString.new('ICompany') => credentials.company_id
+            CaseSensitiveString.new('ICompany') => credentials.company_id || ''
           }
+        end
+
+        def url
+          "#{@base_url}/entitymanagement/api/entity/import"
+        end
+
+        def parse_response(response)
+          { success: false }.merge(response).to_snake_keys
         end
       end
     end

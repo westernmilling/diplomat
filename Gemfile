@@ -14,6 +14,7 @@ gem 'jquery-rails'
 gem 'paranoia'
 gem 'parser', '2.3.0.pre.2'
 gem 'pg'
+gem 'plissken'
 gem 'promiscuous', github: 'josephbridgwaterrowe/promiscuous',
                    branch: 'active_record_migrations'
 # gem 'promiscuous', path: '../promiscuous'
@@ -56,4 +57,5 @@ group :test do
   gem 'shoulda-kept-respond-with-content-type',
       github: 'tinfoil/shoulda-kept-respond-with-content-type'
   gem 'vcr'
+  gem 'webmock'
 end

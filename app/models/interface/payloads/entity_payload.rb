@@ -2,16 +2,19 @@ module Interface
   module Payloads
     EntityPayload = Struct.new(:id,
                                :interface_id,
+                               :entity_type,
                                :name,
                                :reference,
                                :uuid) do
       extend Payload
 
+      attr_accessor :contacts, :customer, :locations
+
       # Create a new instance of an +EntityPayload+
       def initialize
         @contacts = []
         @locations = []
-        @customer = nil
+        # @customer = nil
       end
 
       def self.build_one(context)
@@ -29,9 +32,9 @@ module Interface
         @locations
       end
 
-      def customer
-        @customer
-      end
+      # def customer
+      #   @customer
+      # end
 
       # NB: This smells, how can we clean this up... however its pretty low
       #     impact at the moment.
