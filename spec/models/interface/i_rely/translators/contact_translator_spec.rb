@@ -30,4 +30,37 @@ RSpec.describe Interface::IRely::Translators::ContactTranslator,
       its([:rowState]) { is_expected.to eq 'Updated' }
     end
   end
+
+  describe '#translate' do
+    let(:payload) { build(:contact_payload) }
+    subject do
+      allow(Interface::IRely::Translators::ContactTranslator).
+        to receive(:translate_one).and_return({})
+      Interface::IRely::Translators::ContactTranslator.translate(payload)
+    end
+
+    context 'when there is one item to translate' do
+      let(:payload) { build(:contact_payload) }
+
+      its(:size) { is_expected.to eq 1 }
+      it 'should call translate_one once' do
+        subject
+
+        expect(Interface::IRely::Translators::ContactTranslator)
+          .to have_received(:translate_one).once
+      end
+    end
+
+    context 'when there is more than one item to translate' do
+      let(:payload) { build_list(:contact_payload, 2) }
+
+      its(:size) { is_expected.to eq payload.size }
+      it 'should call translate_one the same number of times as items' do
+        subject
+
+        expect(Interface::IRely::Translators::ContactTranslator)
+          .to have_received(:translate_one).exactly(payload.size).times
+      end
+    end
+  end
 end

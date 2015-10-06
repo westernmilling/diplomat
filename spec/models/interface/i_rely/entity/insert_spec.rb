@@ -25,7 +25,6 @@ RSpec.describe Interface::IRely::Entity::Insert, type: :model, vcr: true do
       # puts r
       # r
     end
-    # subject { call }
 
     context 'when the credentials are invalid' do
       let(:credentials) { nil }
@@ -51,7 +50,9 @@ RSpec.describe Interface::IRely::Entity::Insert, type: :model, vcr: true do
 
     context 'when inserting a valid entity' do
       let(:data) do
-        build(:entity_payload, id: Time.now.utc.to_i) do |payload|
+        build(:entity_payload,
+              id: Time.now.utc.to_i,
+              reference: Time.now.utc.to_i) do |payload|
           payload.contacts << build(:contact_payload, id: Time.now.utc.to_i)
           payload.customer = build(:customer_payload,
                                    id: Time.now.utc.to_i,
@@ -69,7 +70,7 @@ RSpec.describe Interface::IRely::Entity::Insert, type: :model, vcr: true do
 
     context 'when inserting an invalid entity' do
       let(:data) do
-        entity_payload = build(:entity_payload, id: Time.now.utc.to_i)
+        build(:entity_payload, id: Time.now.utc.to_i)
       end
 
       subject { result }

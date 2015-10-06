@@ -5,11 +5,11 @@ http_interactions:
     uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
     body:
       encoding: UTF-8
-      string: '[{"name":"Reilly, Goldner and Crooks","contacts":[{"name":"Mrs. Houston
-        Labadie","phone":"1-730-702-4279 x078","fax":"407-745-5135 x394","mobile":"(267)
-        050-8569","email":"katrine@schmeler.name","id":1443812339}],"locations":[{"name":"Reilly,
-        Goldner and Crooks","address":"491 Eichmann Cliff","city":"Lake Torreyview","state":"Ohio","zipcode":"38781","country":"United
-        States","termsId":"Due on Receipt","id":1443812339}],"customer":{"type":"Person","creditLimit":0},"id":1443812339}]'
+      string: '[{"name":"Dare, Hegmann and Jacobi","entityNo":1444068454,"contacts":[{"name":"Damaris
+        Heller","phone":"(933) 109-0637","fax":"438-807-9532 x2062","mobile":"(283)
+        843-8610","email":"lowell_deckow@wolff.net","id":1444068454,"rowState":"Added"}],"locations":[{"name":"Dare,
+        Hegmann and Jacobi","address":"2056 Haley Station","city":"Nellieburgh","state":"Nebraska","zipcode":"30304","country":"United
+        States","termsId":"Due on Receipt","id":1444068454,"rowState":"Added"}],"customer":{"type":"Company","creditLimit":0},"id":1444068454}]'
     headers:
       Content-Type:
       - application/json
@@ -43,16 +43,16 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET, POST, PUT, DELETE, OPTIONS
       Date:
-      - Fri, 02 Oct 2015 18:58:54 GMT
+      - Mon, 05 Oct 2015 18:07:35 GMT
       Content-Length:
-      - '809'
+      - '812'
     body:
       encoding: UTF-8
-      string: '{"data":[{"name":"Reilly, Goldner and Crooks","website":null,"email":null,"entityNo":null,"locations":[{"name":"Reilly,
-        Goldner and Crooks","termsId":"Due on Receipt","address":"491 Eichmann Cliff","city":"Lake
-        Torreyview","state":"Ohio","zipcode":"38781","country":"United States","pricelevel":null,"id":"1443812339","i21_id":"1896","rowState":null}],"contacts":[{"name":"Mrs.
-        Houston Labadie","phone":"1-730-702-4279 x078","fax":"407-745-5135 x394","mobile":"(267)
-        050-8569","email":"katrine@schmeler.name","id":"1443812339","i21_id":"3855","rowState":null}],"customer":{"number":null,"type":"Person","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1443812339","i21_id":"3854"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+      string: '{"data":[{"name":"Dare, Hegmann and Jacobi","website":null,"email":null,"entityNo":"1444068454","locations":[{"name":"Dare,
+        Hegmann and Jacobi","termsId":"Due on Receipt","address":"2056 Haley Station","city":"Nellieburgh","state":"Nebraska","zipcode":"30304","country":"United
+        States","pricelevel":null,"id":"1444068454","i21_id":"1906","rowState":"Added"}],"contacts":[{"name":"Damaris
+        Heller","phone":"(933) 109-0637","fax":"438-807-9532 x2062","mobile":"(283)
+        843-8610","email":"lowell_deckow@wolff.net","id":"1444068454","i21_id":"3875","rowState":"Added"}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1444068454","i21_id":"3874"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
     http_version: 
-  recorded_at: Fri, 02 Oct 2015 18:59:04 GMT
+  recorded_at: Mon, 05 Oct 2015 18:07:38 GMT
 recorded_with: VCR 2.9.3

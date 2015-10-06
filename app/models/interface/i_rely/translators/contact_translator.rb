@@ -3,11 +3,10 @@ module Interface
     module Translators
       class ContactTranslator < Translator
         def self.translate(payload)
-          if payload.is_a?(Array)
-            payload.map { |x| translate_one(x) }
-          else
-            [translate_one(payload)]
-          end
+          return nil if payload.nil?
+
+          payload = [payload] unless payload.is_a?(Array)
+          payload.map { |x| translate_one(x) }
         end
 
         def self.translate_one(payload)
@@ -19,7 +18,7 @@ module Interface
             email: payload.email_address,
           }
             .merge(id(payload))
-            # .merge(row_state(payload))
+            .merge(row_state(payload))
         end
       end
     end

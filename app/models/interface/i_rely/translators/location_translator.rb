@@ -4,17 +4,17 @@ module Interface
       class LocationTranslator < Translator
         class << self
           def translate(payload)
-            if payload.is_a?(Array)
-              payload.map { |x| translate_one(x) }
-            else
-              [translate_one(payload)]
-            end
+            return nil if payload.nil?
+
+            payload = [payload] unless payload.is_a?(Array)
+
+            payload.map { |x| translate_one(x) }
           end
 
           def translate_one(payload)
             translate_payload(payload)
               .merge(id(payload))
-              # .merge(row_state(payload))
+              .merge(row_state(payload))
           end
 
           def translate_payload(payload)

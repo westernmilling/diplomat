@@ -13,6 +13,7 @@ module Interface
         def self.translate_one(payload)
           {
             name: payload.name,
+            entityNo: payload.reference,
             contacts: ContactTranslator.translate(payload.contacts),
             locations: LocationTranslator.translate(payload.locations),
             customer: CustomerTranslator.translate(payload.customer)

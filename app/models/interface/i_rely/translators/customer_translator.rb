@@ -3,6 +3,8 @@ module Interface
     module Translators
       class CustomerTranslator < Translator
         def self.translate(payload)
+          return nil if payload.nil?
+
           fail 'Single customer payload expected' if payload.is_a?(Array)
 
           translate_one(payload)
