@@ -23,13 +23,13 @@ RSpec.describe Interface::Payloads::ContactPayload, type: :model do
     context 'when the contact has adhesive for the organization' do
       before do
         allow(contact)
-          .to receive(:interface_adhesives)
+          .to receive(:interface_object_maps)
           .and_return(
             [
-              Interface::Adhesive.new(organization: organization,
-                                      interfaceable: contact,
-                                      interface_id: Faker::Number.number(4),
-                                      version: 1)
+              Interface::ObjectMap.new(organization: organization,
+                                       interfaceable: contact,
+                                       interface_id: Faker::Number.number(4),
+                                       version: 1)
             ]
           )
       end

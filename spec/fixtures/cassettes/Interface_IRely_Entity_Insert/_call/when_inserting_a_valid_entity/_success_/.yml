@@ -5,11 +5,10 @@ http_interactions:
     uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
     body:
       encoding: UTF-8
-      string: '[{"name":"Dare, Hegmann and Jacobi","entityNo":1444068454,"contacts":[{"name":"Damaris
-        Heller","phone":"(933) 109-0637","fax":"438-807-9532 x2062","mobile":"(283)
-        843-8610","email":"lowell_deckow@wolff.net","id":1444068454,"rowState":"Added"}],"locations":[{"name":"Dare,
-        Hegmann and Jacobi","address":"2056 Haley Station","city":"Nellieburgh","state":"Nebraska","zipcode":"30304","country":"United
-        States","termsId":"Due on Receipt","id":1444068454,"rowState":"Added"}],"customer":{"type":"Company","creditLimit":0},"id":1444068454}]'
+      string: '[{"name":"Senger Group","entityNo":1444150662,"contacts":[{"name":"Koby
+        Schaefer","phone":"1-106-317-2019","fax":"1-574-168-5208","mobile":"914.857.5921","email":"gloria.keeling@doyle.com","id":1444150662,"rowState":"Added"}],"locations":[{"name":"Senger
+        Group","address":"18494 Heaney Centers","city":"Hirthestad","state":"California","zipcode":"75629-2346","country":"United
+        States","termsId":"Due on Receipt","id":1444150662,"rowState":"Added"}],"customer":{"type":"Person","creditLimit":0},"id":1444150662}]'
     headers:
       Content-Type:
       - application/json
@@ -43,16 +42,15 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET, POST, PUT, DELETE, OPTIONS
       Date:
-      - Mon, 05 Oct 2015 18:07:35 GMT
+      - Tue, 06 Oct 2015 16:57:41 GMT
       Content-Length:
-      - '812'
+      - '789'
     body:
       encoding: UTF-8
-      string: '{"data":[{"name":"Dare, Hegmann and Jacobi","website":null,"email":null,"entityNo":"1444068454","locations":[{"name":"Dare,
-        Hegmann and Jacobi","termsId":"Due on Receipt","address":"2056 Haley Station","city":"Nellieburgh","state":"Nebraska","zipcode":"30304","country":"United
-        States","pricelevel":null,"id":"1444068454","i21_id":"1906","rowState":"Added"}],"contacts":[{"name":"Damaris
-        Heller","phone":"(933) 109-0637","fax":"438-807-9532 x2062","mobile":"(283)
-        843-8610","email":"lowell_deckow@wolff.net","id":"1444068454","i21_id":"3875","rowState":"Added"}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1444068454","i21_id":"3874"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+      string: '{"data":[{"name":"Senger Group","website":null,"email":null,"entityNo":"1444150662","locations":[{"name":"Senger
+        Group","termsId":"Due on Receipt","address":"18494 Heaney Centers","city":"Hirthestad","state":"California","zipcode":"75629-2346","country":"United
+        States","pricelevel":null,"id":"1444150662","i21_id":"1916","rowState":"Added"}],"contacts":[{"name":"Koby
+        Schaefer","phone":"1-106-317-2019","fax":"1-574-168-5208","mobile":"914.857.5921","email":"gloria.keeling@doyle.com","id":"1444150662","i21_id":"3895","rowState":"Added"}],"customer":{"number":null,"type":"Person","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1444150662","i21_id":"3894"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
     http_version: 
-  recorded_at: Mon, 05 Oct 2015 18:07:38 GMT
+  recorded_at: Tue, 06 Oct 2015 16:57:45 GMT
 recorded_with: VCR 2.9.3

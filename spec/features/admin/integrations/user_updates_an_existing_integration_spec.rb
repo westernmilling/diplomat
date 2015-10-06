@@ -10,7 +10,7 @@ feature 'user updates an existing integration' do
       visit edit_admin_integration_path(integration)
 
       fill_in :integration_name, with: Faker::Lorem.word
-      select 'irely', from: :integration_integration_type
+      select 'i_rely', from: :integration_integration_type
       fill_in :integration_address, with: Faker::Internet.url
       fill_in :integration_credentials,
               with: "#{Faker::Internet.user_name}:#{Faker::Internet.password}"

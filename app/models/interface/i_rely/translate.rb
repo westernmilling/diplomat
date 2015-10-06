@@ -19,19 +19,19 @@ module Interface
 
         payload = [payload] unless payload.is_a?(Array)
 
-        payload.map { |x| new(payload).call.output }
+        payload.map { |x| new(x).call.output }
       end
 
       protected
 
       def id(record)
-        return { i21_id: record.interface_id } if record.interface_id.present?
+        return { id: record.id } if record.interface_id.nil?
 
-        { id: record.id }
+        { id: record.id, i21_id: record.interface_id }
       end
 
       def row_state(record)
-        { rowState: record.interface_id.present? ? 'Updated' : 'Added' }
+        { rowState: record.interface_id.present? ? 'Modified' : 'Added' }
       end
     end
   end

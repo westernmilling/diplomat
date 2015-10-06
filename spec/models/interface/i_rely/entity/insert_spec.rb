@@ -15,16 +15,8 @@ RSpec.describe Interface::IRely::Entity::Insert, type: :model, vcr: true do
         data
       )
     end
-    let(:data) do
-      nil
-    end
-    let(:result) do
-      return api.call
-      # result = nil
-      # r = api.call
-      # puts r
-      # r
-    end
+    let(:data) { nil }
+    let(:result) { api.call }
 
     context 'when the credentials are invalid' do
       let(:credentials) { nil }

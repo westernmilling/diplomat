@@ -1,7 +1,5 @@
 module Interface
   module IRely
-    # TODO: Build a base API class which includes HTTParty, common initialize
-    #       and some common methods, credentials, headers, parse_response
     module Entity
       class Insert < Interface::IRely::Base
         def call
@@ -11,13 +9,13 @@ module Interface
                      .post("#{url}", body: body.to_json, headers: headers)
           Rails.logger.debug "Response from iRely endpoint was #{response}"
 
-          parse_response response
+          parse_response response.to_snake_keys
         end
 
         def body
           return [{}] if @data.nil?
 
-          Interface::IRely::Translators::EntityTranslator.translate([@data])
+          Interface::IRely::Entity::Translate.translate([@data])
         end
 
         def url
@@ -25,12 +23,9 @@ module Interface
         end
 
         def parse_response(response)
-          # extract the i21_ids
-          # puts response.to_snake_keys[:data]
-          # Interface::IRely::Parsers::ParseEntityResponse
-          #   .parse(@data, response.to_snake_keys)
+          Interface::IRely::Entity::Parse.new(@data, response).call
 
-          { success: false }.merge(response).to_snake_keys
+          { success: false }.merge(response)
         end
       end
     end

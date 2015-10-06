@@ -1,6 +1,6 @@
-class CreateInterfaceAdhesives < ActiveRecord::Migration
+class CreateInterfaceObjectMaps < ActiveRecord::Migration
   def change
-    create_table :interface_adhesives do |t|
+    create_table :interface_object_maps do |t|
       t.references :organization, null: false
       t.references :integration, null: false
       t.references :interfaceable, null: false, polymorphic: true

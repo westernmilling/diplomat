@@ -10,6 +10,14 @@ module Interface
         fail 'You may not call the base Parse class'
       end
 
+      def no_data?
+        @response.nil?
+      end
+
+      def parse
+        @payload.interface_id = @response[:i21_id]
+      end
+
       def payload
         @payload
       end
@@ -21,7 +29,6 @@ module Interface
       #
       #   payload.map { |x| new(payload).call.output }
       # end
-
       protected
 
     end

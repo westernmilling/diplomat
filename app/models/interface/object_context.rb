@@ -1,9 +1,8 @@
 module Interface
-  # class AdhesiveContext < Struct.new(:object, :organization)
   class ObjectContext < Struct.new(:object, :organization)
-    def adhesive
-      @adhesive ||= object
-        .interface_adhesives
+    def object_map
+      @object_map ||= object
+        .interface_object_maps
         .select { |x| x.organization == organization }
         .first
     end
@@ -12,6 +11,4 @@ module Interface
     #                                  organization: organization)
     # end
   end
-  # class Coherance < Struct.new(:object, :organization)
-  # end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Interface::Adhesive, type: :model do
+RSpec.describe Interface::ObjectMap, type: :model do
   it { is_expected.to belong_to :interfaceable }
   it { is_expected.to belong_to :integration }
   it { is_expected.to belong_to :organization }

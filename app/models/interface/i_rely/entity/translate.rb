@@ -12,11 +12,15 @@ module Interface
           @output.merge!(
             name: payload.name,
             entityNo: payload.reference,
-            contacts: nil,
-            locations: nil,
-            customer: nil
+            contacts: translate_klass('Contact').translate(payload.contacts),
+            locations: translate_klass('Location').translate(payload.locations),
+            customer: translate_klass('Customer').translate(payload.customer)
           )
             .merge!(id(payload))
+        end
+
+        def translate_klass(module_translate)
+          "::Interface::IRely::#{module_translate}::Translate".constantize
         end
       end
     end

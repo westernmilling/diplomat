@@ -2,8 +2,6 @@ module Interface
   module IRely
     module Entity
       class Parse < Interface::IRely::Parse
-        # TODO: Consider expanding this to use payload object specific
-        #       parsers, i.e. Contact, Location, Customer, etc.
         def call
           return self if no_data?
 
@@ -19,33 +17,45 @@ module Interface
         def parse
           parse_entity
           parse_contacts
-          # parse_locations
+          parse_locations
+          # parse_customer
         end
 
         def parse_entity
           @payload.interface_id = entity_response[:i21_id]
-          # @payload.locations.each do |location_payload|
-          #   Interface::IRely::Location::Parse
-          #     .new(location_payload, entity_response)
-          #     .call
-          # end
         end
 
         def parse_contacts
-          @payload.contacts.each do |contact_payload|
+          @payload.contacts.each_with_index do |contact_payload, index|
             Interface::IRely::Contact::Parse
-              .new(contact_payload, entity_response)
+              .new(contact_payload,
+                   entity_response[:contacts][index])
               .call
           end
         end
 
-        def entity_response
-          @response[:data][0]
+        def parse_locations
+          @payload.locations.each_with_index do |location_payload, index|
+            Interface::IRely::Location::Parse
+              .new(location_payload,
+                   entity_response[:locations][index])
+              .call
+          end
         end
 
-        # def self.parse(payload, response)
-        #   new(payload, response).payload
+        # def parse_customer
+        #   # TODO: Write a test for this condition before we implement it.
+        #   #       Or do we leave the Parse class to deal with it?
+        #   # return if entity_response[:customer].nil?
+        #
+        #   Interface::IRely::Customer::Parse
+        #     .new(@payload.customer, entity_response[:customer])
+        #     .call
         # end
+
+        def entity_response
+          @entity_response ||= @response[:data][0]
+        end
       end
     end
   end

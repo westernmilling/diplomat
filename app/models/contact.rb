@@ -5,8 +5,8 @@ class Contact < ActiveRecord::Base
   acts_as_paranoid
 
   belongs_to :entity
-  has_many :interface_adhesives,
-           class_name: Interface::Adhesive,
+  has_many :interface_object_maps,
+           class_name: Interface::ObjectMap,
            foreign_key: :interfaceable_id,
            foreign_type: Contact
 

@@ -39,13 +39,13 @@ RSpec.describe Interface::Payloads::EntityPayload, type: :model do
     context 'when the object has adhesive for the organization' do
       before do
         allow(object)
-          .to receive(:interface_adhesives)
+          .to receive(:interface_object_maps)
           .and_return(
             [
-              Interface::Adhesive.new(organization: organization,
-                                      interfaceable: object,
-                                      interface_id: Faker::Number.number(4),
-                                      version: 1)
+              Interface::ObjectMap.new(organization: organization,
+                                       interfaceable: object,
+                                       interface_id: Faker::Number.number(4),
+                                       version: 1)
             ]
           )
       end

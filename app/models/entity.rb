@@ -9,8 +9,8 @@ class Entity < ActiveRecord::Base
   belongs_to :parent_entity, class_name: Entity
   has_many :contacts
   has_many :locations, inverse_of: :entity
-  has_many :interface_adhesives,
-           class_name: Interface::Adhesive,
+  has_many :interface_object_maps,
+           class_name: Interface::ObjectMap,
            foreign_key: :interfaceable_id,
            foreign_type: Entity
   has_one :contact, autosave: false

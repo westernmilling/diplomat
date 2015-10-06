@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.describe Interface::IRely::Entity::Translate,
                type: :model do
 
-  # let(:output) { Hash.new }
-  let(:payload) { build(:entity_payload) }
+  let(:payload) do
+    build(:entity_payload, :with_contact, :with_customer, :with_location)
+  end
 
   describe '.call' do
     let(:call) { translate.call }
@@ -15,6 +16,9 @@ RSpec.describe Interface::IRely::Entity::Translate,
 
       its([:name]) { is_expected.to eq payload.name }
       its([:entityNo]) { is_expected.to eq payload.reference }
+      its([:contacts]) { is_expected.to_not be_empty }
+      its([:customer]) { is_expected.to_not be_empty }
+      its([:locations]) { is_expected.to_not be_empty }
 
       context 'when the payload has no interface_id' do
         let(:payload) { build(:entity_payload, interface_id: nil) }
@@ -29,7 +33,7 @@ RSpec.describe Interface::IRely::Entity::Translate,
 
         its([:id]) { is_expected.to be nil }
         its([:i21_id]) { is_expected.to eq payload.interface_id }
-        # its([:rowState]) { is_expected.to eq 'Updated' }
+        # its([:rowState]) { is_expected.to eq 'Modified' }
       end
     end
   end

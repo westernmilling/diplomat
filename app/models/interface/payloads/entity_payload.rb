@@ -24,18 +24,6 @@ module Interface
           .add_traits(context)
       end
 
-      def contacts
-        @contacts
-      end
-
-      def locations
-        @locations
-      end
-
-      # def customer
-      #   @customer
-      # end
-
       # NB: This smells, how can we clean this up... however its pretty low
       #     impact at the moment.
 

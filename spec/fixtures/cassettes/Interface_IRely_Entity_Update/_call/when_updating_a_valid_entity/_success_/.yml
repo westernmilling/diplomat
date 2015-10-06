@@ -5,10 +5,11 @@ http_interactions:
     uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
     body:
       encoding: UTF-8
-      string: '[{"name":"Schamberger, Hyatt and Beier","entityNo":1444068707,"contacts":[{"name":"Michelle
-        Balistreri","phone":"(194) 292-5984","fax":"916.760.5999 x604","mobile":"227.207.8769","email":"declan_bogan@boehm.com","id":1444068707,"rowState":"Added"}],"locations":[{"name":"Schamberger,
-        Hyatt and Beier","address":"285 Efren Plain","city":"Bayerborough","state":"Iowa","zipcode":"78154","country":"United
-        States","termsId":"Due on Receipt","id":1444068707,"rowState":"Added"}],"customer":{"type":"Company","creditLimit":0},"id":1444068707}]'
+      string: '[{"name":"Pfeffer, Cassin and Orn","entityNo":1444157884,"contacts":[{"name":"Jayme
+        Tillman","phone":"1-508-406-2538","fax":"908.627.9660","mobile":"186-288-7503","email":"john.schiller@lednerjones.org","id":1444157884,"rowState":"Added"}],"locations":[{"name":"Pfeffer,
+        Cassin and Orn","phone":"476-180-0746","fax":"(357) 070-8316 x778","address":"36991
+        Gleichner Loaf","city":"South Thalia","state":"Pennsylvania","zipcode":"32909-0432","country":"United
+        States","termsId":"Due on Receipt","id":1444157884,"rowState":"Added"}],"customer":{"creditLimit":0,"type":"company"},"id":1444157884}]'
     headers:
       Content-Type:
       - application/json
@@ -42,26 +43,26 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET, POST, PUT, DELETE, OPTIONS
       Date:
-      - Mon, 05 Oct 2015 18:11:49 GMT
+      - Tue, 06 Oct 2015 18:58:03 GMT
       Content-Length:
-      - '815'
+      - '819'
     body:
       encoding: UTF-8
-      string: '{"data":[{"name":"Schamberger, Hyatt and Beier","website":null,"email":null,"entityNo":"1444068707","locations":[{"name":"Schamberger,
-        Hyatt and Beier","termsId":"Due on Receipt","address":"285 Efren Plain","city":"Bayerborough","state":"Iowa","zipcode":"78154","country":"United
-        States","pricelevel":null,"id":"1444068707","i21_id":"1909","rowState":"Added"}],"contacts":[{"name":"Michelle
-        Balistreri","phone":"(194) 292-5984","fax":"916.760.5999 x604","mobile":"227.207.8769","email":"declan_bogan@boehm.com","id":"1444068707","i21_id":"3881","rowState":"Added"}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1444068707","i21_id":"3880"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+      string: '{"data":[{"name":"Pfeffer, Cassin and Orn","website":null,"email":null,"entityNo":"1444157884","locations":[{"name":"Pfeffer,
+        Cassin and Orn","termsId":"Due on Receipt","address":"36991 Gleichner Loaf","city":"South
+        Thalia","state":"Pennsylvania","zipcode":"32909-0432","country":"United States","pricelevel":null,"id":"1444157884","i21_id":"1928","rowState":"Added"}],"contacts":[{"name":"Jayme
+        Tillman","phone":"1-508-406-2538","fax":"908.627.9660","mobile":"186-288-7503","email":"john.schiller@lednerjones.org","id":"1444157884","i21_id":"3919","rowState":"Added"}],"customer":{"number":null,"type":"company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1444157884","i21_id":"3918"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
     http_version: 
-  recorded_at: Mon, 05 Oct 2015 18:11:51 GMT
+  recorded_at: Tue, 06 Oct 2015 18:58:07 GMT
 - request:
     method: put
     uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/sync"
     body:
       encoding: UTF-8
-      string: '[{"name":"Crist LLC","entityNo":1444068707,"contacts":[{"name":"Michelle
-        Balistreri","phone":"(194) 292-5984","fax":"916.760.5999 x604","mobile":"227.207.8769","email":"declan_bogan@boehm.com","id":1444068707,"rowState":"Added"}],"locations":[{"name":"Schamberger,
-        Hyatt and Beier","address":"285 Efren Plain","city":"Bayerborough","state":"Iowa","zipcode":"78154","country":"United
-        States","termsId":"Due on Receipt","id":1444068707,"rowState":"Added"}],"customer":{"type":"Company","creditLimit":0},"id":1444068707}]'
+      string: '[{"name":"Vandervort Group","entityNo":1444157884,"contacts":[{"name":"Astrid
+        Cassin DVM","phone":"1-508-406-2538","fax":"908.627.9660","mobile":"186-288-7503","email":"john.schiller@lednerjones.org","id":1444157884,"i21_id":"3919","rowState":"Modified"}],"locations":[{"name":"Pfeffer,
+        Cassin and Orn","address":"36991 Gleichner Loaf","city":"South Thalia","state":"Pennsylvania","zipcode":"32909-0432","country":"United
+        States","termsId":"Due on Receipt","id":1444157884,"i21_id":"1928","rowState":"Modified"}],"customer":{"type":"Company","creditLimit":0},"id":1444157884,"i21_id":"3918"}]'
     headers:
       Content-Type:
       - application/json
@@ -71,8 +72,8 @@ http_interactions:
       - "<IRELY_COMPANY>"
   response:
     status:
-      code: 500
-      message: Internal Server Error
+      code: 202
+      message: Accepted
     headers:
       Cache-Control:
       - no-cache
@@ -95,12 +96,15 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET, POST, PUT, DELETE, OPTIONS
       Date:
-      - Mon, 05 Oct 2015 18:11:49 GMT
+      - Tue, 06 Oct 2015 18:58:03 GMT
       Content-Length:
-      - '36'
+      - '607'
     body:
       encoding: UTF-8
-      string: '{"Message":"An error has occurred."}'
+      string: '{"data":[{"name":"Vandervort Group","entityNo":"1444157884","locations":[{"name":"Pfeffer,
+        Cassin and Orn","termsId":"Due on Receipt","address":"36991 Gleichner Loaf","city":"South
+        Thalia","state":"Pennsylvania","zipcode":"32909-0432","country":"United States","i21_id":"1928","rowState":"Modified"}],"contacts":[{"name":"Astrid
+        Cassin DVM","phone":"1-508-406-2538","fax":"908.627.9660","mobile":"186-288-7503","email":"john.schiller@lednerjones.org","i21_id":"3919","rowState":"Modified"}],"customer":{"i21_id":null},"i21_id":"3918"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
     http_version: 
-  recorded_at: Mon, 05 Oct 2015 18:11:51 GMT
+  recorded_at: Tue, 06 Oct 2015 18:58:08 GMT
 recorded_with: VCR 2.9.3

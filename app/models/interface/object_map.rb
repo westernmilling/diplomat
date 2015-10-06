@@ -1,5 +1,5 @@
-class Interface::Adhesive < ActiveRecord::Base
-  self.table_name = 'interface_adhesives'
+class Interface::ObjectMap < ActiveRecord::Base
+  self.table_name = 'interface_object_maps'
 
   belongs_to :integration
   belongs_to :interfaceable, polymorphic: true

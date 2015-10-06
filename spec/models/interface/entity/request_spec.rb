@@ -15,7 +15,7 @@ RSpec.describe Interface::Entity::Request, type: :model do
       expect(interface).to have_received(:call)
     end
 
-    # TODO: Need to test that the entity ahesive is updated somewhere.
-    #       Would it be best to do this in the wrapper class?
+    # TODO: Test that object maps have been created.
+    #       These should be created from a "payload"
   end
 end

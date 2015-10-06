@@ -2,16 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Interface::IRely::Entity::Update, type: :model, vcr: true do
   describe '.call' do
-    before do
-      # TODO: Return the interface id's for the update
-      Interface::IRely::Entity::Insert.new(
-        Figaro.env.IRELY_BASE_URL,
-        credentials,
-        new_data
-      ).call
-
-      puts new_data
-    end
     let(:api) do
       Interface::IRely::Entity::Update.new(
         Figaro.env.IRELY_BASE_URL,
@@ -40,6 +30,15 @@ RSpec.describe Interface::IRely::Entity::Update, type: :model, vcr: true do
       end
     end
     let(:result) do
+      Interface::IRely::Entity::Insert.new(
+        Figaro.env.IRELY_BASE_URL,
+        credentials,
+        new_data
+      ).call
+
+      # puts new_data.to_yaml
+
+      # return {}
       return api.call
       # result = nil
       # r = api.call
@@ -73,6 +72,7 @@ RSpec.describe Interface::IRely::Entity::Update, type: :model, vcr: true do
       let(:data) do
         temp_data = new_data.dup
         temp_data.name = Faker::Company.name
+        temp_data.contacts[0].full_name = Faker::Name.name
         temp_data
       end
 
@@ -81,9 +81,36 @@ RSpec.describe Interface::IRely::Entity::Update, type: :model, vcr: true do
       its([:success]) { is_expected.to be true }
     end
 
-    # When adding a contact
+    context 'when a new contact is added' do
+      let(:data) do
+        temp_data = new_data.dup
+        temp_data.contacts << build(:contact_payload, id: Time.now.utc.to_i)
+        temp_data
+      end
 
-    # When adding a location
+      subject { result }
+
+      its([:success]) { is_expected.to be true }
+      # it 'should populate the new contacts interface id' do
+      #   # result
+      #
+      #   expect(data.contacts[1].interface_id).to_not be_nil
+      # end
+    end
+
+    context 'when a new location is added' do
+      let(:data) do
+        temp_data = new_data.dup
+        temp_data.locations << build(:location_payload,
+                                     location_name: Faker::Company.name,
+                                     id: Time.now.utc.to_i)
+        temp_data
+      end
+
+      subject { result }
+
+      its([:success]) { is_expected.to be true }
+    end
 
     context 'when updating an invalid entity' do
       let(:data) do

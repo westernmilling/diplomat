@@ -10,6 +10,12 @@ module Interface
 
       def call
         @interface.call(payload)
+
+        # TODO: Use the native result to create a log entry.
+        #       How do we get the native result back?
+
+        # TODO: Now we need to build the mappings from the payload
+        # Entity::Map.new(@context.object, payload).call
       end
 
       protected
@@ -24,6 +30,18 @@ module Interface
 
       def build_payload
         Payloads::EntityPayload.build_one(@context)
+      end
+    end
+
+    # TODO: Proof of concept?
+    class Map
+      def initialize(interfaceable, payload)
+        @interfaceable = interfaceable
+        @payload = payload
+      end
+
+      def call
+
       end
     end
   end

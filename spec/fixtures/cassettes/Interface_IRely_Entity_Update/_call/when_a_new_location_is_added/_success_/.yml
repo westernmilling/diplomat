@@ -1,0 +1,113 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
+    body:
+      encoding: UTF-8
+      string: '[{"name":"Swaniawski, Miller and Douglas","entityNo":1444158292,"contacts":[{"name":"Avery
+        Pollich MD","phone":"210.426.7237","fax":"322.076.0426 x29499","mobile":"(886)
+        216-7062","email":"eulah_gusikowski@nolan.com","id":1444158292,"rowState":"Added"}],"locations":[{"name":"Swaniawski,
+        Miller and Douglas","phone":"863.839.0779 x7670","fax":"1-581-907-6787 x227","address":"384
+        Everette Estates","city":"West Boris","state":"Wisconsin","zipcode":"52097","country":"United
+        States","termsId":"Due on Receipt","id":1444158292,"rowState":"Added"}],"customer":{"creditLimit":0,"type":"Person"},"id":1444158292}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Tue, 06 Oct 2015 19:04:51 GMT
+      Content-Length:
+      - '829'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":"Swaniawski, Miller and Douglas","website":null,"email":null,"entityNo":"1444158292","locations":[{"name":"Swaniawski,
+        Miller and Douglas","termsId":"Due on Receipt","address":"384 Everette Estates","city":"West
+        Boris","state":"Wisconsin","zipcode":"52097","country":"United States","pricelevel":null,"id":"1444158292","i21_id":"1930","rowState":"Added"}],"contacts":[{"name":"Avery
+        Pollich MD","phone":"210.426.7237","fax":"322.076.0426 x29499","mobile":"(886)
+        216-7062","email":"eulah_gusikowski@nolan.com","id":"1444158292","i21_id":"3923","rowState":"Added"}],"customer":{"number":null,"type":"Person","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1444158292","i21_id":"3922"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+    http_version: 
+  recorded_at: Tue, 06 Oct 2015 19:04:56 GMT
+- request:
+    method: put
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/sync"
+    body:
+      encoding: UTF-8
+      string: '[{"name":"Swaniawski, Miller and Douglas","entityNo":1444158292,"contacts":[{"name":"Avery
+        Pollich MD","phone":"210.426.7237","fax":"322.076.0426 x29499","mobile":"(886)
+        216-7062","email":"eulah_gusikowski@nolan.com","id":1444158292,"i21_id":"3923","rowState":"Modified"}],"locations":[{"name":"Swaniawski,
+        Miller and Douglas","phone":"863.839.0779 x7670","fax":"1-581-907-6787 x227","address":"384
+        Everette Estates","city":"West Boris","state":"Wisconsin","zipcode":"52097","country":"United
+        States","termsId":"Due on Receipt","id":1444158292,"i21_id":"1930","rowState":"Modified"},{"name":"Boyer-Wehner","phone":"696.051.2947","fax":"1-979-401-5861","address":"50898
+        Vincenza Center","city":"Hilllfort","state":"Utah","zipcode":"24767-7881","country":"United
+        States","termsId":"Due on Receipt","id":1444158296,"rowState":"Added"}],"customer":{"creditLimit":0,"type":"Person"},"id":1444158292,"i21_id":"3922"}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Tue, 06 Oct 2015 19:04:51 GMT
+      Content-Length:
+      - '36'
+    body:
+      encoding: UTF-8
+      string: '{"Message":"An error has occurred."}'
+    http_version: 
+  recorded_at: Tue, 06 Oct 2015 19:04:56 GMT
+recorded_with: VCR 2.9.3

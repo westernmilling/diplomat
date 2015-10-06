@@ -11,8 +11,8 @@ module Interface
     def build_one(context)
       # Abc = 13?
       new.merge!(context.object.attributes).tap do |payload|
-        payload.interface_id = context.adhesive.interface_id \
-          if context.adhesive.present?
+        payload.interface_id = context.object_map.interface_id \
+          if context.object_map.present?
       end
     end
   end

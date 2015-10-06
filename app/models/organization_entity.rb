@@ -1,5 +1,6 @@
 class OrganizationEntity < ActiveRecord::Base
   acts_as_paranoid
+  after_commit :queue_interface
   after_initialize :ensure_uuid_present
 
   belongs_to :entity
@@ -20,5 +21,8 @@ class OrganizationEntity < ActiveRecord::Base
 
   def ensure_uuid_present
     self.uuid ||= UUID.generate(:compact)
+  end
+
+  def queue_interface
   end
 end
