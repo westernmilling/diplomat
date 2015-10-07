@@ -1,8 +1,8 @@
 module Interface
   module IRely
     class Translate
-      def initialize(payload, output = {})
-        @payload = payload
+      def initialize(object, output = {})
+        @object = object
         @output = output
       end
 
@@ -14,12 +14,12 @@ module Interface
         @output
       end
 
-      def self.translate(payload)
-        return nil if payload.nil?
+      def self.translate(object)
+        return nil if object.nil?
 
-        payload = [payload] unless payload.is_a?(Array)
+        object = [object] unless object.is_a?(Array)
 
-        payload.map { |x| new(x).call.output }
+        object.map { |x| new(x).call.output }
       end
 
       protected

@@ -3,21 +3,21 @@ module Interface
     module Contact
       class Translate < Interface::IRely::Translate
         def call
-          translate(@payload) unless @payload.nil?
+          translate(@object) unless @object.nil?
 
           self
         end
 
-        def translate(payload)
+        def translate(object)
           @output.merge!(
-            name: payload.full_name,
-            phone: payload.phone_number,
-            fax: payload.fax_number,
-            mobile: payload.mobile_number,
-            email: payload.email_address,
+            name: object.full_name,
+            phone: object.phone_number,
+            fax: object.fax_number,
+            mobile: object.mobile_number,
+            email: object.email_address,
           )
-            .merge!(id(payload))
-            .merge!(row_state(payload))
+            .merge!(id(object))
+            .merge!(row_state(object))
         end
       end
     end

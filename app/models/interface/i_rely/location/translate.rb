@@ -3,7 +3,7 @@ module Interface
     module Location
       class Translate < Interface::IRely::Translate
         def call
-          translate(@payload) unless @payload.nil?
+          translate(@object) unless @object.nil?
 
           self
         end

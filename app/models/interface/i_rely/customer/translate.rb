@@ -3,24 +3,24 @@ module Interface
     module Customer
       class Translate < Interface::IRely::Translate
         def call
-          translate(@payload) unless @payload.nil?
+          translate(@object) unless @object.nil?
 
           self
         end
 
-        def translate(payload)
+        def translate(object)
           @output.merge!(
             creditLimit: 0,
-            type: payload.customer_type.capitalize
+            type: object.entity.entity_type.capitalize
           )
         end
 
-        def self.translate(payload)
-          return nil if payload.nil?
+        def self.translate(object)
+          return nil if object.nil?
 
-          fail 'Single customer payload expected' if payload.is_a?(Array)
+          fail 'Single customer object expected' if object.is_a?(Array)
 
-          new(payload).call.output
+          new(object).call.output
         end
       end
     end
