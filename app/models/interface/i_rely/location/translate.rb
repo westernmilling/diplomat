@@ -3,25 +3,25 @@ module Interface
     module Location
       class Translate < Interface::IRely::Translate
         def call
-          translate(@object) unless @object.nil?
+          translate unless @context.nil?
 
           self
         end
 
-        def translate(payload)
+        def translate
           @output.merge!(
-            name: payload.location_name,
-            phone: payload.phone_number,
-            fax: payload.fax_number,
-            address: payload.street_address,
-            city: payload.city,
-            state: payload.region,
-            zipcode: payload.region_code,
-            country: payload.country,
+            name: @context.root_instance.location_name,
+            phone: @context.root_instance.phone_number,
+            fax: @context.root_instance.fax_number,
+            address: @context.root_instance.street_address,
+            city: @context.root_instance.city,
+            state: @context.root_instance.region,
+            zipcode: @context.root_instance.region_code,
+            country: @context.root_instance.country,
             termsId: 'Due on Receipt',
           )
-            .merge!(id(payload))
-            .merge!(row_state(payload))
+            .merge!(id)
+            .merge!(row_state)
         end
       end
     end

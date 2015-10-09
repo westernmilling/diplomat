@@ -3,24 +3,25 @@ module Interface
     module Customer
       class Translate < Interface::IRely::Translate
         def call
-          translate(@object) unless @object.nil?
+          translate unless @context.nil?
 
           self
         end
 
-        def translate(object)
+        def translate
           @output.merge!(
             creditLimit: 0,
-            type: object.entity.entity_type.capitalize
+            # NB: This is a bit smelly, but what alternative is there?
+            type: @context.root_instance.entity.entity_type.capitalize
           )
         end
 
-        def self.translate(object)
-          return nil if object.nil?
+        def self.translate(context)
+          return nil if context.nil?
 
-          fail 'Single customer object expected' if object.is_a?(Array)
+          fail 'Single customer object expected' if context.is_a?(Array)
 
-          new(object).call.output
+          new(context).call.output
         end
       end
     end

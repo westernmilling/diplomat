@@ -2,37 +2,74 @@ require 'rails_helper'
 
 RSpec.describe Interface::IRely::Entity::Translate,
                type: :model do
-
-  let(:payload) do
-    build(:entity_payload, :with_contact, :with_customer, :with_location)
+  before do
+    allow(customer).to receive(:entity).and_return(entity)
   end
+  let(:context) do
+    Interface::ObjectContext.new(entity, organization, graph)
+  end
+  let(:entity) do
+    stub_data = attributes_for(:entity, id: 1)
+    stub_data[:contacts] = [contact]
+    stub_data[:locations] = [location]
+    stub_data[:customer] = customer
+    stub_data[:interface_object_maps] = []
+    double(Entity, stub_data)
+  end
+  let(:contact) do
+    stub_data = attributes_for(:contact, id: 1)
+    stub_data[:interface_object_maps] = []
+    double(Contact, stub_data)
+  end
+  let(:customer) do
+    stub_data = attributes_for(:customer, id: 1)
+    stub_data[:interface_object_maps] = []
+    double(Customer, stub_data)
+  end
+  let(:location) do
+    stub_data = attributes_for(:location,
+                               id: 1,
+                               location_name: Faker::Company.name)
+    stub_data[:interface_object_maps] = []
+    double(Location, stub_data)
+  end
+  let(:graph) { { :contacts => nil, :locations => nil, :customer => nil } }
+  let(:organization) { build(:organization) }
 
   describe '.call' do
     let(:call) { translate.call }
-    let(:translate) { Interface::IRely::Entity::Translate.new(payload) }
+    let(:translate) { Interface::IRely::Entity::Translate.new(context) }
 
     describe '.output' do
       subject { call.output }
 
-      its([:name]) { is_expected.to eq payload.name }
-      its([:entityNo]) { is_expected.to eq payload.reference }
+      its([:name]) { is_expected.to eq entity.name }
+      its([:entityNo]) { is_expected.to eq entity.reference }
       its([:contacts]) { is_expected.to_not be_empty }
       its([:customer]) { is_expected.to_not be_empty }
       its([:locations]) { is_expected.to_not be_empty }
 
-      context 'when the payload has no interface_id' do
-        let(:payload) { build(:entity_payload, interface_id: nil) }
-
-        its([:id]) { is_expected.to eq payload.id }
+      context 'when the object has no interface_id' do
+        its([:id]) { is_expected.to eq entity.id }
         its([:interface_id]) { is_expected.to be nil }
         # its([:rowState]) { is_expected.to eq 'Added' }
       end
 
-      context 'when the payload has an interface_id' do
-        let(:payload) { build(:entity_payload, interface_id: 1) }
+      context 'when the object has an interface_id' do
+        before do
+          allow(entity)
+            .to receive(:interface_object_maps)
+            .and_return(maps)
+        end
+        let(:maps) do
+          [double(:map,
+                  organization: organization,
+                  id: entity.id,
+                  interface_id: 1 )]
+        end
 
-        its([:id]) { is_expected.to be nil }
-        its([:i21_id]) { is_expected.to eq payload.interface_id }
+        its([:id]) { is_expected.to eq entity.id }
+        its([:i21_id]) { is_expected.to eq maps[0].interface_id }
         # its([:rowState]) { is_expected.to eq 'Modified' }
       end
     end

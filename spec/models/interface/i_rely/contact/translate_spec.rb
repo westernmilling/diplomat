@@ -3,33 +3,49 @@ require 'rails_helper'
 RSpec.describe Interface::IRely::Contact::Translate,
                type: :model do
 
-  let(:payload) { build(:contact_payload) }
+  let(:context) do
+    Interface::ObjectContext.new(contact, organization)
+  end
+  let(:contact) do
+    temp = build_stubbed(:contact)
+    allow(temp).to receive(:interface_object_maps).and_return([])
+    temp
+  end
+  let(:organization) { build(:organization) }
 
   describe '.call' do
     let(:call) { translate.call }
-    let(:translate) { Interface::IRely::Contact::Translate.new(payload) }
+    let(:translate) { Interface::IRely::Contact::Translate.new(context) }
 
     describe '.output' do
       subject { call.output }
 
-      its([:name]) { is_expected.to eq payload.full_name }
-      its([:phone]) { is_expected.to eq payload.phone_number }
-      its([:fax]) { is_expected.to eq payload.fax_number }
-      its([:email]) { is_expected.to eq payload.email_address }
+      its([:name]) { is_expected.to eq contact.full_name }
+      its([:phone]) { is_expected.to eq contact.phone_number }
+      its([:fax]) { is_expected.to eq contact.fax_number }
+      its([:email]) { is_expected.to eq contact.email_address }
 
-      context 'when the payload has no interface_id' do
-        let(:payload) { build(:contact_payload, interface_id: nil) }
-
-        its([:id]) { is_expected.to eq payload.id }
+      context 'when the context has no interface_id' do
+        its([:id]) { is_expected.to eq contact.id }
         its([:interface_id]) { is_expected.to be nil }
         its([:rowState]) { is_expected.to eq 'Added' }
       end
 
-      context 'when the payload has an interface_id' do
-        let(:payload) { build(:contact_payload, interface_id: 1) }
+      context 'when the context has an interface_id' do
+        before do
+          allow(contact)
+            .to receive(:interface_object_maps)
+            .and_return(maps)
+        end
+        let(:maps) do
+          [double(:map,
+                  organization: organization,
+                  id: contact.id,
+                  interface_id: 1 )]
+        end
 
-        its([:id]) { is_expected.to be nil }
-        its([:i21_id]) { is_expected.to eq payload.interface_id }
+        its([:id]) { is_expected.to eq contact.id }
+        its([:i21_id]) { is_expected.to eq maps[0].interface_id }
         its([:rowState]) { is_expected.to eq 'Modified' }
       end
     end

@@ -3,20 +3,37 @@ module Interface
     module Entity
       class Translate < Interface::IRely::Translate
         def call
-          translate(@object) unless @object.nil?
+          translate unless @context.nil?
 
           self
         end
 
-        def translate(payload)
+        def translate
           @output.merge!(
-            name: payload.name,
-            entityNo: payload.reference,
-            contacts: translate_klass('Contact').translate(payload.contacts),
-            locations: translate_klass('Location').translate(payload.locations),
-            customer: translate_klass('Customer').translate(payload.customer)
+            name: @context.root_instance.name,
+            entityNo: @context.root_instance.reference,
+            contacts: contacts,
+            locations: locations,
+            customer: customer
           )
-            .merge!(id(payload))
+            .merge!(id)
+        end
+
+        protected
+
+        def contacts
+          translate_klass('Contact')
+            .translate(@context.child_contexts[:contacts])
+        end
+
+        def locations
+          translate_klass('Location')
+            .translate(@context.child_contexts[:locations])
+        end
+
+        def customer
+          translate_klass('Customer')
+            .translate(@context.child_contexts[:customer])
         end
 
         def translate_klass(module_translate)

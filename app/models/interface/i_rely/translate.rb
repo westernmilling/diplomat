@@ -1,8 +1,9 @@
 module Interface
   module IRely
+    # Translate the context to a vendor api compliant data structure.
     class Translate
-      def initialize(object, output = {})
-        @object = object
+      def initialize(context, output = {})
+        @context = context
         @output = output
       end
 
@@ -14,24 +15,26 @@ module Interface
         @output
       end
 
-      def self.translate(object)
-        return nil if object.nil?
+      def self.translate(context)
+        return nil if context.nil?
 
-        object = [object] unless object.is_a?(Array)
+        context = [context] unless context.is_a?(Array)
 
-        object.map { |x| new(x).call.output }
+        context.map { |x| new(x).call.output }
       end
 
       protected
 
-      def id(record)
-        return { id: record.id } if record.interface_id.nil?
+      def id
+        return { id: @context.root_instance.id } if @context.object_map.nil?
 
-        { id: record.id, i21_id: record.interface_id }
+        { id: @context.object_map.id, i21_id: @context.object_map.interface_id }
       end
 
-      def row_state(record)
-        { rowState: record.interface_id.present? ? 'Modified' : 'Added' }
+      def row_state
+        return { rowState: 'Added' } if @context.object_map.nil?
+
+        { rowState: 'Modified' }
       end
     end
   end
