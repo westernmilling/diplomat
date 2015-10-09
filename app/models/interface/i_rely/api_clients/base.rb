@@ -1,6 +1,6 @@
 module Interface
   module IRely
-    module ApiClient
+    module ApiClients
       class Base
         include HTTParty
 

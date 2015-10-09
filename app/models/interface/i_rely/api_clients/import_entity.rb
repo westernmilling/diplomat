@@ -1,6 +1,6 @@
 module Interface
   module IRely
-    module ApiClient
+    module ApiClients
       class ImportEntity < Base
         def call
           Rails.logger.debug "Posting to iRely endpoint at #{url}"
@@ -9,7 +9,7 @@ module Interface
                      .post("#{url}", body: body.to_json, headers: headers)
           Rails.logger.debug "Response from iRely endpoint was #{response}"
 
-          Result.new(response)
+          Result.new(response.parsed_response)
         end
 
         def url

@@ -1,0 +1,112 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
+    body:
+      encoding: UTF-8
+      string: '[{"id":1444259276,"entityNo":1444259276,"name":"Vandervort Inc","contacts":[{"id":1444259276,"name":"Ignacio
+        Kuhlman","phone":"(911) 152-4589 x0029","fax":"(700) 725-5168","mobile":"156-736-1194","email":"haven@ernser.biz","rowState":"Added"}],"locations":[{"id":1444259276,"name":"Vandervort
+        Inc","phone":"1-311-290-9497","fax":"1-777-069-8107","address":"90629 Leffler
+        Trafficway","city":"West Vanessaborough","state":"New Jersey","zipcode":"44104","country":"United
+        States","termsId":"Due on Receipt","rowState":"Added"}],"customer":{"creditLimit":0,"type":"Company"}}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Wed, 07 Oct 2015 23:07:53 GMT
+      Content-Length:
+      - '802'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":"Vandervort Inc","website":null,"email":null,"entityNo":"1444259276","locations":[{"name":"Vandervort
+        Inc","termsId":"Due on Receipt","address":"90629 Leffler Trafficway","city":"West
+        Vanessaborough","state":"New Jersey","zipcode":"44104","country":"United States","pricelevel":null,"id":"1444259276","i21_id":"1945","rowState":"Added"}],"contacts":[{"name":"Ignacio
+        Kuhlman","phone":"(911) 152-4589 x0029","fax":"(700) 725-5168","mobile":"156-736-1194","email":"haven@ernser.biz","id":"1444259276","i21_id":"3955","rowState":"Added"}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1444259276","i21_id":"3954"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+    http_version: 
+  recorded_at: Wed, 07 Oct 2015 23:08:00 GMT
+- request:
+    method: put
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/sync"
+    body:
+      encoding: UTF-8
+      string: '[{"id":1444259276,"entityNo":1444259276,"name":null,"contacts":[{"id":1444259276,"name":"Ignacio
+        Kuhlman","phone":"(911) 152-4589 x0029","fax":"(700) 725-5168","mobile":"156-736-1194","email":"haven@ernser.biz","rowState":"Added","i21_id":"3955"}],"locations":[{"id":1444259276,"name":"Vandervort
+        Inc","phone":"1-311-290-9497","fax":"1-777-069-8107","address":"90629 Leffler
+        Trafficway","city":"West Vanessaborough","state":"New Jersey","zipcode":"44104","country":"United
+        States","termsId":"Due on Receipt","rowState":"Added","i21_id":"1945"}],"customer":{"creditLimit":0,"type":"Company"},"i21_id":"3954"}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Wed, 07 Oct 2015 23:07:53 GMT
+      Content-Length:
+      - '677'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":null,"entityNo":"1444259276","locations":[{"name":"Vandervort
+        Inc","termsId":"Due on Receipt","address":"90629 Leffler Trafficway","city":"West
+        Vanessaborough","state":"New Jersey","zipcode":"44104","country":"United States","pricelevel":null,"id":"1444259276","i21_id":"1945","rowState":"Added"}],"contacts":[{"name":"Ignacio
+        Kuhlman","phone":"(911) 152-4589 x0029","fax":"(700) 725-5168","mobile":"156-736-1194","email":"haven@ernser.biz","id":"1444259276","i21_id":"1444259276","rowState":"Added"}],"customer":{"i21_id":null},"i21_id":"3954"}],"success":false,"message":{"statusText":[{"i21_id":"3954","name":"Should
+        not be empty"}],"status":0,"button":""}}'
+    http_version: 
+  recorded_at: Wed, 07 Oct 2015 23:08:01 GMT
+recorded_with: VCR 2.9.3

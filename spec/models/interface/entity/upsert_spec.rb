@@ -2,28 +2,27 @@ require 'rails_helper'
 
 RSpec.describe Interface::Entity::Upsert, type: :model do
   describe '#call' do
-    let(:request) { spy }
     let(:entity) { double(:entity, save!: true) }
+    let(:interface) { spy }
     let(:organization) { double(:organization) }
     let(:model) do
-      Interface::Entity::Upsert.new(entity, organization, request)
+      allow(Interface::InterfaceFactory)
+        .to receive(:build).and_return(interface)
+
+      Interface::Entity::Upsert.new(entity, organization)
     end
     subject { model.call }
 
-    describe 'request' do
-      it do
-        subject
+    it 'should call the interface' do
+      subject
 
-        expect(request).to have_received(:call)
-      end
+      expect(interface).to have_received(:call)
     end
 
-    describe 'entity' do
-      it do
-        subject
+    it 'should persist the entity' do
+      subject
 
-        expect(entity).to have_received(:save!)
-      end
+      expect(entity).to have_received(:save!)
     end
   end
 end

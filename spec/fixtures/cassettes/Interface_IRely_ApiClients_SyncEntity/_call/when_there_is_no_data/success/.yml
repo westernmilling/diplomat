@@ -1,0 +1,101 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
+    body:
+      encoding: UTF-8
+      string: '[{"id":1444255857,"reference":1444255857,"name":"Metz, Bailey and Powlowski","contacts":[{"id":1444255857,"name":"Marcus
+        Considine","phone":"235-480-5756 x47596","fax":"1-850-422-1881","mobile":"1-947-497-4833","email":"winfield@kunde.com","rowState":"Added"}],"locations":[{"id":1444255857,"name":"Metz,
+        Bailey and Powlowski","phone":"397-056-0936 x4298","fax":"1-925-308-1744","address":"9936
+        Kulas Club","city":"Jamisonstad","state":"New Jersey","zipcode":"69456","country":"United
+        States","termsId":"Due on Receipt","rowState":"Added"}],"customer":{"creditLimit":0,"type":"Company"}}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Wed, 07 Oct 2015 22:10:51 GMT
+      Content-Length:
+      - '36'
+    body:
+      encoding: UTF-8
+      string: '{"Message":"An error has occurred."}'
+    http_version: 
+  recorded_at: Wed, 07 Oct 2015 22:10:57 GMT
+- request:
+    method: put
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/sync"
+    body:
+      encoding: UTF-8
+      string: "[{}]"
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Wed, 07 Oct 2015 22:10:51 GMT
+      Content-Length:
+      - '36'
+    body:
+      encoding: UTF-8
+      string: '{"Message":"An error has occurred."}'
+    http_version: 
+  recorded_at: Wed, 07 Oct 2015 22:10:58 GMT
+recorded_with: VCR 2.9.3

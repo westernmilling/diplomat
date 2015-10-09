@@ -1,0 +1,106 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
+    body:
+      encoding: UTF-8
+      string: '[{"id":1444255858,"reference":1444255858,"name":"Bauch Group","contacts":[{"id":1444255858,"name":"Mrs.
+        Tate Smith","phone":"1-942-535-8929 x7943","fax":"1-272-961-2518","mobile":"(323)
+        728-4193","email":"oswaldo_hirthe@hermanngerhold.name","rowState":"Added"}],"locations":[{"id":1444255858,"name":"Bauch
+        Group","phone":"(867) 373-2325 x535","fax":"342-955-7773 x07238","address":"351
+        Shields Dale","city":"Jackelinemouth","state":"New Mexico","zipcode":"54331","country":"United
+        States","termsId":"Due on Receipt","rowState":"Added"}],"customer":{"creditLimit":0,"type":"Company"}}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Wed, 07 Oct 2015 22:10:52 GMT
+      Content-Length:
+      - '795'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":"Bauch Group","website":null,"email":null,"entityNo":null,"locations":[{"name":"Bauch
+        Group","termsId":"Due on Receipt","address":"351 Shields Dale","city":"Jackelinemouth","state":"New
+        Mexico","zipcode":"54331","country":"United States","pricelevel":null,"id":"1444255858","i21_id":"1935","rowState":"Added"}],"contacts":[{"name":"Mrs.
+        Tate Smith","phone":"1-942-535-8929 x7943","fax":"1-272-961-2518","mobile":"(323)
+        728-4193","email":"oswaldo_hirthe@hermanngerhold.name","id":"1444255858","i21_id":"3935","rowState":"Added"}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1444255858","i21_id":"3934"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+    http_version: 
+  recorded_at: Wed, 07 Oct 2015 22:10:58 GMT
+- request:
+    method: put
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/sync"
+    body:
+      encoding: UTF-8
+      string: "[{}]"
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Wed, 07 Oct 2015 22:10:52 GMT
+      Content-Length:
+      - '36'
+    body:
+      encoding: UTF-8
+      string: '{"Message":"An error has occurred."}'
+    http_version: 
+  recorded_at: Wed, 07 Oct 2015 22:10:59 GMT
+recorded_with: VCR 2.9.3
