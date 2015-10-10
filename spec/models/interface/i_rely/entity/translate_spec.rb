@@ -33,7 +33,7 @@ RSpec.describe Interface::IRely::Entity::Translate,
     stub_data[:interface_object_maps] = []
     double(Location, stub_data)
   end
-  let(:graph) { { :contacts => nil, :locations => nil, :customer => nil } }
+  let(:graph) { { contacts: nil, locations: nil, customer: nil } }
   let(:organization) { build(:organization) }
 
   describe '.call' do
@@ -65,7 +65,7 @@ RSpec.describe Interface::IRely::Entity::Translate,
           [double(:map,
                   organization: organization,
                   id: entity.id,
-                  interface_id: 1 )]
+                  interface_id: 1)]
         end
 
         its([:id]) { is_expected.to eq entity.id }
@@ -81,12 +81,12 @@ RSpec.describe Interface::IRely::Entity::Translate,
         .to receive(:new)
         .and_return(spy)
 
-      Interface::IRely::Entity::Translate.translate(payload)
+      Interface::IRely::Entity::Translate.translate(context)
     end
     subject { translate }
 
     context 'when there is one item to translate' do
-      let(:payload) { build(:entity_payload) }
+      let(:context) { double }
 
       its(:size) { is_expected.to eq 1 }
       it 'should build one translation' do
@@ -98,14 +98,14 @@ RSpec.describe Interface::IRely::Entity::Translate,
     end
 
     context 'when there is more than one item to translate' do
-      let(:payload) { build_list(:entity_payload, 2) }
+      let(:context) { [double, double] }
 
-      its(:size) { is_expected.to eq payload.size }
+      its(:size) { is_expected.to eq context.size }
       it 'should build the same number of translations as items' do
         subject
 
         expect(Interface::IRely::Entity::Translate)
-          .to have_received(:new).exactly(payload.size).times
+          .to have_received(:new).exactly(context.size).times
       end
     end
   end

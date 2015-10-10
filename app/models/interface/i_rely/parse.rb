@@ -35,9 +35,6 @@ module Interface
             version: @context.root_instance._v
           )
       end
-
-      protected
-
     end
   end
 end

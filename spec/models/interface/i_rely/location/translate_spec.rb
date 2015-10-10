@@ -47,7 +47,7 @@ RSpec.describe Interface::IRely::Location::Translate,
           [double(:map,
                   organization: organization,
                   id: location.id,
-                  interface_id: 1 )]
+                  interface_id: 1)]
         end
 
         its([:id]) { is_expected.to be location.id }
@@ -66,12 +66,12 @@ RSpec.describe Interface::IRely::Location::Translate,
         .to receive(:new)
         .and_return(spy)
 
-      Interface::IRely::Location::Translate.translate(payload)
+      Interface::IRely::Location::Translate.translate(context)
     end
     subject { translate }
 
     context 'when there is one item to translate' do
-      let(:payload) { build(:location_payload) }
+      let(:context) { double }
 
       its(:size) { is_expected.to eq 1 }
       it 'should build one translation' do
@@ -83,14 +83,14 @@ RSpec.describe Interface::IRely::Location::Translate,
     end
 
     context 'when there is more than one item to translate' do
-      let(:payload) { build_list(:location_payload, 2) }
+      let(:context) { [double, double] }
 
-      its(:size) { is_expected.to eq payload.size }
+      its(:size) { is_expected.to eq context.size }
       it 'should build the same number of translations as items' do
         subject
 
         expect(Interface::IRely::Location::Translate)
-          .to have_received(:new).exactly(payload.size).times
+          .to have_received(:new).exactly(context.size).times
       end
     end
   end

@@ -1,6 +1,4 @@
 module Interface
-  class Result < Struct.new(:status, :response)
-  end
   module Entity
     class Request
       def initialize(context, interface = nil)
@@ -37,18 +35,6 @@ module Interface
       # def build_payload
       #   Payloads::EntityPayload.build_one(@context)
       # end
-    end
-
-    # TODO: Proof of concept?
-    class Map
-      def initialize(interfaceable, payload)
-        @interfaceable = interfaceable
-        @payload = payload
-      end
-
-      def call
-
-      end
     end
   end
 end

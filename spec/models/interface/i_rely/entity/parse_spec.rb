@@ -30,7 +30,7 @@ RSpec.describe Interface::IRely::Entity::Parse,
     allow(stubbed).to receive(:interface_object_maps).and_return([])
     stubbed
   end
-  let(:graph) { { :contacts => nil, :locations => nil, :customer => nil } }
+  let(:graph) { { contacts: nil, locations: nil, customer: nil } }
   let(:organization) { build(:organization) }
   let(:response) do
     {

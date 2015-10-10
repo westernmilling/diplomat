@@ -24,14 +24,13 @@ module Interface
 
     def build_one(item, graph)
       Interface::ObjectContext
-        .new(item, self.organization, graph)
+      .new(item, self.organization, graph)
     end
 
     def object_map
       @object_map ||= root_instance
-        .interface_object_maps
-        .select { |x| x.organization == organization }
-        .first
+                      .interface_object_maps
+                      .detect { |x| x.organization == organization }
     end
   end
 end

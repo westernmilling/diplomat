@@ -3,7 +3,7 @@
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-  config.filter_run_excluding :ignore => true
+  config.filter_run_excluding ignore: true
 
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
