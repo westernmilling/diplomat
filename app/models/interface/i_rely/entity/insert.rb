@@ -1,32 +1,41 @@
 module Interface
   module IRely
     module Entity
-      class Insert < Interface::IRely::Base
+      class Insert #< Interface::IRely::Base
+        def initialize(context, client = nil)
+          @context = context
+          @client = client
+        end
+
         def call
-          Rails.logger.debug "Posting to iRely endpoint at #{url}"
-          response = self
-                     .class
-                     .post("#{url}", body: body.to_json, headers: headers)
-          Rails.logger.debug "Response from iRely endpoint was #{response}"
+          result = client.call
 
-          parse_response response.to_snake_keys
+
         end
 
-        def body
-          return [{}] if @data.nil?
-
-          Interface::IRely::Entity::Translate.translate([@data])
+        def client
+          @client ||= Interface::IRely::ApiClients::ImportEntity
+                      .new(base_url, credentials, data)
         end
 
-        def url
-          "#{@base_url}/entitymanagement/api/entity/import"
+        def base_url
+          @base_url ||= @context.organization.integration.address
         end
 
-        def parse_response(response)
-          Interface::IRely::Entity::Parse.new(@data, response).call
-
-          { success: false }.merge(response)
+        def credentials
+          @credentials ||= Interface::IRely::CredentialParser
+            .build(@context.organization.integration.credentials)
         end
+
+        def data
+          @data ||= Translate.translate(@context)
+        end
+
+        # def parse_response(response)
+        #   Interface::IRely::Entity::Parse.new(@data, response).call
+        #
+        #   { success: false }.merge(response)
+        # end
       end
     end
   end

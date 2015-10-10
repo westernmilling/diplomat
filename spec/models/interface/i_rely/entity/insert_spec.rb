@@ -3,11 +3,17 @@ require 'rails_helper'
 RSpec.describe Interface::IRely::Entity::Insert, type: :model, vcr: true do
   describe '.call' do
     before do
-      # Mock the ApiClients::ImportEntity and result
+      client = double(:import_entity)
+      # allow(Interface::IRely::ApiClients::ImportEntity)
+      #   .to receive(:new).and_return(client)
+      allow(client).to receive(:call).and_return(result)
     end
-    let(:instance) { described_class.new(context) }
+    let(:call) { instance.call }
+    let(:instance) { described_class.new(context, client) }
     let(:context) { ObjectContext.new(entity, organization) }
-    let(:result) { instance.call }
+    let(:result) do
+
+    end
 
     context 'when the api call is successful' do
       # Updates the object in context, success log and maps

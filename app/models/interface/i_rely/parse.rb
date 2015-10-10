@@ -1,8 +1,9 @@
 module Interface
   module IRely
     class Parse
-      def initialize(payload, response = {})
-        @payload = payload
+      # TODO: Test the base class, create anon class in spec to inherit from it
+      def initialize(context, response = {})
+        @context = context
         @response = response
       end
 
@@ -15,20 +16,26 @@ module Interface
       end
 
       def parse
-        @payload.interface_id = @response[:i21_id]
+        build_map if @context.object_map.nil?
+
+        @context.object_map.interface_id = @response[:i21_id]
+        @context.object_map.version = @context.root_instance._v
       end
 
-      def payload
-        @payload
+      def context
+        @context
       end
 
-      # def self.parse(payload, response)
-      #   return nil if payload.nil?
-      #
-      #   payload = [payload] unless payload.is_a?(Array)
-      #
-      #   payload.map { |x| new(payload).call.output }
-      # end
+      def build_map
+        @context.root_instance.interface_object_maps <<
+          Interface::ObjectMap.new(
+            interfaceable: @context.root_instance,
+            integration: @context.organization.integration,
+            organization: @context.organization,
+            version: @context.root_instance._v
+          )
+      end
+
       protected
 
     end

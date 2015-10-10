@@ -7,7 +7,6 @@ module Interface
       end
 
       def call
-        # @request.call
         @interface.call
 
         persist!
@@ -22,10 +21,6 @@ module Interface
       def build_context(entity, organization)
         Interface::ObjectContext.new(entity, organization)
       end
-
-      # def build_request
-      #   EntityRequest.new(context)
-      # end
 
       def persist!
         @context.object.save!
