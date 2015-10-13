@@ -5,10 +5,10 @@ http_interactions:
     uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
     body:
       encoding: UTF-8
-      string: '[{"id":1444255857,"reference":1444255857,"name":"Metz, Bailey and Powlowski","contacts":[{"id":1444255857,"name":"Marcus
-        Considine","phone":"235-480-5756 x47596","fax":"1-850-422-1881","mobile":"1-947-497-4833","email":"winfield@kunde.com","rowState":"Added"}],"locations":[{"id":1444255857,"name":"Metz,
-        Bailey and Powlowski","phone":"397-056-0936 x4298","fax":"1-925-308-1744","address":"9936
-        Kulas Club","city":"Jamisonstad","state":"New Jersey","zipcode":"69456","country":"United
+      string: '[{"id":1444678766,"entityNo":1444678766,"name":"Gibson LLC","contacts":[{"id":1444678766,"name":"Mr.
+        Jovan Stark","phone":"1-981-636-7528","fax":"778.396.0920 x25733","mobile":"859.816.5430","email":"lila_stoltenberg@schiller.info","rowState":"Added"}],"locations":[{"id":1444678766,"name":"Gibson
+        LLC","phone":"1-501-301-9646","fax":"405.885.9413 x483","address":"23200 Emmanuel
+        Valley","city":"Murrayton","state":"New Mexico","zipcode":"98128-2716","country":"United
         States","termsId":"Due on Receipt","rowState":"Added"}],"customer":{"creditLimit":0,"type":"Company"}}]'
     headers:
       Content-Type:
@@ -19,8 +19,8 @@ http_interactions:
       - "<IRELY_COMPANY>"
   response:
     status:
-      code: 500
-      message: Internal Server Error
+      code: 202
+      message: Accepted
     headers:
       Cache-Control:
       - no-cache
@@ -43,14 +43,17 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET, POST, PUT, DELETE, OPTIONS
       Date:
-      - Wed, 07 Oct 2015 22:10:51 GMT
+      - Mon, 12 Oct 2015 19:39:27 GMT
       Content-Length:
-      - '36'
+      - '799'
     body:
       encoding: UTF-8
-      string: '{"Message":"An error has occurred."}'
+      string: '{"data":[{"name":"Gibson LLC","website":null,"email":null,"entityNo":"1444678766","locations":[{"name":"Gibson
+        LLC","termsId":"Due on Receipt","address":"23200 Emmanuel Valley","city":"Murrayton","state":"New
+        Mexico","zipcode":"98128-2716","country":"United States","pricelevel":null,"id":"1444678766","i21_id":"1959","rowState":"Added"}],"contacts":[{"name":"Mr.
+        Jovan Stark","phone":"1-981-636-7528","fax":"778.396.0920 x25733","mobile":"859.816.5430","email":"lila_stoltenberg@schiller.info","id":"1444678766","i21_id":"3981","rowState":"Added"}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1444678766","i21_id":"3980"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
     http_version: 
-  recorded_at: Wed, 07 Oct 2015 22:10:57 GMT
+  recorded_at: Mon, 12 Oct 2015 19:39:30 GMT
 - request:
     method: put
     uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/sync"
@@ -90,12 +93,12 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET, POST, PUT, DELETE, OPTIONS
       Date:
-      - Wed, 07 Oct 2015 22:10:51 GMT
+      - Mon, 12 Oct 2015 19:39:31 GMT
       Content-Length:
       - '36'
     body:
       encoding: UTF-8
       string: '{"Message":"An error has occurred."}'
     http_version: 
-  recorded_at: Wed, 07 Oct 2015 22:10:58 GMT
+  recorded_at: Mon, 12 Oct 2015 19:39:34 GMT
 recorded_with: VCR 2.9.3

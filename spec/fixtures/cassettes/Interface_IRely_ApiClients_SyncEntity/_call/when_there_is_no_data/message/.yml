@@ -5,11 +5,10 @@ http_interactions:
     uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
     body:
       encoding: UTF-8
-      string: '[{"id":1444255858,"reference":1444255858,"name":"Bauch Group","contacts":[{"id":1444255858,"name":"Mrs.
-        Tate Smith","phone":"1-942-535-8929 x7943","fax":"1-272-961-2518","mobile":"(323)
-        728-4193","email":"oswaldo_hirthe@hermanngerhold.name","rowState":"Added"}],"locations":[{"id":1444255858,"name":"Bauch
-        Group","phone":"(867) 373-2325 x535","fax":"342-955-7773 x07238","address":"351
-        Shields Dale","city":"Jackelinemouth","state":"New Mexico","zipcode":"54331","country":"United
+      string: '[{"id":1444678899,"entityNo":1444678899,"name":"Donnelly LLC","contacts":[{"id":1444678899,"name":"Tatyana
+        Gerlach","phone":"(869) 452-1240","fax":"(593) 157-7458","mobile":"1-163-908-1910","email":"drew.stehr@wiegand.org","rowState":"Added"}],"locations":[{"id":1444678899,"name":"Donnelly
+        LLC","phone":"212-606-8480 x4936","fax":"701-182-8557 x16035","address":"390
+        Lucienne Mews","city":"Cormierside","state":"Michigan","zipcode":"58197-6311","country":"United
         States","termsId":"Due on Receipt","rowState":"Added"}],"customer":{"creditLimit":0,"type":"Company"}}]'
     headers:
       Content-Type:
@@ -44,18 +43,17 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET, POST, PUT, DELETE, OPTIONS
       Date:
-      - Wed, 07 Oct 2015 22:10:52 GMT
+      - Mon, 12 Oct 2015 19:41:40 GMT
       Content-Length:
-      - '795'
+      - '788'
     body:
       encoding: UTF-8
-      string: '{"data":[{"name":"Bauch Group","website":null,"email":null,"entityNo":null,"locations":[{"name":"Bauch
-        Group","termsId":"Due on Receipt","address":"351 Shields Dale","city":"Jackelinemouth","state":"New
-        Mexico","zipcode":"54331","country":"United States","pricelevel":null,"id":"1444255858","i21_id":"1935","rowState":"Added"}],"contacts":[{"name":"Mrs.
-        Tate Smith","phone":"1-942-535-8929 x7943","fax":"1-272-961-2518","mobile":"(323)
-        728-4193","email":"oswaldo_hirthe@hermanngerhold.name","id":"1444255858","i21_id":"3935","rowState":"Added"}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1444255858","i21_id":"3934"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+      string: '{"data":[{"name":"Donnelly LLC","website":null,"email":null,"entityNo":"1444678899","locations":[{"name":"Donnelly
+        LLC","termsId":"Due on Receipt","address":"390 Lucienne Mews","city":"Cormierside","state":"Michigan","zipcode":"58197-6311","country":"United
+        States","pricelevel":null,"id":"1444678899","i21_id":"1961","rowState":"Added"}],"contacts":[{"name":"Tatyana
+        Gerlach","phone":"(869) 452-1240","fax":"(593) 157-7458","mobile":"1-163-908-1910","email":"drew.stehr@wiegand.org","id":"1444678899","i21_id":"3985","rowState":"Added"}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1444678899","i21_id":"3984"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
     http_version: 
-  recorded_at: Wed, 07 Oct 2015 22:10:58 GMT
+  recorded_at: Mon, 12 Oct 2015 19:41:43 GMT
 - request:
     method: put
     uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/sync"
@@ -95,12 +93,12 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET, POST, PUT, DELETE, OPTIONS
       Date:
-      - Wed, 07 Oct 2015 22:10:52 GMT
+      - Mon, 12 Oct 2015 19:41:40 GMT
       Content-Length:
       - '36'
     body:
       encoding: UTF-8
       string: '{"Message":"An error has occurred."}'
     http_version: 
-  recorded_at: Wed, 07 Oct 2015 22:10:59 GMT
+  recorded_at: Mon, 12 Oct 2015 19:41:43 GMT
 recorded_with: VCR 2.9.3

@@ -1,0 +1,117 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
+    body:
+      encoding: UTF-8
+      string: '[{"id":1444679773,"entityNo":1444679773,"name":"Kovacek, Aufderhar
+        and Buckridge","contacts":[{"id":1444679773,"name":"Quincy Smitham","phone":"720.000.3241
+        x0723","fax":"(310) 369-5550","mobile":"223.835.7124","email":"rhianna.padberg@orn.biz","rowState":"Added"}],"locations":[{"id":1444679773,"name":"Kovacek,
+        Aufderhar and Buckridge","phone":"519.614.1167 x7438","fax":"218-702-9445
+        x089","address":"639 Terence Square","city":"South Tremainemouth","state":"Montana","zipcode":"63766-6047","country":"United
+        States","termsId":"Due on Receipt","rowState":"Added"}],"customer":{"creditLimit":0,"type":"Company"}}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Mon, 12 Oct 2015 19:56:15 GMT
+      Content-Length:
+      - '838'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":"Kovacek, Aufderhar and Buckridge","website":null,"email":null,"entityNo":"1444679773","locations":[{"name":"Kovacek,
+        Aufderhar and Buckridge","termsId":"Due on Receipt","address":"639 Terence
+        Square","city":"South Tremainemouth","state":"Montana","zipcode":"63766-6047","country":"United
+        States","pricelevel":null,"id":"1444679773","i21_id":"1966","rowState":"Added"}],"contacts":[{"name":"Quincy
+        Smitham","phone":"720.000.3241 x0723","fax":"(310) 369-5550","mobile":"223.835.7124","email":"rhianna.padberg@orn.biz","id":"1444679773","i21_id":"3996","rowState":"Added"}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1444679773","i21_id":"3995"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+    http_version: 
+  recorded_at: Mon, 12 Oct 2015 19:56:17 GMT
+- request:
+    method: put
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/sync"
+    body:
+      encoding: UTF-8
+      string: '[{"id":1444679773,"entityNo":1444679773,"name":"Kovacek, Aufderhar
+        and Buckridge","contacts":[{"id":1444679773,"name":"Quincy Smitham","phone":"720.000.3241
+        x0723","fax":"(310) 369-5550","mobile":"223.835.7124","email":"rhianna.padberg@orn.biz","rowState":"Modified","i21_id":"3996"},{"id":1444679777,"name":"Lizeth
+        Runolfsdottir","phone":"376-435-6377","fax":"1-465-692-0199","mobile":"1-575-379-1598","email":"osbaldo@wisokycorwin.com","rowState":"Added"}],"locations":[{"id":1444679773,"name":"Kovacek,
+        Aufderhar and Buckridge","phone":"519.614.1167 x7438","fax":"218-702-9445
+        x089","address":"639 Terence Square","city":"South Tremainemouth","state":"Montana","zipcode":"63766-6047","country":"United
+        States","termsId":"Due on Receipt","rowState":"Modified","i21_id":"1966"}],"customer":{"creditLimit":0,"type":"Company"},"i21_id":"3995"}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Mon, 12 Oct 2015 19:56:36 GMT
+      Content-Length:
+      - '821'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":"Kovacek, Aufderhar and Buckridge","entityNo":"1444679773","locations":[{"name":"Kovacek,
+        Aufderhar and Buckridge","termsId":"Due on Receipt","address":"639 Terence
+        Square","city":"South Tremainemouth","state":"Montana","zipcode":"63766-6047","country":"United
+        States","i21_id":"1966","rowState":"Modified"}],"contacts":[{"name":"Quincy
+        Smitham","phone":"720.000.3241 x0723","fax":"(310) 369-5550","mobile":"223.835.7124","email":"rhianna.padberg@orn.biz","i21_id":"3996","rowState":"Modified"},{"name":"Lizeth
+        Runolfsdottir","phone":"376-435-6377","fax":"1-465-692-0199","mobile":"1-575-379-1598","email":"osbaldo@wisokycorwin.com","id":"1444679777","i21_id":"3997","rowState":"Added"}],"customer":{"i21_id":null},"i21_id":"3995"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+    http_version: 
+  recorded_at: Mon, 12 Oct 2015 19:56:38 GMT
+recorded_with: VCR 2.9.3

@@ -10,7 +10,9 @@ module Interface
         def call
           result = client.call
 
+          parse_response result.hash_response
 
+          log result
         end
 
         def client
@@ -31,11 +33,21 @@ module Interface
           @data ||= Translate.translate(@context)
         end
 
-        # def parse_response(response)
-        #   Interface::IRely::Entity::Parse.new(@data, response).call
-        #
-        #   { success: false }.merge(response)
-        # end
+        def parse_response(response)
+          Parse.new(@context, response).call
+        end
+
+        def log(result)
+          @context.root_instance.interface_logs << Interface::Log.new(
+            action: :insert,
+            integration: @context.organization.integration,
+            interfaceable: @context.root_instance,
+            interface_response: result.raw_response.to_s,
+            organization: @context.organization,
+            status: result.success ? :success : :failure,
+            version: @context.root_instance._v
+          )
+        end
       end
     end
   end

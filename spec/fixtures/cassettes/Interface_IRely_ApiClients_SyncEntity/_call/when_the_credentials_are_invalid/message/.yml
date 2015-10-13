@@ -5,10 +5,10 @@ http_interactions:
     uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
     body:
       encoding: UTF-8
-      string: '[{"id":1444255668,"reference":1444255668,"name":"Williamson LLC","contacts":[{"id":1444255668,"name":"Dustin
-        Langworth","phone":"1-149-762-2386 x967","fax":"752.860.4920","mobile":"1-718-277-0082","email":"ruel.kerluke@heathcotecormier.biz","rowState":"Added"}],"locations":[{"id":1444255668,"name":"Williamson
-        LLC","phone":"(273) 527-3937 x592","fax":"526-216-7424 x993","address":"266
-        Sabrina Court","city":"North Eulaliashire","state":"Florida","zipcode":"18653","country":"United
+      string: '[{"id":1444678708,"entityNo":1444678708,"name":"Hirthe-Koelpin","contacts":[{"id":1444678708,"name":"Miss
+        Whitney Sporer","phone":"(629) 512-0702 x0229","fax":"701.887.8403","mobile":"(214)
+        562-2000","email":"irma_stroman@oreilly.name","rowState":"Added"}],"locations":[{"id":1444678708,"name":"Hirthe-Koelpin","phone":"540.045.6034
+        x30044","fax":"818-038-7488 x19055","address":"155 Doyle Divide","city":"Millsstad","state":"Oklahoma","zipcode":"35806","country":"United
         States","termsId":"Due on Receipt","rowState":"Added"}],"customer":{"creditLimit":0,"type":"Company"}}]'
     headers:
       Content-Type:
@@ -43,17 +43,18 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET, POST, PUT, DELETE, OPTIONS
       Date:
-      - Wed, 07 Oct 2015 22:07:41 GMT
+      - Mon, 12 Oct 2015 19:38:34 GMT
       Content-Length:
-      - '800'
+      - '795'
     body:
       encoding: UTF-8
-      string: '{"data":[{"name":"Williamson LLC","website":null,"email":null,"entityNo":null,"locations":[{"name":"Williamson
-        LLC","termsId":"Due on Receipt","address":"266 Sabrina Court","city":"North
-        Eulaliashire","state":"Florida","zipcode":"18653","country":"United States","pricelevel":null,"id":"1444255668","i21_id":"1933","rowState":"Added"}],"contacts":[{"name":"Dustin
-        Langworth","phone":"1-149-762-2386 x967","fax":"752.860.4920","mobile":"1-718-277-0082","email":"ruel.kerluke@heathcotecormier.biz","id":"1444255668","i21_id":"3931","rowState":"Added"}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1444255668","i21_id":"3930"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+      string: '{"data":[{"name":"Hirthe-Koelpin","website":null,"email":null,"entityNo":"1444678708","locations":[{"name":"Hirthe-Koelpin","termsId":"Due
+        on Receipt","address":"155 Doyle Divide","city":"Millsstad","state":"Oklahoma","zipcode":"35806","country":"United
+        States","pricelevel":null,"id":"1444678708","i21_id":"1958","rowState":"Added"}],"contacts":[{"name":"Miss
+        Whitney Sporer","phone":"(629) 512-0702 x0229","fax":"701.887.8403","mobile":"(214)
+        562-2000","email":"irma_stroman@oreilly.name","id":"1444678708","i21_id":"3979","rowState":"Added"}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1444678708","i21_id":"3978"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
     http_version: 
-  recorded_at: Wed, 07 Oct 2015 22:07:49 GMT
+  recorded_at: Mon, 12 Oct 2015 19:38:37 GMT
 - request:
     method: put
     uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/sync"
@@ -93,12 +94,12 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET, POST, PUT, DELETE, OPTIONS
       Date:
-      - Wed, 07 Oct 2015 22:07:43 GMT
+      - Mon, 12 Oct 2015 19:38:34 GMT
       Content-Length:
       - '61'
     body:
       encoding: UTF-8
       string: '{"Message":"Authorization has been denied for this request."}'
     http_version: 
-  recorded_at: Wed, 07 Oct 2015 22:07:49 GMT
+  recorded_at: Mon, 12 Oct 2015 19:38:37 GMT
 recorded_with: VCR 2.9.3

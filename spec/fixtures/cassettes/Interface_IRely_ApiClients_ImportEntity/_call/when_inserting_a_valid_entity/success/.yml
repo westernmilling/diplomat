@@ -5,10 +5,10 @@ http_interactions:
     uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
     body:
       encoding: UTF-8
-      string: '[{"id":1444506301,"entityNo":1444506301,"name":"Hilll, Lowe and Mante","contacts":[{"id":1444506301,"name":"Zakary
-        Hickle","phone":"319-146-9771","fax":"(864) 707-1288 x871","mobile":"611-591-4086","email":"kariane@funkmitchell.biz","rowState":"Added"}],"locations":[{"id":1444506301,"name":"Hilll,
-        Lowe and Mante","phone":"1-144-708-4701 x3759","fax":"1-611-455-7383 x2020","address":"588
-        Conroy River","city":"Effertzland","state":"Alabama","zipcode":"29229-8999","country":"United
+      string: '[{"id":1444677316,"entityNo":1444677316,"name":"Strosin and Sons","contacts":[{"id":1444677316,"name":"Reymundo
+        Greenholt","phone":"730.612.4326","fax":"407-639-0056 x38815","mobile":"290-596-2054","email":"ruell@cummings.net","rowState":"Added"}],"locations":[{"id":1444677316,"name":"Strosin
+        and Sons","phone":"813-669-3561","fax":"1-514-713-7146 x1691","address":"291
+        Willow Road","city":"West Jovanyhaven","state":"Wisconsin","zipcode":"24953","country":"United
         States","termsId":"Due on Receipt","rowState":"Added"}],"customer":{"creditLimit":0,"type":"Company"}}]'
     headers:
       Content-Type:
@@ -43,15 +43,15 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET, POST, PUT, DELETE, OPTIONS
       Date:
-      - Sat, 10 Oct 2015 19:44:58 GMT
+      - Mon, 12 Oct 2015 19:15:18 GMT
       Content-Length:
-      - '805'
+      - '795'
     body:
       encoding: UTF-8
-      string: '{"data":[{"name":"Hilll, Lowe and Mante","website":null,"email":null,"entityNo":"1444506301","locations":[{"name":"Hilll,
-        Lowe and Mante","termsId":"Due on Receipt","address":"588 Conroy River","city":"Effertzland","state":"Alabama","zipcode":"29229-8999","country":"United
-        States","pricelevel":null,"id":"1444506301","i21_id":"1952","rowState":"Added"}],"contacts":[{"name":"Zakary
-        Hickle","phone":"319-146-9771","fax":"(864) 707-1288 x871","mobile":"611-591-4086","email":"kariane@funkmitchell.biz","id":"1444506301","i21_id":"3967","rowState":"Added"}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1444506301","i21_id":"3966"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+      string: '{"data":[{"name":"Strosin and Sons","website":null,"email":null,"entityNo":"1444677316","locations":[{"name":"Strosin
+        and Sons","termsId":"Due on Receipt","address":"291 Willow Road","city":"West
+        Jovanyhaven","state":"Wisconsin","zipcode":"24953","country":"United States","pricelevel":null,"id":"1444677316","i21_id":"1955","rowState":"Added"}],"contacts":[{"name":"Reymundo
+        Greenholt","phone":"730.612.4326","fax":"407-639-0056 x38815","mobile":"290-596-2054","email":"ruell@cummings.net","id":"1444677316","i21_id":"3973","rowState":"Added"}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"1444677316","i21_id":"3972"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
     http_version: 
-  recorded_at: Sat, 10 Oct 2015 19:45:09 GMT
+  recorded_at: Mon, 12 Oct 2015 19:15:21 GMT
 recorded_with: VCR 2.9.3
