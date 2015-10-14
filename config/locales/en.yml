@@ -69,6 +69,10 @@ en:
     success: 'The Entity was inserted'
   entity_update:
     success: 'The Entity was updated'
+  process_entity_organizations_upsert:
+    failure:
+      no_organization: 'The entity is not mapped to an Organization'
+    success: 'Finished processing the entity for all related organizations'
   process_customer_organizations_upsert:
     log:
       message:

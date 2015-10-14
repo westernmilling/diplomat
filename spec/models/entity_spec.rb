@@ -6,6 +6,8 @@ RSpec.describe Entity, type: :model do
   it { is_expected.to belong_to(:parent_entity) }
   it { is_expected.to have_many(:contacts) }
   it { is_expected.to have_many(:locations) }
+  it { is_expected.to have_many(:organization_entities) }
+  it { is_expected.to have_many(:organizations) }
   it { is_expected.to have_one(:contact) }
   it { is_expected.to validate_presence_of(:entity_type) }
   it { is_expected.to validate_presence_of(:cached_long_name) }
@@ -54,5 +56,18 @@ RSpec.describe Entity, type: :model do
     subject { entity.to_s }
 
     it { is_expected.to eq(entity.name) }
+  end
+
+  describe 'after_commit' do
+    before do
+      subject.run_callbacks(:commit)
+    end
+    subject { entity }
+    let(:entity) { create(:entity) }
+
+    it do
+      expect(EntityUpsertWorker)
+        .to have_enqueued_job(entity.id, entity._v)
+    end
   end
 end

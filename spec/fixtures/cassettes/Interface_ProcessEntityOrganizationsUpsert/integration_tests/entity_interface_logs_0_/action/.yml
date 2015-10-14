@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
+    body:
+      encoding: UTF-8
+      string: '[{"name":"Streich LLC","entityNo":"86713270","contacts":[{"name":"Mr.
+        Marlee Donnelly","phone":"169.380.6778","fax":"998-840-1737 x678","mobile":"(422)
+        464-9777","email":"myrtle@cronin.net","id":4,"rowState":"Added"}],"locations":[{"name":"Streich
+        LLC","phone":"572.907.9292","fax":"1-242-279-4854","address":"115 Marty Underpass","city":"Metaland","state":"Iowa","zipcode":"68781-9762","country":"United
+        States","termsId":"Due on Receipt","id":7,"rowState":"Added"},{"name":"Streich
+        LLC","phone":"280.257.6823 x988","fax":"1-843-064-1829","address":"9211 Jakubowski
+        Divide","city":"New Colby","state":"Texas","zipcode":"67789-4908","country":"United
+        States","termsId":"Due on Receipt","id":8,"rowState":"Added"}],"customer":{"creditLimit":0,"type":"Person"},"id":4}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Tue, 13 Oct 2015 22:23:40 GMT
+      Content-Length:
+      - '982'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":"Streich LLC","website":null,"email":null,"entityNo":"86713270","locations":[{"name":"Streich
+        LLC","termsId":"Due on Receipt","address":"115 Marty Underpass","city":"Metaland","state":"Iowa","zipcode":"68781-9762","country":"United
+        States","pricelevel":null,"id":"7","i21_id":"1991","rowState":"Added"},{"name":"Streich
+        LLC","termsId":"Due on Receipt","address":"9211 Jakubowski Divide","city":"New
+        Colby","state":"Texas","zipcode":"67789-4908","country":"United States","pricelevel":null,"id":"8","i21_id":"1992","rowState":"Added"}],"contacts":[{"name":"Mr.
+        Marlee Donnelly","phone":"169.380.6778","fax":"998-840-1737 x678","mobile":"(422)
+        464-9777","email":"myrtle@cronin.net","id":"4","i21_id":"4023","rowState":"Added"}],"customer":{"number":null,"type":"Person","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"4","i21_id":"4022"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+    http_version: 
+  recorded_at: Tue, 13 Oct 2015 22:23:45 GMT
+recorded_with: VCR 2.9.3

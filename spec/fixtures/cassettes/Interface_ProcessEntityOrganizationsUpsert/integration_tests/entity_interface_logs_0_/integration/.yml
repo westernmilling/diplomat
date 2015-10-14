@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
+    body:
+      encoding: UTF-8
+      string: '[{"name":"Upton and Sons","entityNo":"48307722","contacts":[{"name":"Kristopher
+        Steuber","phone":"1-931-954-2611","fax":"946-533-8636","mobile":"451-306-9001","email":"bernardo@bergstrom.info","id":6,"rowState":"Added"}],"locations":[{"name":"Upton
+        and Sons","phone":"(994) 774-3100","fax":"402-927-4310","address":"47507 Kozey
+        Rapids","city":"Brigitteshire","state":"Michigan","zipcode":"16810","country":"United
+        States","termsId":"Due on Receipt","id":11,"rowState":"Added"},{"name":"Upton
+        and Sons","phone":"(164) 728-0966","fax":"326-078-4157 x5176","address":"8741
+        Denesik Island","city":"Lamontstad","state":"Montana","zipcode":"26650","country":"United
+        States","termsId":"Due on Receipt","id":12,"rowState":"Added"}],"customer":{"creditLimit":0,"type":"Person"},"id":6}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Tue, 13 Oct 2015 22:23:41 GMT
+      Content-Length:
+      - '991'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":"Upton and Sons","website":null,"email":null,"entityNo":"48307722","locations":[{"name":"Upton
+        and Sons","termsId":"Due on Receipt","address":"47507 Kozey Rapids","city":"Brigitteshire","state":"Michigan","zipcode":"16810","country":"United
+        States","pricelevel":null,"id":"11","i21_id":"1995","rowState":"Added"},{"name":"Upton
+        and Sons","termsId":"Due on Receipt","address":"8741 Denesik Island","city":"Lamontstad","state":"Montana","zipcode":"26650","country":"United
+        States","pricelevel":null,"id":"12","i21_id":"1996","rowState":"Added"}],"contacts":[{"name":"Kristopher
+        Steuber","phone":"1-931-954-2611","fax":"946-533-8636","mobile":"451-306-9001","email":"bernardo@bergstrom.info","id":"6","i21_id":"4027","rowState":"Added"}],"customer":{"number":null,"type":"Person","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"6","i21_id":"4026"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+    http_version: 
+  recorded_at: Tue, 13 Oct 2015 22:23:46 GMT
+recorded_with: VCR 2.9.3

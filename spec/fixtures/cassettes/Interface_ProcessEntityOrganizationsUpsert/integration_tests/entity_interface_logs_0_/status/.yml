@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
+    body:
+      encoding: UTF-8
+      string: '[{"name":"Conroy-Conn","entityNo":"43467811","contacts":[{"name":"Tremayne
+        Kub","phone":"925-428-0541","fax":"1-300-628-9913 x5535","mobile":"350.196.0206","email":"nikko.kozey@lednermurphy.biz","id":9,"rowState":"Added"}],"locations":[{"name":"Conroy-Conn","phone":"(782)
+        983-2970","fax":"251-173-7362","address":"21134 Schoen Keys","city":"Bashirianton","state":"Delaware","zipcode":"64121","country":"United
+        States","termsId":"Due on Receipt","id":17,"rowState":"Added"},{"name":"Conroy-Conn","phone":"676.473.0991
+        x95034","fax":"(420) 884-3607 x41838","address":"4718 Kling Run","city":"Mooreberg","state":"Ohio","zipcode":"64752","country":"United
+        States","termsId":"Due on Receipt","id":18,"rowState":"Added"}],"customer":{"creditLimit":0,"type":"Person"},"id":9}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Tue, 13 Oct 2015 22:23:42 GMT
+      Content-Length:
+      - '976'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":"Conroy-Conn","website":null,"email":null,"entityNo":"43467811","locations":[{"name":"Conroy-Conn","termsId":"Due
+        on Receipt","address":"21134 Schoen Keys","city":"Bashirianton","state":"Delaware","zipcode":"64121","country":"United
+        States","pricelevel":null,"id":"17","i21_id":"2001","rowState":"Added"},{"name":"Conroy-Conn","termsId":"Due
+        on Receipt","address":"4718 Kling Run","city":"Mooreberg","state":"Ohio","zipcode":"64752","country":"United
+        States","pricelevel":null,"id":"18","i21_id":"2002","rowState":"Added"}],"contacts":[{"name":"Tremayne
+        Kub","phone":"925-428-0541","fax":"1-300-628-9913 x5535","mobile":"350.196.0206","email":"nikko.kozey@lednermurphy.biz","id":"9","i21_id":"4033","rowState":"Added"}],"customer":{"number":null,"type":"Person","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"9","i21_id":"4032"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+    http_version: 
+  recorded_at: Tue, 13 Oct 2015 22:23:47 GMT
+recorded_with: VCR 2.9.3

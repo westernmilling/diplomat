@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Interface::Entity::Upsert, type: :model do
   describe '#call' do
-    let(:entity) { double(:entity, save!: true) }
+    let(:entity) do
+      double(:entity, contacts: [], locations: [], customer: [], save!: true)
+    end
     let(:interface) { spy }
     let(:organization) { double(:organization) }
     let(:model) do

@@ -1,7 +1,7 @@
 module Interface
   module IRely
     module Entity
-      class Insert #< Interface::IRely::Base
+      class Insert
         def initialize(context, client = nil)
           @context = context
           @client = client
@@ -43,6 +43,7 @@ module Interface
             integration: @context.organization.integration,
             interfaceable: @context.root_instance,
             interface_response: result.raw_response.to_s,
+            message: result.message,
             organization: @context.organization,
             status: result.success ? :success : :failure,
             version: @context.root_instance._v

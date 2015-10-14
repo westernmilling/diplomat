@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
+    body:
+      encoding: UTF-8
+      string: '[{"name":"Brekke-Schumm","entityNo":"65575533","contacts":[{"name":"Chelsea
+        Turcotte","phone":"356.141.8773","fax":"(665) 183-9395 x39963","mobile":"847.129.1454","email":"rowena@roberts.com","id":7,"rowState":"Added"}],"locations":[{"name":"Brekke-Schumm","phone":"199.927.5604
+        x7186","fax":"490.483.7677 x011","address":"582 Name Coves","city":"South
+        Electaview","state":"Tennessee","zipcode":"39215-5857","country":"United States","termsId":"Due
+        on Receipt","id":13,"rowState":"Added"},{"name":"Brekke-Schumm","phone":"848-385-9435","fax":"1-419-585-7853
+        x991","address":"76155 Quincy Brooks","city":"Port Raeganberg","state":"Massachusetts","zipcode":"78043-9101","country":"United
+        States","termsId":"Due on Receipt","id":14,"rowState":"Added"}],"customer":{"creditLimit":0,"type":"Person"},"id":7}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Tue, 13 Oct 2015 22:23:41 GMT
+      Content-Length:
+      - '1009'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":"Brekke-Schumm","website":null,"email":null,"entityNo":"65575533","locations":[{"name":"Brekke-Schumm","termsId":"Due
+        on Receipt","address":"582 Name Coves","city":"South Electaview","state":"Tennessee","zipcode":"39215-5857","country":"United
+        States","pricelevel":null,"id":"13","i21_id":"1997","rowState":"Added"},{"name":"Brekke-Schumm","termsId":"Due
+        on Receipt","address":"76155 Quincy Brooks","city":"Port Raeganberg","state":"Massachusetts","zipcode":"78043-9101","country":"United
+        States","pricelevel":null,"id":"14","i21_id":"1998","rowState":"Added"}],"contacts":[{"name":"Chelsea
+        Turcotte","phone":"356.141.8773","fax":"(665) 183-9395 x39963","mobile":"847.129.1454","email":"rowena@roberts.com","id":"7","i21_id":"4029","rowState":"Added"}],"customer":{"number":null,"type":"Person","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"7","i21_id":"4028"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+    http_version: 
+  recorded_at: Tue, 13 Oct 2015 22:23:46 GMT
+recorded_with: VCR 2.9.3

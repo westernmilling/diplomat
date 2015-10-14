@@ -14,6 +14,9 @@ FactoryGirl.define do
 
     after :build do |location, _evaluator|
       location.location_name = location.entity.name
+
+      location.location_name += " - #{location.entity.locations.size}" \
+        if location.entity.locations.any?
     end
   end
 end

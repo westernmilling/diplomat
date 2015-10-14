@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
+    body:
+      encoding: UTF-8
+      string: '[{"name":"D''Amore, Pollich and McKenzie","entityNo":"54646371","contacts":[{"name":"Rachael
+        Watsica Sr.","phone":"455.992.2763 x8538","fax":"(647) 920-2598 x29059","mobile":"640.798.5902","email":"kylee.schamberger@mertzbogisich.net","id":3,"rowState":"Added"}],"locations":[{"name":"D''Amore,
+        Pollich and McKenzie","phone":"626-296-5309","fax":"410-240-1305 x35572","address":"999
+        Zieme Motorway","city":"Ericville","state":"Hawaii","zipcode":"97292-3070","country":"United
+        States","termsId":"Due on Receipt","id":5,"rowState":"Added"},{"name":"D''Amore,
+        Pollich and McKenzie","phone":"(901) 175-6434","fax":"778-920-6557","address":"2109
+        Sallie Inlet","city":"MacGyverburgh","state":"Idaho","zipcode":"12316","country":"United
+        States","termsId":"Due on Receipt","id":6,"rowState":"Added"}],"customer":{"creditLimit":0,"type":"Person"},"id":3}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Tue, 13 Oct 2015 22:23:40 GMT
+      Content-Length:
+      - '1058'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":"D''Amore, Pollich and McKenzie","website":null,"email":null,"entityNo":"54646371","locations":[{"name":"D''Amore,
+        Pollich and McKenzie","termsId":"Due on Receipt","address":"999 Zieme Motorway","city":"Ericville","state":"Hawaii","zipcode":"97292-3070","country":"United
+        States","pricelevel":null,"id":"5","i21_id":"1989","rowState":"Added"},{"name":"D''Amore,
+        Pollich and McKenzie","termsId":"Due on Receipt","address":"2109 Sallie Inlet","city":"MacGyverburgh","state":"Idaho","zipcode":"12316","country":"United
+        States","pricelevel":null,"id":"6","i21_id":"1990","rowState":"Added"}],"contacts":[{"name":"Rachael
+        Watsica Sr.","phone":"455.992.2763 x8538","fax":"(647) 920-2598 x29059","mobile":"640.798.5902","email":"kylee.schamberger@mertzbogisich.net","id":"3","i21_id":"4021","rowState":"Added"}],"customer":{"number":null,"type":"Person","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"3","i21_id":"4020"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+    http_version: 
+  recorded_at: Tue, 13 Oct 2015 22:23:44 GMT
+recorded_with: VCR 2.9.3

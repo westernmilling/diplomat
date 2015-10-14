@@ -17,13 +17,13 @@ module Interface
     end
 
     def old?
-      !new? && @context.adhesive.version > @context.object._v
+      !new? && @context.object_map.version > @context.root_instance._v
     end
 
     def interface_class
       [
         @context.organization.integration.interface_namespace,
-        @context.object.class.name,
+        @context.root_instance.class.name,
         action.to_s
       ].join('::').constantize
     end
@@ -33,7 +33,7 @@ module Interface
     end
 
     def new?
-      @context.adhesive.nil?
+      @context.object_map.nil?
     end
   end
 end

@@ -1,36 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Interface::IRely::Entity::Insert, type: :model, vcr: true do
-  describe '.call' do
-    let(:api_response) do
-      {
-        data: [
-          {
-            name: entity.name,
-            contacts: [
-              {
-                name: contact.full_name,
-                id: contact.id,
-                i21_id: rand(1001..2000)
-              }
-            ],
-            locations: [
-              {
-                name: location.location_name,
-                id: location.id,
-                i21_id: rand(2001..3000)
-              }
-            ],
-            customer: {
-              i21_id: rand(3001..4000)
-            },
-            id: entity.id,
-            i21_id: rand(1..1000)
-          }
-        ],
-        success: true
-      }
-    end
+  describe '#call' do
     let(:api_result) do
       Interface::IRely::ApiClients::Result.new(api_response)
     end
@@ -64,6 +35,36 @@ RSpec.describe Interface::IRely::Entity::Insert, type: :model, vcr: true do
     context 'when the api call is successful' do
       before { call }
 
+      let(:api_response) do
+        {
+          data: [
+            {
+              name: entity.name,
+              contacts: [
+                {
+                  name: contact.full_name,
+                  id: contact.id,
+                  i21_id: rand(1001..2000)
+                }
+              ],
+              locations: [
+                {
+                  name: location.location_name,
+                  id: location.id,
+                  i21_id: rand(2001..3000)
+                }
+              ],
+              customer: {
+                i21_id: rand(3001..4000)
+              },
+              id: entity.id,
+              i21_id: rand(1..1000)
+            }
+          ],
+          success: true
+        }
+      end
+
       describe 'context#root_instance#interface_object_maps[0]' do
         subject { context.root_instance.interface_object_maps[0] }
 
@@ -87,7 +88,36 @@ RSpec.describe Interface::IRely::Entity::Insert, type: :model, vcr: true do
     end
 
     context 'when the api call is not successful' do
-      # Updates the object in context, failure log
+      before { call }
+
+      let(:api_response) do
+        {
+          data: [],
+          success: false,
+          message: 'An error has occurred'
+        }
+      end
+
+      describe 'context#root_instance#interface_object_maps[0]' do
+        subject { context.root_instance.interface_object_maps[0] }
+
+        it 'should be nil' do
+          expect(subject).to be_nil
+        end
+      end
+      describe 'context#root_instance#interface_logs[0]' do
+        subject { context.root_instance.interface_logs[0] }
+
+        its(:organization) { is_expected.to eq organization }
+        its(:interfaceable) { is_expected.to eq entity }
+        its(:interface_response) do
+          is_expected.to eq api_result.raw_response.to_s
+        end
+        its(:message) { is_expected.to eq api_result.message }
+        its(:status) { is_expected.to eq :failure }
+        its(:action) { is_expected.to eq :insert }
+        its(:version) { is_expected.to eq entity._v }
+      end
     end
   end
 end

@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
+    body:
+      encoding: UTF-8
+      string: '[{"name":"Kunde, McDermott and Kozey","entityNo":"62521578","contacts":[{"name":"Lincoln
+        Morar III","phone":"263.979.3204","fax":"(328) 047-5942","mobile":"234.400.5637","email":"harrison.johnson@pfeffer.name","id":5,"rowState":"Added"}],"locations":[{"name":"Kunde,
+        McDermott and Kozey","phone":"518-473-7676","fax":"739.418.9838 x7184","address":"111
+        Becker Mountains","city":"Port Eugeneland","state":"Alaska","zipcode":"47199","country":"United
+        States","termsId":"Due on Receipt","id":9,"rowState":"Added"},{"name":"Kunde,
+        McDermott and Kozey","phone":"(347) 697-8122 x5683","fax":"809-887-5654 x6722","address":"5263
+        Bernadine Brook","city":"West Nick","state":"Rhode Island","zipcode":"49551","country":"United
+        States","termsId":"Due on Receipt","id":10,"rowState":"Added"}],"customer":{"creditLimit":0,"type":"Person"},"id":5}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Tue, 13 Oct 2015 22:23:40 GMT
+      Content-Length:
+      - '1038'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":"Kunde, McDermott and Kozey","website":null,"email":null,"entityNo":"62521578","locations":[{"name":"Kunde,
+        McDermott and Kozey","termsId":"Due on Receipt","address":"111 Becker Mountains","city":"Port
+        Eugeneland","state":"Alaska","zipcode":"47199","country":"United States","pricelevel":null,"id":"9","i21_id":"1993","rowState":"Added"},{"name":"Kunde,
+        McDermott and Kozey","termsId":"Due on Receipt","address":"5263 Bernadine
+        Brook","city":"West Nick","state":"Rhode Island","zipcode":"49551","country":"United
+        States","pricelevel":null,"id":"10","i21_id":"1994","rowState":"Added"}],"contacts":[{"name":"Lincoln
+        Morar III","phone":"263.979.3204","fax":"(328) 047-5942","mobile":"234.400.5637","email":"harrison.johnson@pfeffer.name","id":"5","i21_id":"4025","rowState":"Added"}],"customer":{"number":null,"type":"Person","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"5","i21_id":"4024"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+    http_version: 
+  recorded_at: Tue, 13 Oct 2015 22:23:45 GMT
+recorded_with: VCR 2.9.3

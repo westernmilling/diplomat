@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
+    body:
+      encoding: UTF-8
+      string: '[{"name":"Upton and Sons","entityNo":"46144170","contacts":[{"name":"Timothy
+        Metz IV","phone":"1-454-336-0174 x828","fax":"715-083-1570 x17927","mobile":"(350)
+        415-4198","email":"joy_gutmann@kiehn.biz","id":11,"rowState":"Added"}],"locations":[{"name":"Upton
+        and Sons","phone":"620-556-6767 x090","fax":"1-783-069-6596 x31552","address":"159
+        Reginald Hollow","city":"Orionland","state":"Idaho","zipcode":"35893-0068","country":"United
+        States","termsId":"Due on Receipt","id":21,"rowState":"Added"},{"name":"Upton
+        and Sons","phone":"(140) 535-3592 x4603","fax":"257-975-5794 x680","address":"44077
+        O''Kon Mission","city":"Muellerberg","state":"Kansas","zipcode":"88292","country":"United
+        States","termsId":"Due on Receipt","id":22,"rowState":"Added"}],"customer":{"creditLimit":0,"type":"Company"},"id":11}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Tue, 13 Oct 2015 22:26:18 GMT
+      Content-Length:
+      - '1002'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":"Upton and Sons","website":null,"email":null,"entityNo":"46144170","locations":[{"name":"Upton
+        and Sons","termsId":"Due on Receipt","address":"159 Reginald Hollow","city":"Orionland","state":"Idaho","zipcode":"35893-0068","country":"United
+        States","pricelevel":null,"id":"21","i21_id":"2015","rowState":"Added"},{"name":"Upton
+        and Sons","termsId":"Due on Receipt","address":"44077 O''Kon Mission","city":"Muellerberg","state":"Kansas","zipcode":"88292","country":"United
+        States","pricelevel":null,"id":"22","i21_id":"2016","rowState":"Added"}],"contacts":[{"name":"Timothy
+        Metz IV","phone":"1-454-336-0174 x828","fax":"715-083-1570 x17927","mobile":"(350)
+        415-4198","email":"joy_gutmann@kiehn.biz","id":"11","i21_id":"4047","rowState":"Added"}],"customer":{"number":null,"type":"Company","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"11","i21_id":"4046"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+    http_version: 
+  recorded_at: Tue, 13 Oct 2015 22:26:23 GMT
+recorded_with: VCR 2.9.3

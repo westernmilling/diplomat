@@ -13,6 +13,7 @@ module Interface
             creditLimit: 0,
             # NB: This is a bit smelly, but what alternative is there?
             type: @context.root_instance.entity.entity_type.capitalize
+            # intBillToId: 
           )
         end
 

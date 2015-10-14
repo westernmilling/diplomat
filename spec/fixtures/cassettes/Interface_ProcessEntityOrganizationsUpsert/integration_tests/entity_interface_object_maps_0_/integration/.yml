@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
+    body:
+      encoding: UTF-8
+      string: '[{"name":"Hagenes and Sons","entityNo":"67451921","contacts":[{"name":"Amara
+        Harris DDS","phone":"934-293-1508","fax":"528.449.7707 x10437","mobile":"945.989.4839","email":"ilene.rolfson@raynor.name","id":13,"rowState":"Added"}],"locations":[{"name":"Hagenes
+        and Sons","phone":"144-938-3578 x73743","fax":"1-236-526-1613 x67448","address":"67474
+        Jaskolski Plain","city":"Aliviatown","state":"New York","zipcode":"57980-4130","country":"United
+        States","termsId":"Due on Receipt","id":25,"rowState":"Added"},{"name":"Hagenes
+        and Sons","phone":"642-147-5927 x57955","fax":"1-675-797-5796","address":"85930
+        Parker Center","city":"Amiyaburgh","state":"North Dakota","zipcode":"85723-7303","country":"United
+        States","termsId":"Due on Receipt","id":26,"rowState":"Added"}],"customer":{"creditLimit":0,"type":"Person"},"id":13}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Tue, 13 Oct 2015 22:26:33 GMT
+      Content-Length:
+      - '1019'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":"Hagenes and Sons","website":null,"email":null,"entityNo":"67451921","locations":[{"name":"Hagenes
+        and Sons","termsId":"Due on Receipt","address":"67474 Jaskolski Plain","city":"Aliviatown","state":"New
+        York","zipcode":"57980-4130","country":"United States","pricelevel":null,"id":"25","i21_id":"2017","rowState":"Added"},{"name":"Hagenes
+        and Sons","termsId":"Due on Receipt","address":"85930 Parker Center","city":"Amiyaburgh","state":"North
+        Dakota","zipcode":"85723-7303","country":"United States","pricelevel":null,"id":"26","i21_id":"2018","rowState":"Added"}],"contacts":[{"name":"Amara
+        Harris DDS","phone":"934-293-1508","fax":"528.449.7707 x10437","mobile":"945.989.4839","email":"ilene.rolfson@raynor.name","id":"13","i21_id":"4049","rowState":"Added"}],"customer":{"number":null,"type":"Person","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"13","i21_id":"4048"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+    http_version: 
+  recorded_at: Tue, 13 Oct 2015 22:26:37 GMT
+recorded_with: VCR 2.9.3

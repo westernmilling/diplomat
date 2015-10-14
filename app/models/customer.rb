@@ -1,7 +1,7 @@
 # Represents the +Customer+ trait details for an +Entity+
 class Customer < ActiveRecord::Base
   acts_as_paranoid
-  after_commit :queue_upsert
+  # after_commit :queue_upsert
 
   belongs_to :bill_to_location, class_name: Location
   belongs_to :contact

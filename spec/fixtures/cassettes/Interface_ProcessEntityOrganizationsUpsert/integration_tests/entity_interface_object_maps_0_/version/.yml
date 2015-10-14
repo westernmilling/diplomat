@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
+    body:
+      encoding: UTF-8
+      string: '[{"name":"Ledner, Padberg and Russel","entityNo":"19120893","contacts":[{"name":"Olen
+        Rippin II","phone":"1-950-605-6268 x8742","fax":"730.695.9896 x3405","mobile":"931-042-3708","email":"dixie_kreiger@littelhuels.net","id":15,"rowState":"Added"}],"locations":[{"name":"Ledner,
+        Padberg and Russel","phone":"987-282-8077 x1309","fax":"(773) 294-2105 x863","address":"548
+        Halvorson Viaduct","city":"Port Harrisonberg","state":"Tennessee","zipcode":"18196-1108","country":"United
+        States","termsId":"Due on Receipt","id":29,"rowState":"Added"},{"name":"Ledner,
+        Padberg and Russel","phone":"492-160-9869","fax":"751.063.5143 x0310","address":"348
+        Grayson Land","city":"North Fanny","state":"Maryland","zipcode":"96933-6702","country":"United
+        States","termsId":"Due on Receipt","id":30,"rowState":"Added"}],"customer":{"creditLimit":0,"type":"Person"},"id":15}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Tue, 13 Oct 2015 22:23:44 GMT
+      Content-Length:
+      - '1060'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":"Ledner, Padberg and Russel","website":null,"email":null,"entityNo":"19120893","locations":[{"name":"Ledner,
+        Padberg and Russel","termsId":"Due on Receipt","address":"548 Halvorson Viaduct","city":"Port
+        Harrisonberg","state":"Tennessee","zipcode":"18196-1108","country":"United
+        States","pricelevel":null,"id":"29","i21_id":"2013","rowState":"Added"},{"name":"Ledner,
+        Padberg and Russel","termsId":"Due on Receipt","address":"348 Grayson Land","city":"North
+        Fanny","state":"Maryland","zipcode":"96933-6702","country":"United States","pricelevel":null,"id":"30","i21_id":"2014","rowState":"Added"}],"contacts":[{"name":"Olen
+        Rippin II","phone":"1-950-605-6268 x8742","fax":"730.695.9896 x3405","mobile":"931-042-3708","email":"dixie_kreiger@littelhuels.net","id":"15","i21_id":"4045","rowState":"Added"}],"customer":{"number":null,"type":"Person","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"15","i21_id":"4044"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+    http_version: 
+  recorded_at: Tue, 13 Oct 2015 22:23:49 GMT
+recorded_with: VCR 2.9.3

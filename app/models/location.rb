@@ -4,7 +4,7 @@ class Location < ActiveRecord::Base
 
   acts_as_paranoid
 
-  belongs_to :entity, inverse_of: :locations
+  belongs_to :entity #, inverse_of: :locations
   has_many :interface_object_maps,
            class_name: Interface::ObjectMap,
            foreign_key: :interfaceable_id,

@@ -3,29 +3,24 @@ module Interface
     module Entity
       class Update < Interface::IRely::Base
         def call
-          Rails.logger.debug "Putting to iRely endpoint at #{url}"
-          response = self
-                     .class
-                     .put("#{url}", body: body.to_json, headers: headers)
-          Rails.logger.debug "Response from iRely endpoint was #{response}"
+          result = client.call
 
-          parse_response response.to_snake_keys
+          parse_response result.hash_response
+
+          log(:update, result)
         end
 
-        def body
-          return [{}] if @data.nil?
-
-          Interface::IRely::Entity::Translate.translate([@data])
+        def client
+          @client ||= Interface::IRely::ApiClients::SyncEntity
+                      .new(base_url, credentials, data)
         end
 
-        def url
-          "#{@base_url}/entitymanagement/api/entity/sync"
+        def data
+          @data ||= Translate.translate(@context)
         end
 
         def parse_response(response)
-          Interface::IRely::Entity::Parse.new(@data, response).call
-
-          { success: false }.merge(response)
+          Parse.new(@context, response).call
         end
       end
     end

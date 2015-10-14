@@ -1,25 +1,31 @@
 module Interface
   module IRely
     class Base
-      include HTTParty
+      def initialize(context, client = nil)
+        @context = context
+        @client = client
+      end
 
-      def initialize(base_url, credentials, data)
-        @base_url = base_url
-        @credentials = credentials
-        @data = data
+      def base_url
+        @base_url ||= @context.organization.integration.address
       end
 
       def credentials
-        @credentials ||= Interface::IRely::Credentials.new
+        @credentials ||= Interface::IRely::CredentialParser
+          .build(@context.organization.integration.credentials)
       end
 
-      def headers
-        {
-          'Content-Type' => 'application/json',
-          'Authorization' =>
-            "Bearer #{credentials.api_key}.#{credentials.api_secret}",
-          CaseSensitiveString.new('ICompany') => credentials.company_id || ''
-        }
+      def log(action, result)
+        @context.root_instance.interface_logs << Interface::Log.new(
+          action: action,
+          integration: @context.organization.integration,
+          interfaceable: @context.root_instance,
+          interface_response: result.raw_response.to_s,
+          message: result.message,
+          organization: @context.organization,
+          status: result.success ? :success : :failure,
+          version: @context.root_instance._v
+        )
       end
     end
   end

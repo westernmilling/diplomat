@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<IRELY_BASE_URL>/entitymanagement/api/entity/import"
+    body:
+      encoding: UTF-8
+      string: '[{"name":"Armstrong Group","entityNo":"38430668","contacts":[{"name":"Miss
+        Eloise King","phone":"(619) 747-6946 x1522","fax":"938.762.3406 x108","mobile":"(439)
+        816-3055","email":"lilian_kunze@kulasdavis.net","id":10,"rowState":"Added"}],"locations":[{"name":"Armstrong
+        Group","phone":"899.899.8333","fax":"1-976-556-7394 x984","address":"8486
+        Sigrid Ramp","city":"East Toniburgh","state":"Oregon","zipcode":"42960","country":"United
+        States","termsId":"Due on Receipt","id":19,"rowState":"Added"},{"name":"Armstrong
+        Group","phone":"(487) 378-2057","fax":"1-976-622-7206 x7197","address":"89329
+        Conn Camp","city":"North Daphneestad","state":"Iowa","zipcode":"81574-3102","country":"United
+        States","termsId":"Due on Receipt","id":20,"rowState":"Added"}],"customer":{"creditLimit":0,"type":"Person"},"id":10}]'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <IRELY_API_KEY>.<IRELY_API_SECRET>
+      Icompany:
+      - "<IRELY_COMPANY>"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization, ICompany
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Date:
+      - Tue, 13 Oct 2015 22:23:42 GMT
+      Content-Length:
+      - '1013'
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"name":"Armstrong Group","website":null,"email":null,"entityNo":"38430668","locations":[{"name":"Armstrong
+        Group","termsId":"Due on Receipt","address":"8486 Sigrid Ramp","city":"East
+        Toniburgh","state":"Oregon","zipcode":"42960","country":"United States","pricelevel":null,"id":"19","i21_id":"2003","rowState":"Added"},{"name":"Armstrong
+        Group","termsId":"Due on Receipt","address":"89329 Conn Camp","city":"North
+        Daphneestad","state":"Iowa","zipcode":"81574-3102","country":"United States","pricelevel":null,"id":"20","i21_id":"2004","rowState":"Added"}],"contacts":[{"name":"Miss
+        Eloise King","phone":"(619) 747-6946 x1522","fax":"938.762.3406 x108","mobile":"(439)
+        816-3055","email":"lilian_kunze@kulasdavis.net","id":"10","i21_id":"4035","rowState":"Added"}],"customer":{"number":null,"type":"Person","salesperson":null,"creditlimit":"0","i21_id":null},"vendor":null,"salesperson":null,"custom":null,"id":"10","i21_id":"4034"}],"success":true,"message":{"statusText":"","status":9998,"button":"Ok"}}'
+    http_version: 
+  recorded_at: Tue, 13 Oct 2015 22:23:47 GMT
+recorded_with: VCR 2.9.3

@@ -5,10 +5,11 @@ class Entity < ActiveRecord::Base
   extend Enumerize
 
   acts_as_paranoid
+  after_commit :queue_upsert
 
   belongs_to :parent_entity, class_name: Entity
   has_many :contacts
-  has_many :locations, inverse_of: :entity
+  has_many :locations #, inverse_of: :entity
   has_many :interface_logs,
            class_name: Interface::Log,
            foreign_key: :interfaceable_id,
@@ -17,6 +18,8 @@ class Entity < ActiveRecord::Base
            class_name: Interface::ObjectMap,
            foreign_key: :interfaceable_id,
            foreign_type: Entity
+  has_many :organization_entities
+  has_many :organizations, through: :organization_entities
   has_one :contact, autosave: false
   has_one :customer, autosave: false
 
@@ -43,15 +46,21 @@ class Entity < ActiveRecord::Base
     is_active == 1
   end
 
-  def organizations(trait)
-    # TODO: Test this! (Integration)
-    OrganizationEntity
-      .select { organization }
-      .where { entity_id == my { id } }
-      .where { trait == my { trait } }
-  end
+  # def organizations(trait)
+  #   # TODO: Test this! (Integration)
+  #   OrganizationEntity
+  #     .select { organization }
+  #     .where { entity_id == my { id } }
+  #     .where { trait == my { trait } }
+  # end
 
   def to_s
     name
+  end
+
+  protected
+
+  def queue_upsert
+    EntityUpsertWorker.perform_async(id, _v)
   end
 end
