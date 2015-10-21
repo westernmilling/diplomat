@@ -4,9 +4,7 @@ RSpec.describe Customer, type: :model do
   subject { build(:customer, entity: build(:entity)) }
 
   it { is_expected.to belong_to(:bill_to_location).class_name(Location) }
-  it { is_expected.to belong_to(:contact) }
   it { is_expected.to belong_to(:entity) }
-  it { is_expected.to belong_to(:location) }
   it { is_expected.to belong_to(:parent_customer) }
   it { is_expected.to belong_to(:salesperson) }
   it { is_expected.to belong_to(:ship_to_location).class_name(Location) }
