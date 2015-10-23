@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe Vendor, type: :model do
   subject { build(:vendor, entity: create(:entity)) }
 
-  it { is_expected.to belong_to(:contact) }
-  it { is_expected.to belong_to(:location) }
   it { is_expected.to belong_to(:entity) }
   it { is_expected.to validate_presence_of(:entity) }
   it { is_expected.to validate_presence_of(:uuid) }

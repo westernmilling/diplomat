@@ -18,7 +18,6 @@ Promiscuous.define do
                :ten99_type,
                :ten99_print,
                :ten99_signed_at,
-               :name,
                :uuid
   end
 end
