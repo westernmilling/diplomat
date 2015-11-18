@@ -10,6 +10,10 @@ Rails.application.configure do
   config.log_level = :debug
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
-  config.log_formatter = ::Logger::Formatter.new
   config.active_record.dump_schema_after_migration = false
+  config.log_formatter = ::Logger::Formatter.new
+  config.logger = RemoteSyslogLogger.new(Figaro.env.REMOTE_SYSLOG_HOST,
+                                         Figaro.env.REMOTE_SYSLOG_PORT)
+  config.logger.level = Logger.const_get('INFO')
+  config.log_level = (Figaro.env.REMOTE_SYSLOG_LEVEL || 'info').to_sym
 end

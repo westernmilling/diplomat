@@ -18,6 +18,7 @@ gem 'promiscuous', github: 'josephbridgwaterrowe/promiscuous',
 # gem 'promiscuous', path: '../promiscuous'
 gem 'pundit'
 gem 'rails'
+gem 'remote_syslog_logger'
 gem 'rolify'
 gem 'sass-rails', '~> 5.0'
 gem 'sidekiq'
