@@ -228,6 +228,8 @@ GEM
     redis (3.2.1)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
+    remote_syslog_logger (1.0.3)
+      syslog_protocol
     request_store (1.2.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
@@ -310,6 +312,7 @@ GEM
       colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    syslog_protocol (0.9.2)
     systemu (2.6.5)
     thor (0.19.1)
     thread_safe (0.3.5)
@@ -371,6 +374,7 @@ DEPENDENCIES
   promiscuous!
   pundit
   rails
+  remote_syslog_logger
   rolify
   rspec-its
   rspec-rails
@@ -389,3 +393,6 @@ DEPENDENCIES
   uuid
   virtus
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.6
